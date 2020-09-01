@@ -1,0 +1,49 @@
+
+message C2GSLearnSkill {
+    optional string type = 1;           //school
+    optional uint32 sk = 2;
+    optional uint32 flag = 3;   //快捷购买招式秘籍
+}
+
+message C2GSFastLearnSkill{
+    optional string type = 1;
+}
+
+//重置门派主动技能
+message C2GSResetActiveSchool{
+    optional uint32 sk = 1;
+}
+
+message C2GSLearnCultivateSkill {
+    optional uint32 type = 1;     //1-道具，2-银币
+    optional uint32 sk = 2;
+}
+
+message C2GSSetCultivateSkill {
+    optional uint32 sk = 1;
+}
+
+message C2GSLearnOrgSkill {
+    optional uint32 sk = 1;
+}
+
+message C2GSUseOrgSkill {
+    optional uint32 sk = 1;
+    repeated uint32 args = 2;                // 参数列表数字
+}
+
+message C2GSLearnFuZhuanSkill{ //学习
+    optional uint32 sk = 1;
+}
+
+message C2GSResetFuZhuanSkill{ //重置
+    optional uint32 sk = 1;
+}
+
+message C2GSProductFuZhuanSkill{ //产生道具
+    optional uint32 sk = 1;
+}
+
+message C2GSEnergyExchangeSilver { //兑换银币
+    
+}

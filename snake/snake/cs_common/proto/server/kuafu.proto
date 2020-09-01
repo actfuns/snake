@@ -1,0 +1,11 @@
+message GS2CTryEnterKS {
+    optional string host = 1;   /* 跨服服务器IP */
+    optional uint32 port = 2;   /* port */
+    optional uint32 errcode = 3;   /* 出现的问题错误码 1:KS不能连通*/
+    optional uint32 pid = 4;
+    optional string gs_host = 5;
+}
+
+message GS2CTryBackGS {
+	optional string host = 1;   /* 原服务器IP */
+}

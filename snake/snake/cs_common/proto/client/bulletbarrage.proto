@@ -1,0 +1,26 @@
+
+message C2GSWarBulletBarrage {
+    optional string cmd = 1;    //战斗弹幕
+}
+
+message C2GSVideoBulletBarrage {
+    optional uint32 video_id = 1;           //录像ID
+    optional uint32 type = 2;                   //类型
+    optional uint32 bout = 3;                  //回合
+    optional uint32 secs = 4;                   //距离回合开始的时间戳
+    optional string msg = 5;                    //弹幕内容
+}
+
+message C2GSOrgBulletBarrage {
+    optional string cmd = 1;
+}
+
+message C2GSStoryBulletBarrage {
+    optional uint32 story_id = 1;           //剧情id
+    optional uint32 secs = 2;             //距离开始的时间戳
+    optional string msg = 3;              //弹幕内容
+}
+
+message C2GSGetStoryBulletBarrage {
+    optional uint32 story_id = 1;
+}

@@ -1,0 +1,32 @@
+message TitleInfo {
+    optional uint32 tid =	1;
+    optional string name = 2;
+    optional uint32 achieve_time = 3;
+    optional uint32 left_time = 4;
+    optional uint32 use_time = 5;
+}
+
+// 称谓列表
+message GS2CTitleInfoList {
+    repeated TitleInfo infos = 1;
+}
+
+// 增加称谓
+message GS2CAddTitleInfo {
+    repeated TitleInfo infos = 1;
+}
+
+// 删除称谓
+message GS2CDelTitleInfo {
+    repeated uint32 tids = 1;
+}
+
+// 更新佩戴的称谓 0:表示没有佩戴
+message GS2CUpdateUseTitle{
+    optional uint32 tid = 1;
+}
+
+// 单个称谓更新
+message GS2CUpdateTitleInfo {
+    optional TitleInfo info = 1;
+}

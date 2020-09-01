@@ -1,0 +1,103 @@
+
+message FighterInfo {
+    optional uint32 type = 1;          // 上阵类型，1.玩家，2.伙伴
+    optional uint32 id = 2;
+}
+
+message TargetID {
+    optional uint32 type = 1;          // 对手类型，1.玩家，2.机器人
+    optional uint32 id = 2;
+}
+
+// 打开竞技场主界面
+message C2GSOpenJJCMainUI {
+}
+
+// 设置竞技场阵法
+message C2GSSetJJCFormation {
+    optional uint32 formation = 1;
+}
+
+// 设置竞技场上阵宠
+message C2GSSetJJCSummon {
+    optional uint32 summonid = 1;      // 宠物服务器id
+}
+
+// 设置竞技场上阵伙伴
+message C2GSSetJJCPartner {
+    repeated uint32 partnerids = 1;     // 伙伴服务器id
+}
+
+// 查看竞技场对手阵容
+message C2GSQueryJJCTargetLineup {
+    optional TargetID target = 1;
+}
+
+// 竞技场挑战玩家
+message C2GSJJCStartFight {
+    optional TargetID target = 1;           // 第idx个对手
+}
+
+// 竞技场挑战记录
+message C2GSJJCGetFightLog {
+}
+
+// 竞技场购买挑战次数
+message C2GSJJCBuyFightTimes {
+}
+
+// 竞技场清除CD
+message C2GSJJCClearCD {
+}
+
+//打开挑战玩法主界面
+message C2GSOpenChallengeUI {
+}
+
+// 挑战玩法选择难度
+message C2GSChooseChallenge {
+    optional uint32 idx = 1;
+}
+
+// 设置挑战玩法上阵
+message C2GSSetChallengeFormation {
+    optional uint32 formation = 1;
+}
+
+// 设置挑战玩法上阵
+message C2GSSetChallengeSummon {
+    optional uint32 summonid = 1;
+}
+
+// 设置挑战玩法上阵
+message C2GSSetChallengeFighter {
+    repeated FighterInfo fighters = 1;
+}
+
+// 重设挑战玩法难度
+message C2GSResetChallengeTarget {
+}
+
+// 挑战玩法开始战斗
+message C2GSStartChallenge {
+    optional TargetID target = 1;           // 第idx个对手
+}
+
+// 挑战玩法领取奖励
+message C2GSGetChallengeReward {
+}
+
+// 查看挑战玩法对手阵容
+message C2GSChallengeTargetLineup {
+    optional TargetID target = 1;
+}
+
+// 领取竞技场首胜奖励 
+message C2GSReceiveFirstGift {
+}
+
+// 刷新jjc对手
+message C2GSRefreshJJCTarget {
+}
+
+

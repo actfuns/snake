@@ -1,0 +1,102 @@
+import "base/common.proto";
+
+//接受者基本信息
+message ReceiveInfo{
+    optional uint32 pid = 1;                //接受者pid
+    optional uint32 icon = 2;               //接受者头像
+    optional string name = 3;               //接受者名字
+    optional uint32 time = 4;                 //接受时间
+    optional uint32 cash = 5;               //抢到货币额度
+}
+
+//红包的基本信息
+message BasicInfo{
+    optional uint32 id = 1;                     //红包id
+    optional string name = 2;               //红包名字
+    optional uint32 cashsum = 3;               //红包货币总额度
+    optional uint32 count = 4;              //红包数量
+    optional uint32 createtime =5;      //红包创建时间
+    optional string ownername = 6;      //红包拥有者名字
+    optional uint32 ownericon = 7;                   //红包拥有者头像
+    repeated ReceiveInfo receiveinfo = 8; //接受者信息列表
+    optional string bless = 9;               //祝福语
+}
+
+//红包是否可抢
+message SubBasicInfo{
+    optional uint32 id = 1;                     //红包id
+    optional string name = 2;               //红包名字
+    optional string ownername = 3;      //红包拥有者名字
+    optional uint32 valid = 4;             //1-可领取　2-不能领取
+    optional uint32 finish = 5;             //1-未抢光　2-已抢光
+    optional uint32 se = 6;             //特效
+    optional uint32 createtime =7;      //红包创建时间
+    optional string bless = 8;               //祝福语
+}
+
+//有可抢红包
+message GS2CNewRB{
+    optional SubBasicInfo newrb = 1;                     //新红包
+}
+
+//红包界面
+message GS2CBasic{
+    optional BasicInfo rpbasicinfo = 1;   //指定红包基本信息
+}
+
+//所有红包界面
+message GS2CAll{
+    optional uint32 channel = 1;                    //101=帮派 102=世界
+    repeated SubBasicInfo allrp = 2;         //channel频道所有红包信息
+    repeated uint32 activerplist = 3;                 //主动红包列表
+}
+
+message GS2CDelActiveRP{
+    optional uint32 index = 1;                 //主动红包列表下标
+}
+
+message GS2CAddActiveRP{
+    optional uint32 index = 1;                 //主动红包列表下标
+    optional uint32 rp = 2;
+}
+
+//接受者界面
+message GS2CRobSuccess{
+    optional uint32 id = 1;                             //红包id
+    optional string name = 2;               //红包名字
+    optional string ownername = 3;      //红包拥有者名字
+    optional uint32 robcash = 4;                             //抢到额度
+}
+
+//刷新红包信息
+message GS2CRefresh{
+    optional uint32 id = 1;                             //红包id
+    optional uint32 valid = 2;             //1-可领取　2-不能领取
+    optional uint32 finish = 3;             //1-未抢光　2-已抢光
+}
+
+//删除红包
+message GS2CRemove{
+    optional uint32 id = 1;
+}
+
+//历史界面
+message GS2CHistory{
+    optional uint32 rob_org_cnt = 1;	        //抢帮派红包数量
+    optional uint32 rob_world_cnt = 2;	         //抢世界红包数量
+    optional uint32 rob_gold =3;		       //抢金币总数量
+    optional uint32 sent_org_cnt =4;	       //发放帮派红包数量
+    optional uint32 sent_world_cnt = 5;	        //发放世界红包数量
+    optional uint32 send_org_gold = 6;	        
+    optional uint32 send_org_goldcoin =7;       
+    optional uint32 send_world_gold = 8;          
+    optional uint32 send_world_goldcoin =9;       
+}
+
+message GS2CRPItem{
+    optional string name = 1; 
+    optional uint32 count = 2;
+    optional uint32 goldcoin = 3; 
+    optional uint32 id = 4;
+}
+

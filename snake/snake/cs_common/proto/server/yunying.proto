@@ -1,0 +1,16 @@
+message YunYingForeShow {
+    optional uint32 channel = 1;
+    optional string  showname = 2;
+    optional string picture_url = 3;
+    optional string  link_url = 4;
+}
+
+message GS2CYunYingForeShow {
+    repeated YunYingForeShow show_list = 1;    //
+}
+
+message GS2CCustServInfo {
+    optional uint32 channel = 1;    // 0 代表全部渠道
+    optional uint32 platform = 2;   // 0 代表全部平台
+    optional string official_info= 3;
+}

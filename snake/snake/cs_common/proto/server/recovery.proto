@@ -1,0 +1,17 @@
+import "base/common.proto";
+
+message GS2COpenRecoveryItem{
+    repeated base.ItemInfo itemdata = 1;
+}
+
+message GS2CDelRecoveryItem{
+    optional uint32 id    = 1;
+}
+
+message GS2COpenRecoverySum{
+    repeated base.SummonInfo sumdata  = 1;
+}
+
+message GS2CDelRecoverSum{
+    optional uint32 id    = 1;
+}

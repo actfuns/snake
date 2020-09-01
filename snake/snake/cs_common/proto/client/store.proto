@@ -1,0 +1,26 @@
+//元宝兑换金币
+message C2GSExchangeGold {
+    optional uint32 store_itemid = 1; /* 金币商城的商品id */
+}
+
+//元宝兑换银币
+message C2GSExchangeSilver {
+    optional uint32 store_itemid = 1; /*银币商城的商品id */
+}
+
+//npc 商城
+message C2GSNpcStoreBuy {
+    optional uint32 buy_id = 1;    //商品唯一id
+    optional uint32 buy_count = 2; //购买数量
+    optional uint32 all_money = 3; //购买总价
+}
+
+// 快速购买物品
+message C2GSFastBuyItem {
+    optional uint32 item_id = 1;
+    optional uint32 cnt = 2;
+}
+
+// 兑换跳舞函
+message C2GSExChangeDanceBook {	
+}

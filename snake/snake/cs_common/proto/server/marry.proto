@@ -1,0 +1,54 @@
+import "base/common.proto";
+
+// 结婚付费
+message GS2CMarryPayUI {
+    optional uint32 seconds = 1;
+    optional uint32 status = 2; /* 0 未付费状态 1 付一半费 2 付全部费*/
+}
+
+// 取消结婚
+message GS2CMarryCancel {
+}
+
+// 离婚成功界面
+message GS2CSuccessDivorce {
+}
+
+// 拾起喜糖
+message GS2CPickItemXT {
+}
+
+message MarryPlayer {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 grade = 3;
+    optional uint32 school = 4;
+    optional uint32 sex = 5;
+    optional base.ModelInfo model_info = 6;
+}
+
+// 进行婚礼信息
+message GS2CMarryWedding {
+	optional uint32 marry_no = 1;		/* 结婚编号*/	
+    optional MarryPlayer player1 = 2;
+    optional MarryPlayer player2 = 3;
+    optional uint32 marry_type = 4;		/* 结婚类型*/
+    optional uint32 wedding_time = 5;	/* 婚礼开始时间*/
+    optional uint32 wedding_sec = 6;	/* 婚礼持续时间*/
+}
+
+// 婚礼结束
+message GS2CMarryWeddingEnd {
+	optional uint32 marry_no = 1;		/* 结婚编号*/	
+}
+
+//组队展示婚礼
+message GS2CTeamShowWedding {
+}
+
+// 结婚确认
+message GS2CMarryConfirmUI {
+    optional uint32 seconds = 1;
+    optional uint32 status = 2;    /* 1 付一半费 2 付全部费*/
+}
+

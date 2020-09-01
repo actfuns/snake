@@ -1,0 +1,35 @@
+message C2GSOpenAuction {               //根据目录信息获取拍品信息
+    optional uint32 cat_id = 1;         //目录ID
+    optional uint32 sub_id = 2;         //子目录ID
+    optional uint32 page = 3;           //页码
+}
+
+message C2GSAuctionBid {                //对拍卖品出价
+    optional uint32 id = 1;             //拍卖品ID, 包括道具和召唤兽
+    optional uint32 price = 2;          //拍卖出价
+}
+
+message C2GSSetProxyPrice {             //对拍卖品设置代理价格
+    optional uint32 id = 1;             //拍卖品ID, 包括道具和召唤兽
+    optional uint32 price = 2;          //拍卖品代理价格
+}
+
+message C2GSToggleFollow {              //关注|取消关注 拍卖品
+    optional uint32 id = 1;             //拍卖品ID, 包括道具和召唤兽
+}
+
+message C2GSCloseAuctionUI {            //关闭拍卖界面
+}
+
+message C2GSCancelProxyPrice {          //取消代理竞价
+    optional uint32 id = 1;             //拍卖品ID, 包括道具和召唤兽
+}
+
+message C2GSClickLink {                 //拍品链接
+    optional uint32 id = 1;             //拍品ID
+}
+
+message C2GSAuctionDetail {             //拍品详情
+    optional uint32 id = 1;             //拍品ID
+}
+

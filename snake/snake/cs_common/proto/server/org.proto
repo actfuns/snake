@@ -1,0 +1,363 @@
+import "base/common.proto";
+
+//帮派列表界面信息
+message OrgListInfo {
+    optional uint32 orgid = 1;
+    optional string name = 2;
+    optional uint32 level = 3;
+    optional uint32 leaderid = 4;
+    optional string leadername = 5;
+    optional uint32 memcnt = 6;
+    optional uint32 hasapply = 7;
+    optional string leaderschool = 8;
+    optional uint32 isfriend = 9;
+    optional uint32 maxcnt = 10;
+    optional uint32 showid = 11;
+    optional uint32 optype = 12;      //1:add 2:update 3:delete
+}
+
+message GS2COrgList {
+    repeated OrgListInfo infos = 1;
+    optional uint32 left_time = 2;
+    optional uint32 version = 3;
+    optional uint32 update = 4;         // 1 更新 
+}
+
+message GS2COrgResultList {
+    repeated OrgListInfo infos = 1;
+}
+
+//待响应帮派列表信息
+message ReadyOrgInfo {
+    optional uint32 orgid = 1;
+    optional string name = 2;
+    optional uint32 respondcnt = 3;
+    optional uint32 leaderid = 4;
+    optional string leadername = 5;
+    optional uint32 hasrespond = 6;
+    optional string school = 7;
+    optional uint32 createtime = 8;
+    optional uint32 isfriend = 9;
+    optional uint32 showid = 10;
+}
+
+message GS2CReadyOrgList {
+    repeated ReadyOrgInfo infos = 1;
+}
+
+// 响应帮派的信息
+message GS2CReadyOrgInfo {
+   optional uint32 orgid = 1;
+   optional string aim = 2; 
+   optional uint32 left_time = 3;               //  响应剩余时间
+   optional uint32 spread_cd = 4;         //  世界宣传cd
+}
+
+//帮派事件
+message OrgHistoryInfo {
+    optional uint32 time = 1;
+    optional string text = 2;
+    optional uint32 logid = 3;
+}
+
+message OrgMainMemInfo{
+   optional uint32 hisoffer  = 1;
+   optional uint32 position  = 2;
+   optional uint32 honor  = 3;              // 荣誉称号
+   optional uint32 offer  = 4;
+   optional uint32 huoyue  = 5; 
+}
+
+//帮派信息界面
+message GS2COrgMainInfo {
+    optional string mask = 1; 
+    optional uint32 orgid = 2;
+    optional string name = 3;
+    optional string aim = 4;
+    optional uint32 level = 5;
+    optional uint32 leaderid = 6;
+    optional string leadername = 7;
+    optional uint32 membercnt = 8;
+    optional uint32 maxmembercnt = 9;
+    optional uint32 onlinemem = 10;
+    optional uint32 xuetucnt = 11;
+    optional uint32 maxxuetucnt = 12;
+    optional uint32 onlinexuetu = 13;
+    optional uint32 cash = 14;                  //帮派资金
+    optional uint32 boom = 15;                  //繁荣度
+    repeated OrgHistoryInfo historys = 16;
+    optional OrgMainMemInfo info = 17;
+    optional string applyname = 18;                  // 自荐人名字
+    optional uint32 applyschool = 19;               // 自荐人门派
+    optional uint32 applylefttime = 20;             // 自荐剩余时间
+    optional uint32 applypid = 21;                    // 自荐
+    optional uint32 canapplyleader = 22;         // 是否可以自荐
+    optional uint32 leaderschool = 23;
+    optional uint32 showid = 24;              
+    optional uint32 left_mail_cnt = 25;          // 剩余邮件次数
+    optional uint32 left_mail_cd = 26;           // 发送帮派邮件cd
+    optional uint32 left_aim_cd = 27;            // 设置宗旨cd
+}
+
+//成员信息
+message OrgMemberInfo {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 grade = 3;
+    optional uint32 school = 4;
+    optional uint32 position = 5;
+    optional uint32 hisoffer = 6;               //历史帮贡
+    optional uint32 weekhuoyue = 7;       //周资金
+    optional uint32 offline = 8;
+    optional uint32 honor = 9;
+    optional uint32 jointime = 10;
+    optional uint32 optype = 11;  //1:add 2:update 3:delete
+    optional uint32 touxian = 12;  //
+}
+
+message GS2COrgMemberInfo {
+    repeated OrgMemberInfo infos = 1;
+    optional uint32 update = 2;  // 0 表示全部 1 update 
+}
+
+//入帮申请信息
+message OrgApplyJoinInfo {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 grade = 3;
+    optional uint32 school = 4;
+    optional uint32 apply_type = 5;
+    optional uint32 touxian = 6;
+}
+
+//入帮申请界面
+message GS2COrgApplyJoinInfo {
+    repeated OrgApplyJoinInfo infos = 1;
+    optional uint32 auto_join = 2;      // 1 为选中
+}
+
+//发送帮派宗旨
+message GS2COrgAim {
+    optional uint32 orgid = 1;
+    optional string aim = 2;
+}
+
+//创建帮派的响应 
+message GS2CCreateOrg {
+}
+
+//申请加入帮派
+message GS2CApplyJoinOrg {
+    optional uint32 flag = 1;
+    optional uint32 orgid = 2;
+}
+
+//响应帮派
+message GS2CRespondOrg {
+    optional uint32 flag = 1;
+    optional uint32 orgid = 2;
+    optional uint32 respondcnt = 3;
+}
+
+// 响应更新宣言
+message GS2CUpdateAimResult {
+}
+
+// 删除成员
+message GS2CDelMember {
+    optional uint32 pid = 1;
+}
+
+// 增加成员
+message GS2CAddMember {
+    optional OrgMemberInfo info = 1;
+}
+
+message GS2CInvited2Org {
+    optional uint32 pid = 1;                        // 邀请者id
+    optional string pname = 2;                   // 邀请者名字
+    optional string org_name = 3;              // 帮派名字   
+    optional string org_level = 4;              // 帮派lv   
+}
+
+message GS2CJoinOrgResult {
+    optional uint32 orgid = 1;                        
+    optional uint32 flag = 2;                        
+}
+
+message GS2CDelApplyOrg {
+    repeated uint32 pids = 1;                                                
+}
+
+message GS2CDelResponseList {
+    repeated uint32 orgids = 1;                                                
+}
+
+message GS2CSetPositionResult {
+    optional uint32 pid = 1;
+    optional uint32 position = 2;                                                
+}
+
+// 申请人帮结果响应
+message GS2CApplyJoinOrgResult {
+    repeated uint32 orgids = 1;
+    optional uint32 left_time = 2;  
+}
+
+// 删除帮派列表
+message GS2CDelOrgList {
+    repeated uint32 orgids = 1;  
+}
+
+// 自荐成功响应
+message GS2CApplyLeaderResult {
+    optional string applyname = 1;                  // 自荐人名字
+    optional uint32 applyschool = 2;                 // 自荐人门派
+    optional uint32 applylefttime = 3;             // 自荐剩余时间
+    optional uint32 applypid = 4;                    // 自荐
+    optional uint32 canapplyleader = 5;         // 是否可以自荐
+}
+
+// 世界宣传结果
+message GS2CSpreadOrgResult {
+   optional uint32 orgid = 1;
+   optional uint32 spread_cd = 2;         //  世界宣传cd    
+}
+
+message OrgRefreshResInfo {
+    optional uint32 orgid = 1;
+    optional uint32 respondcnt = 2;
+}
+
+// 响应人数实时刷新
+message GS2CRefreshRespond {
+   repeated OrgRefreshResInfo infos = 1;
+}
+
+// 帮派红点的信息
+message OrgFlagInfo {
+   optional string mask = 1; 
+   optional uint32 has_apply = 2;                     // 申请信息 1表示有 0 表示没有
+   optional uint32 apply_leader_pid = 3;              // 自荐帮主pid 0 表示没有
+   optional uint32 sign_status = 4;                   // 0 表示可以签到
+   optional uint32 bonus_status = 5;                  // 分红状态:0 不能领 1 可领
+   optional uint32 pos_status = 6;                    // 职位奖励: 0没有 1可领　2已领
+   optional uint32 shop_status = 7;                    // 帮派商店刷新
+}
+
+//帮派红点刷新
+message GS2COrgFlag {
+   optional OrgFlagInfo info = 1;
+} 
+
+//　获取帮派在线成员信息
+message GS2CGetOnlineMember {
+    repeated base.SimplePlayer infos = 1;    
+}
+
+message BuildInfo {
+    optional uint32 bid = 1;                            // 建筑id
+    optional uint32 level = 2;
+    optional uint32 build_time = 3;
+    optional uint32 quick_sec = 4;
+    optional uint32 quick_num = 5;
+}
+
+// 帮派建筑信息
+message GS2CGetBuildInfo {
+    repeated BuildInfo infos = 1;    
+}
+
+message ShopItemInfo {
+    optional uint32 item_id = 1;                            // 物品id
+    optional uint32 buy_cnt = 2;                            // 购买次数
+}
+
+// 商店信息
+message GS2CGetShopInfo {
+   repeated ShopItemInfo items = 1;                                      // 物品
+}
+
+// 刷新单个物品信息
+message GS2COrgRefreshShopUnit {
+    optional uint32 item_id = 1; // 物品id
+    optional uint32 buy_cnt = 2; // 购买次数（经验宝箱为剩余次数）
+}
+
+// 购买商品回协议
+message GS2CBuyItemResult {
+}
+
+// 帮派福利信息
+message GS2CGetBoonInfo {
+    optional uint32 sign_status = 1;                                // 签到状态 0 表示未签到　1　表示已签到
+    optional uint32 bonus_status = 2;                            // 分红状态 0 表示不能领取 1 可以领取 2 已领 
+    repeated uint32 bonus_reward = 3;                             // {元宝，绑定元宝，金币，银币，帮贡}
+    optional uint32 pos_status = 4;                                // 职位奖励状态 0没有 1可以领取　2已领
+    optional uint32 position = 5;                                    // 管理职位
+    repeated uint32 pos_reward = 6;                                   // 管理奖金
+}
+
+message AchieveInfo {
+    optional uint32 achid = 1;
+    optional uint32 ach_status = 2;                            // 状态　0未达成 1达成未领取 2已领
+    optional uint32 process = 3;
+}
+
+//  帮派成就信息
+message GS2CGetAchieveInfo {
+    repeated AchieveInfo achieves = 1;                 // 未给信息都是未达成
+}
+
+
+message OrgBaseInfo {
+    optional string mask = 1;
+    optional uint32 cash = 2;
+    optional uint32 level = 3;
+}
+
+// 更新帮派信息
+message GS2COrgInfoChange {
+    optional OrgBaseInfo info = 1;
+}
+
+//  帮派成就信息
+message GS2CUpdateAchieveInfo {
+    optional AchieveInfo achieve = 1;
+}
+
+//　帮派事件
+message GS2CAddHistoryLog {
+    optional OrgHistoryInfo info = 1;
+}
+
+// 帮派事件下一页
+message GS2CNextPageLog {
+    repeated OrgHistoryInfo infos = 1;
+}
+
+// 禁言
+message GS2CChatBan {
+    optional uint32 binid = 1;
+    optional uint32 flag = 2;
+}
+
+message SimpleInfo {
+    optional uint32 active_id = 1;
+    optional string extra_msg = 2;
+}
+
+message GS2COrgFaneActiveInfo {
+    repeated SimpleInfo info_list = 2;      //活动简明信息
+}
+
+// 自动学徒加入
+message GS2CSetAutoJoin {
+    optional uint32 auto_join = 1;       //0 , 1
+}
+
+// 帮派威望
+message GS2COrgPrestigeInfo {
+    optional uint32 my_rank = 1;
+    optional uint32 my_prestige = 2;
+}

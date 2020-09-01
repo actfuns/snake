@@ -1,0 +1,8 @@
+message C2GSTryEnterKS {
+    optional string ks = 1;   /* 进入跨服服务器ID */
+    optional string hdname = 2;   /* 活动名 */
+}
+
+message C2GSTryBackGS {
+}
+

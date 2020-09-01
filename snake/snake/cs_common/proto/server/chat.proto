@@ -1,0 +1,61 @@
+import "base/common.proto";
+
+message RoleInfo{
+    optional uint32 pid = 1;
+    optional uint32 grade = 2;
+    optional string name = 3;
+    optional uint32 icon = 4;
+    optional uint32 position = 5;
+    optional uint32 honor = 6;
+    optional base.TitleInfo title_info = 7;
+}
+
+message GS2CChat {
+    optional string cmd = 1;
+    optional uint32 type = 2; /*1-world */
+    optional RoleInfo role_info = 3; /* pid=0, 表示系统发 */
+}
+
+message GS2CChatHistory {
+    repeated GS2CChat world_chat = 1; //世界聊天记录
+    repeated GS2CChat org_chat = 2; //帮派聊天记录
+    repeated GS2CChat team_chat = 3; //队伍聊天记录
+}
+
+message GS2CSysChat {
+    optional uint32 tag_type = 1;    // 0-公告，1-传闻，2-帮助
+    optional string content = 2;
+    optional uint32 horse_race = 3; // 1-跑马，0-不跑
+}
+
+message GS2CConsumeMsg {
+    optional uint32 type = 1;   //消息-6
+    optional string content = 2;
+}
+
+message GS2CChuanYin {
+    optional uint32 type = 1;
+    optional string cmd = 2;
+    optional RoleInfo role_info = 3;
+}
+
+message ForbidInfo {
+    optional uint32 id = 1;
+    optional string words = 2; // 微信|威信|V信 表示3个词语
+}
+
+message GS2CAllForbinInfo {
+    repeated ForbidInfo forbids = 1;
+}
+
+message GS2CAddForbinInfo {
+    repeated ForbidInfo forbids = 1;
+}
+
+message GS2CRemoveForbinInfo {
+    repeated uint32 forbids = 1;
+}
+
+
+
+

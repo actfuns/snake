@@ -1,0 +1,28 @@
+
+message GS2CNotify {
+    optional string cmd = 1;
+}
+
+// 需要客户端在战斗中缓存的提示
+message GS2CWarNotify {
+    optional string cmd = 1;
+    optional uint32 type = 2;       //提示类型0x0001 表示弹窗,0x0010表示聊天提示,0x00100 不跟随技能，独立提示
+    optional uint32 flag = 3; //0.perform开始(默认即时生效) 1.受击时 2.perform结束
+}
+
+message GS2CItemNotify {
+    optional uint32 sid = 1;        //道具sid
+    optional int32 amount = 2;      //道具数量
+    optional uint32 type = 3;       //消息类型 0-获得,1-购买
+}
+
+message GS2CSummonNotify {
+    optional uint32 sid = 1;        //召唤兽id
+    optional int32 amount = 2;      //道具数量
+    optional uint32 type = 3;       //消息类型 0-获得,1-购买
+}
+
+message GS2CUIEffectNotify {
+    optional uint32 effect = 1;			// 客户端表现类型 1、打造 2、强化 3、洗炼 4、附魂
+    repeated string cmds = 2;			// 提示信息
+}

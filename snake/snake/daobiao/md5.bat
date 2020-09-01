@@ -1,0 +1,1 @@
+.\tools\Python27\python.exe md5zip.py ./logic/data/ ./logic

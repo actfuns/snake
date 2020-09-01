@@ -1,0 +1,73 @@
+-- ./excel/item/wenshi.xlsx
+return {
+
+    [13601] = {
+        canStore = 1,
+        changeToVigorValue = "150",
+        description = "依附着火麒麟精魂的纹饰，偶尔还能听到麒麟狂暴的吼叫。可用于坐骑统御，增加暴击属性。",
+        gainWayIdStr = {6},
+        icon = 10308,
+        id = 13601,
+        introduction = [=[类型：坐骑纹饰
+功能：增幅坐骑统御]=],
+        itemType = {4},
+        maxGrade = 200,
+        maxOverlay = 1,
+        minGrade = 20,
+        name = "赤焰纹饰",
+        quality = 2,
+        resetcost = 0,
+        salePrice = 0,
+        shop_npctype = 0,
+        sort = 2,
+        useCost = 1,
+        wenshi_type = 1,
+    },
+
+    [13602] = {
+        canStore = 1,
+        changeToVigorValue = "150",
+        description = "蕴涵着星空漩涡之力的纹饰，据说能吞噬一切。可用于坐骑统御，增加攻击属性。",
+        gainWayIdStr = {6},
+        icon = 10310,
+        id = 13602,
+        introduction = [=[类型：坐骑纹饰
+功能：增幅坐骑统御]=],
+        itemType = {4},
+        maxGrade = 200,
+        maxOverlay = 1,
+        minGrade = 20,
+        name = "星噬纹饰",
+        quality = 2,
+        resetcost = 0,
+        salePrice = 0,
+        shop_npctype = 0,
+        sort = 2,
+        useCost = 1,
+        wenshi_type = 2,
+    },
+
+    [13603] = {
+        canStore = 1,
+        changeToVigorValue = "150",
+        description = "寄寓帝王御宇海内之力的纹饰，所到之处形成天然的防护罩。可用于坐骑统御，增加防御属性。",
+        gainWayIdStr = {6},
+        icon = 10309,
+        id = 13603,
+        introduction = [=[类型：坐骑纹饰
+功能：增幅坐骑统御]=],
+        itemType = {4},
+        maxGrade = 200,
+        maxOverlay = 1,
+        minGrade = 20,
+        name = "帝宇纹饰",
+        quality = 2,
+        resetcost = 0,
+        salePrice = 0,
+        shop_npctype = 0,
+        sort = 2,
+        useCost = 1,
+        wenshi_type = 3,
+    },
+
+}

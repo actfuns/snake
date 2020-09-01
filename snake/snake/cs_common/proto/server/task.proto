@@ -1,0 +1,330 @@
+import "base/common.proto";
+
+message TaskItem {
+    /* size as step */
+    optional uint32 itemid        = 1;                                //任务道具id
+    optional uint32 map_id        = 2;
+    optional uint32 pos_x         = 3;
+    optional uint32 pos_y         = 4;
+    optional uint32 radius        = 5;
+}
+
+message PickItem {
+    /* size as step */
+    optional uint32 pickid = 1;
+    optional uint32 map_id = 2;
+    optional uint32 pos_x = 3;
+    optional uint32 pos_y = 4;
+}
+
+message ClientNpc {
+    optional uint32 npctype = 1;
+    optional uint32 npcid = 2;
+    optional string name = 3;
+    optional string title = 4;
+    optional uint32 map_id = 5;
+    optional base.PosInfo pos_info = 6;
+    optional base.ModelInfo model_info = 7;
+    optional uint32 xunluoid = 8;
+    optional uint32 ghost_eye = 9; // 是否天眼通npc（天眼通下才可见）
+    optional string func_group = 10;    // 标记npc所属任务玩法分组
+    optional uint32 no_turnface = 11; // 不转向(1真0假)
+}
+
+message TaskInfo {
+    optional uint32 taskid = 1;                     // 任务id
+    optional uint32 tasktype = 2;                   // 任务类型：找人，寻物等
+    optional string name = 3;                       // 任务名字
+    optional string targetdesc = 4;                 // 目标描述
+    optional string detaildesc = 5;                 // 任务描述
+    optional uint32 target = 6;                     // 任务当前目标
+    repeated base.NeedItem needitem = 7;            // 需求道具
+    repeated base.NeedSum needsum = 8;              // 需求宠物
+    repeated ClientNpc clientnpc = 9;               // 临时npc
+    optional uint32 isdone = 10;                    // 是否完成
+    optional uint32 time = 11;                      // 剩余时间
+    optional uint32 rewardinfo = 12;                // 奖励信息
+    repeated TaskItem taskitem = 13;                // 任务道具信息
+    repeated PickItem pickitem = 14;                // 任务采集信息
+    repeated base.NeedItemGroup needitemgroup = 15; // 需求道具组
+    optional uint32 create_time = 16;               // 领取的时间
+    repeated base.ApplyInfo ext_apply_info = 17;    // 额外信息
+    repeated ClientNpc follownpc = 18;              // 临时npc
+    optional uint32 isreach = 19;                   // 是否达成可交付
+}
+
+//登录发送
+message GS2CLoginTask{
+    repeated TaskInfo taskdata = 1;
+}
+
+//添加任务
+message GS2CAddTask{
+    optional TaskInfo taskdata = 1;
+}
+
+//删除任务
+message GS2CDelTask{
+    optional uint32 taskid = 1;
+    optional uint32 is_done = 2;
+}
+
+message DialogInfo {
+    optional uint32 type    = 1;  //说话类型npc,type:1,玩家type:2,其他npc:3
+    optional uint32 preId   = 2;  //npcid
+    optional string content = 3;  //内容
+    optional uint32 voice   = 4;  //语音
+    optional uint32 timeout = 7;  //毫秒，若>0 -> 时间结束后前端自动点击结束对话
+}
+
+message GS2CDialog{
+    optional uint32 sessionidx         = 1; //回调id,0不需要回调
+    repeated DialogInfo dialog         = 2; //剧情对白列表
+    optional string npc_name           = 3; //当前npc名字
+    optional base.ModelInfo model_info = 4; //当前npc外形
+    optional uint32 taskid             = 5; //任务id
+    optional uint32 noanswer           = 6; //1:不回复
+}
+
+//刷新任务信息
+message GS2CRefreshTask {
+    optional string mask = 1;
+    optional uint32 taskid = 2;
+    optional uint32 target = 3;     // 任务当前目标
+    optional string name   = 4;     // 刷新名字
+    optional string targetdesc = 5;
+    optional string detaildesc = 6;
+    optional uint32 isreach = 7;    // 是否达成可交付
+    repeated base.ApplyInfo ext_apply_info = 8;    // 额外信息
+    optional uint32 time = 9;       // 倒计时
+}
+
+message GS2CTargetTaskNeeds {
+    optional uint32 taskid = 1;
+    optional uint32 owner = 2;                     // 任务属主pid
+    optional uint32 tasktype = 3;                  // 任务类型：找人，寻物等
+    repeated base.NeedItem needitem = 4;           // 需求道具
+    repeated base.NeedSum needsum = 5;             // 需求宠物
+    repeated base.NeedItemGroup needitemgroup = 6; // 需求道具组
+    repeated base.ApplyInfo ext_apply_info = 7;    // 额外信息
+}
+
+// 任务无法交付
+message GS2CSubmitTaskFail {
+    optional uint32 taskid = 1;
+    optional uint32 npcid = 2;
+}
+
+// 刷新已有npc、添加新npc
+message GS2CRefreshTaskClientNpc {
+    optional uint32 taskid = 1;
+    optional ClientNpc clientnpc = 2;
+}
+
+message GS2CRemoveTaskNpc {
+    optional uint32 taskid = 1;
+    optional uint32 npcid  = 2;
+    optional uint32 target = 3;  //任务目标
+}
+
+message GS2CRemoveTaskFollowNpc {
+    optional uint32 taskid = 1;
+    optional uint32 npcid  = 2;
+}
+
+message GS2CConfigTaskFollowNpc {
+    optional uint32 shape = 1;      // 用npc的shape来区分
+    optional uint32 config = 2;     // 前端定义跟随npc配置编号
+}
+
+message GS2CAcceptableTasks {
+    repeated uint32 taskids = 1;
+}
+
+// 通过任务解锁的标记点
+message GS2CLoginUnlockedTags {
+    repeated uint32 tags = 1;
+}
+
+message GS2CUnlockTag {
+    optional uint32 tag = 1;
+    optional uint32 unlock = 2; // 0/1: 加锁/解锁
+}
+
+message ChapterSection {
+    optional uint32 chapter = 1; // 最高章节编号(为0则无章，不需要看后面了)
+    optional uint32 section = 2; // 最高碎片进度(为0则数据缺失，认为是上一章齐全)
+}
+
+message GS2CLoginStoryInfo {
+    optional ChapterSection chapter_section = 1; // 章节进度信息
+    repeated uint32 chapter_rewarded = 2;        // 已领过奖励的章节
+}
+
+// 章节信息更新
+message GS2CStoryChapterInfo {
+    optional ChapterSection chapter_section = 1; // 章节进度信息
+}
+
+message GS2CStoryChapterRewarded {
+    optional uint32 chapter = 1;
+}
+
+// 师门信息
+message GS2CShimenInfo {
+    optional uint32 done_daily = 1;  // 师门日完成次数
+    optional uint32 done_weekly = 2; // 师门周完成次数
+    optional uint32 daily_full = 3;  // 师门是否日满次数
+}
+
+message EverydayTask {
+    optional uint32 taskid = 1;     // 任务id（区别于任务系统的id）
+    optional uint32 max_cnt = 2;    // 计数总数
+    optional uint32 cur_cnt = 3;    // 当前计数
+    optional uint32 rewarded = 4;   // 是否(1/0)已领奖
+}
+
+// 全部每日任务信息
+message GS2CAllEverydayTaskInfo {
+    repeated EverydayTask all = 1;
+}
+
+// 更新部分任务信息(可能是新领取)
+message GS2CUpdateEverydayTasks {
+    repeated EverydayTask updates = 1;
+}
+
+message GS2COpenTaskSayUI{
+    optional uint32 sessionidx = 1;
+    optional string text = 2;
+    optional uint32 channel = 3;
+}
+
+message ExtendOption {
+    optional string text = 1;       // 选项文本
+    optional uint32 state = 2;      // 状态（0常规, 1灰, 2高亮）
+}
+
+// 任务扩展UI面板（任务追踪边上临时挂载）
+message GS2CExtendTaskUI {
+    optional uint32 taskid = 1;
+    optional uint32 sessionidx = 2;
+    repeated ExtendOption options = 3;
+    optional uint32 refresh = 4; // 1表示刷新现有开着的UI（没有就不开新的）
+}
+
+// 任务扩展UI面板关闭
+message GS2CExtendTaskUIClose {
+    optional uint32 taskid = 1;
+}
+
+// ---灵犀----------
+message GS2CLingxiInfo {
+    optional string mask = 1;
+    optional uint32 taskid = 2;
+    optional uint32 phase = 3; // 默认0，需要结合具体任务功能(见lingxibase的PHASE定义)
+}
+
+// 弹出快捷使用种子的UI
+message GS2CLingxiUseSeed {
+    optional uint32 taskid = 1;
+    optional TaskItem seed_item = 2; // 情花种子
+}
+
+// 更新灵犀任务的事件完成计数(限成长阶段)
+message GS2CLingxiQteCnt {
+    optional uint32 taskid = 1;
+    optional uint32 total_cnt = 2;
+    optional uint32 done_cnt = 3;
+}
+
+// 前端对选项进行乱序，第一项是正确答案
+message GS2CLingxiQuestion {
+    optional uint32 taskid = 1;
+    optional uint32 round = 2;       // 轮次
+    optional uint32 ques = 3;        // 题目ID
+    optional uint32 total_round = 4; // 总轮次(题量)
+    optional uint32 correct_cnt = 5; // 正确题量
+    optional uint32 rest_sec = 6;    // 剩余秒数
+    optional uint32 my_answer = 7;   // 自己的答案(0表示未答过)
+}
+
+message GS2CLingxiQuestionAnswered {
+    optional uint32 taskid = 1;
+    optional uint32 round = 2;       // 轮次
+    optional uint32 ques = 3;        // 题目ID
+    optional uint32 my_answer = 4;   // 自己的答案(0表示未答过)
+}
+
+message GS2CLingxiQuestionClose {
+    optional uint32 taskid = 1;
+}
+// -------------------------
+// 跑环说明界面
+message GS2CRunringIntro {}
+// -------------------------
+
+//---------悬赏 start--------------
+
+//悬赏任务数据
+message XuanShangTask {
+    optional uint32 taskid = 1;
+    optional uint32 npcid = 2;
+    optional uint32 star = 3;
+    optional uint32 status = 4; //1未接受 2已接受 3已完成
+}
+
+message GS2CRefreshXuanShang {
+    optional string mask = 1;
+    repeated XuanShangTask tasks = 2;
+    optional uint32 count = 3;
+}
+
+message GS2CRefreshXuanShangUnit {
+    optional XuanShangTask task = 1; //刷新单个任务状态
+}
+
+// 打开悬赏界面
+message GS2COpenXuanShangView {
+    
+}
+
+// 刷新悬赏四五星提示
+message GS2CXuanShangStarTip {
+    
+}
+//---------悬赏 end--------------
+
+
+//---------镇魔塔 start--------------
+
+//悬赏任务数据
+message ZhenmoLayer {
+    optional uint32 layer = 1; //第几层数
+    optional uint32 reward = 2; //该层领取过的奖励数
+    optional uint32 complete = 3; //是否通关 1通关 0没有通关
+
+}
+
+message GS2CZhenmoRefresh {
+    repeated ZhenmoLayer layers = 1;
+    optional uint32 is_newday = 2; // 是否每天第一次刷新, 1是 0不是
+}
+
+message ZhenmoReward {
+    optional uint32 id = 1; //奖励物品id
+    optional uint32 amount = 2; //数量
+}
+
+message GS2CZhenmoSpecialReward {
+    optional string mask = 1;
+    repeated ZhenmoReward rewards = 2;
+    optional uint32 is_open = 3; //1 打开奖励界面，2 关闭奖励界面
+    optional uint32 war_time = 4; //1战斗总花费时间
+
+}
+
+message GS2CZhenmoOpenView {
+}
+
+//---------镇魔塔 end--------------

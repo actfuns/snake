@@ -1,0 +1,49 @@
+
+message FaBaoInfo{
+    optional uint32 id = 1;
+    optional uint32 fabao = 2;
+    optional uint32 equippos = 3;//装备位置 0.未装备, 否则对应位置
+    optional uint32 level = 4;
+    optional uint32 exp = 5;
+    optional uint32 xianling = 6;
+    repeated FaBaoSkill skilllist = 7;
+    repeated FaBaoPromote promotelist = 8;
+    optional uint32 score = 9;
+}
+
+message FaBaoSkill{
+    optional uint32 sk = 1;
+    optional uint32 level = 2;
+    optional uint32 exp = 3;
+}
+
+message FaBaoPromote{
+    optional string attr = 1;
+    optional uint32 promote = 2;
+}
+
+message GS2CAddFaBao{
+    optional FaBaoInfo fabao = 1;
+}
+
+message GS2CRemoveFaBao{
+    optional uint32 id = 1;
+}
+
+message GS2CRefreshFaBao{
+    optional FaBaoInfo fabao = 1;
+}
+
+message GS2CAllFaBao{
+    repeated FaBaoInfo fabaolist = 1;
+}
+
+message GS2CWieldFaBao{
+    optional uint32 wield_id = 1;
+    optional uint32 unwield_id = 2;
+    optional uint32 equippos = 3;
+}
+
+message GS2CUnWieldFaBao{
+    optional uint32 unwield_id = 1;
+}

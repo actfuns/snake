@@ -1,0 +1,70 @@
+import "base/common.proto";
+
+message C2GSHeartBeat {
+}
+
+message C2GSGMCmd {
+    optional string cmd = 1;
+}
+
+/*提交任务需求道具*/
+message CommitItem {
+    optional uint32 id = 1;
+    optional uint32 amount = 2;
+}
+
+message C2GSCallback{
+    optional uint32 sessionidx = 1;
+    optional uint32 answer = 2;       // 点击npc回应
+    repeated CommitItem itemlist = 3; // 提交寻物任务道具
+    repeated uint32 summonlist = 4;   // 提交寻宠任务宠物
+    optional uint32 reenter = 5;      // 重进场
+}
+
+//玩家处于呆滞
+message C2GSSetActive {
+    optional uint32 active = 1; // 0-呆滞，1-活跃
+}
+
+message C2GSBigPacket {
+    optional uint32 type = 1;
+    optional uint32 total = 2;
+    optional uint32 index = 3;
+    optional bytes data = 4;
+}
+
+message C2GSQueryClientUpdateRes {
+    repeated base.ClientResFileVersion res_file_version = 1;
+}
+
+message C2GSOpSession {
+    optional string session = 1;
+}
+
+message C2GSRequestPay {
+    optional string product_key = 1;
+    optional uint32 product_amount = 2;
+    optional uint32 is_demi_sdk = 3;        //1.demi原生SDK
+}
+
+message C2GSUseRedeemCode {
+    optional string code = 1;
+}
+
+message FeedBackPictureUrl {
+    optional string picture_url = 1;   // 图片的url地址
+}
+
+message C2GSFeedBackQuestion {
+    optional uint32 type = 1;           //  咨询 1 bug 2 建议 3 投诉 4
+    optional string context = 2;        //描述文本
+    repeated FeedBackPictureUrl url_list = 3; //图片的url 列表
+    optional string qq_no = 4;              //qq号码
+    optional string phone_no = 5;       //手机号码
+    optional string net_type = 6;          //玩家当前所处的网络链接类型
+    optional uint32 signal_strength = 7; //玩家当前网络的信号强度
+}
+
+message C2GSFeedBackSetCheckState {     //玩家设置已经读取回复的状态，用于红点提示
+    
+}

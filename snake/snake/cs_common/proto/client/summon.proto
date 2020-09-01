@@ -1,0 +1,191 @@
+import "base/common.proto";
+
+//洗宠
+message C2GSWashSummon{
+    optional uint32 summid = 1;
+    optional uint32 flag = 2;       // 1 快捷洗练
+    
+}
+
+//宠物打书
+message C2GSStickSkill{
+    optional uint32 summid = 1;
+    optional uint32 itemid = 2;     //宠物技能书id
+}
+
+//宠物快捷打书
+message C2GSFastStickSkill {
+    optional uint32 summid = 1;  //宠物id
+    optional uint32 booksid = 2;         //技能书的sid    
+}
+
+//宠物技能升级
+message C2GSSummonSkillLevelUp{
+    optional uint32 summid = 1;
+    optional uint32 skid = 2;       //技能id
+}
+
+//宠物改名
+message C2GSSummonChangeName{
+    optional uint32 summid = 1;
+    optional string name = 2;       //宠物名字
+}
+
+//宠物参战
+message C2GSSummonSetFight{
+    optional uint32 summid = 1;
+    optional uint32 fight = 2;      //1.参战，0.休息
+}
+
+//宠物放生
+message C2GSReleaseSummon{
+    optional uint32 summid = 1;
+}
+
+//宠物加点
+message C2GSSummonAssignPoint{
+    optional uint32 summid = 1;
+    optional base.AttrInfo scheme = 2;	//加点
+}
+
+//设置宠物自动加点方案
+message C2GSSummonAutoAssignScheme{
+    optional uint32 summid = 1;
+    optional base.AttrInfo scheme = 2;	//自动加点方案
+}
+
+//开启宠物自动加点
+message C2GSSummonOpenAutoAssign{
+    optional uint32 summid = 1;
+    optional uint32 flag = 2;			//1.开启，2.关闭自动加点
+}
+
+//请求自动加点方案
+message C2GSSummonRequestAuto{
+    optional uint32 summid = 1;
+}
+
+//购买宠物
+message C2GSBuySummon{
+    optional uint32 typeid = 1;
+}
+
+//合宠
+message C2GSCombineSummon{
+    optional uint32 summid1 = 1;
+    optional uint32 summid2 = 2;
+    optional uint32 flag = 3;
+}
+
+//设置跟随
+message C2GSSummonFollow{
+    optional uint32 summid = 1;     //设置跟随宠的id
+    optional uint32 flag = 2;       //1.开启跟随，2.不跟随了
+}
+
+//使用宠物经验书
+message C2GSUseSummonExpBook{
+    optional uint32 summid = 1;
+    optional uint32 cnt = 2;       //使用次数
+    optional uint32 sid = 3;       //使用sid
+}
+
+//使用宠物资质丹
+message C2GSUseAptitudePellet{
+    optional uint32 summid = 1;
+    optional uint32 aptitude = 2;   //宠物资质类型，1.攻，2.防，3.体，4.法，5.速
+    optional uint32 flag = 3;          //快捷增加资质
+}
+
+//使用宠物成长丹
+message C2GSUseGrowPellet{
+    optional uint32 summid = 1;
+}
+
+//使用宠物洗点丹+奇异丹
+message C2GSUsePointPellet{
+    optional uint32 summid = 1;
+    optional uint32 attr = 2;       //宠物属性类型，1.体，2.魔，3.力，4.耐，5.敏，6.全部
+}
+
+//使用宠物寿命丹
+message C2GSUseLifePellet{
+    optional uint32 summid = 1;
+    optional uint32 cnt = 2;       //使用数量
+    optional uint32 itemid = 3;    //唯一id, 不是sid
+}
+
+//打开重置点界面
+message C2GSSummonRestPointUI{
+    optional uint32 summid = 1;
+}
+
+// 兑换宠物
+message C2GSExchangeSummon{
+    optional uint32 sid = 1;
+}
+
+message C2GSGetSummonRanse{
+    optional uint32 summid = 1;
+}
+
+message C2GSSummonRanse{
+    optional uint32 summid = 1;
+    optional uint32 color = 2;
+    optional uint32 flag = 3; //宠物染色快捷购买 1
+}
+
+// 宠物合成引导
+message C2GSCombineSummonLead{
+    optional uint32 summid1 = 1;
+    optional uint32 summid2 = 2;
+}
+
+// 宠物绑定技能
+message C2GSSummonBindSKill {
+    optional uint32 summid = 1;
+    optional uint32 skid = 2;
+    optional uint32 flag = 3;           // 0 解绑 ,1 绑定 
+}
+
+// 开宠物携带格子
+message C2GSExtendSummonSize {
+    optional uint32 flag = 1;       // 快捷购买 1
+}
+
+// 开宠物仓库格子
+message C2GSExtendSummonCkSize {
+}
+
+// 神兽兑换
+message C2GSShenShouExchange {
+    optional uint32 targetsid = 1;
+    optional uint32 summid1 = 2;        // 宠物id
+    optional uint32 summid2 = 3;        // 宠物id
+    optional uint32 flag = 4;    //三眼灵猴 和 雪灵兽的快捷购买
+}
+
+// summon equip
+message C2GSEquipSummon {
+    optional uint32 summid = 1;        // 宠物id
+    optional uint32 equipid = 2;       
+}
+
+
+// 宠物放到仓库
+message C2GSAddCkSummon {
+    optional uint32 summid = 1;        // 宠物id
+}
+
+// 仓库转身上
+message C2GSChangeCkSummon {
+    optional uint32 summid = 1;        // 宠物id
+}
+
+// 神兽进阶
+message C2GSSummonAdvance {
+    optional uint32 summid = 1;        // 宠物id
+    optional uint32 flag = 2;        // 1 fast cost
+}
+
+

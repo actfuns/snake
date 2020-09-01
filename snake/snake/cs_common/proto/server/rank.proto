@@ -1,0 +1,230 @@
+import "base/common.proto";
+
+message UpvoteRank {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 upvote = 3;
+    optional uint32 school = 4;
+    optional int32 rank_shift = 5;
+}
+
+message GradeRank {
+    optional uint32 pid = 1;        //玩家ID
+    optional uint32 grade = 2;      //玩家等级
+    optional string name = 3;       //玩家名字
+    optional uint32 school = 4;     //玩家门派
+    optional int32 rank_shift = 5; //排名偏移,1.大于显示总数表示新晋，2正数表示提升，3负数表示下降
+}
+
+message PlayerScoreRank {
+    optional uint32 pid = 1;
+    optional uint32 score = 2;
+    optional string name = 3;
+    optional uint32 school = 4;
+    optional uint32 touxian = 5;
+    optional int32 rank_shift = 6;
+}
+
+message RoleScoreRank {
+    optional uint32 pid = 1; 
+    optional uint32 score = 2;
+    optional string name = 3; 
+    optional uint32 school = 4;
+    optional uint32 touxian = 5;
+    optional int32 rank_shift = 6;
+}
+
+message SummonScoreRank {
+    optional uint32 pid = 1; 
+    optional uint32 score = 2;
+    optional string name = 3; 
+    optional uint32 type = 4;
+    optional string ownername = 5;
+    optional int32 rank_shift = 6;
+}
+
+message FriendDegreeRank {
+    optional uint32 pid = 1; 
+    optional uint32 friend_degree = 2;
+    optional string name = 3; 
+    optional uint32 school = 4;
+}
+
+message BiWuRank{
+    optional uint32 pid = 1; 
+    optional uint32 point = 2;
+    optional string name = 3; 
+    optional uint32 school = 4;
+    optional int32 grade = 5;
+    optional int32 rank_shift = 6;
+}
+
+message OrgPrestigeRank {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 orgid = 3;
+    optional string orgname = 4;
+    optional uint32 orglv = 5;
+    optional uint32 prestige = 6;
+}
+
+message KaiFuGradeRank {
+    optional uint32 pid = 1;        //玩家ID
+    optional uint32 grade = 2;      //玩家等级
+    optional string name = 3;       //玩家名字
+    optional uint32 school = 4;     //玩家门派
+    optional int32 rank_shift = 5; //排名偏移,1.大于显示总数表示新晋，2正数表示提升，3负数表示下降
+}
+
+message KaiFuScoreRank {
+    optional uint32 pid = 1;
+    optional uint32 score = 2;
+    optional string name = 3;
+    optional uint32 school = 4;
+    optional uint32 touxian = 5;
+    optional int32 rank_shift = 6;
+}
+
+message KaiFuSummonRank {
+    optional uint32 pid = 1; 
+    optional uint32 score = 2;
+    optional string name = 3; 
+    optional uint32 type = 4;
+    optional string ownername = 5;
+    optional int32 rank_shift = 6;
+}
+
+message KaiFuOrgRank {
+    optional uint32 prestige = 1; 
+    optional uint32 orgid = 2;
+    optional string name = 3; 
+    optional string orgname = 4;
+    optional uint32 orglv = 5;
+    optional uint32 rank_shift = 6;
+}
+
+message ScoreSchoolRank {
+    optional uint32 pid = 1;
+    optional uint32 score = 2;
+    optional string name = 3;
+    optional string orgname = 4;
+    optional int32 rank_shift = 5;
+}
+
+message JuBaoPenScoreRank {
+    optional uint32 pid = 1;
+    optional uint32 score = 2;
+    optional string name = 3;
+    optional int32 rank_shift = 5;
+}
+
+message CommonRankUnit {                    
+    optional uint32 cnt = 1;                //各榜主要比较点
+    optional uint32 score = 2;              //玩家评分
+    optional uint32 pid = 3;                //玩家id
+    optional string name = 4;               //玩家名字
+    optional uint32 school = 5;             //门派
+    optional uint32 rank_shift = 6;         //排名偏移
+}
+
+message ThreeBiWuRank{
+    optional uint32 pid = 1; 
+    optional uint32 point = 2;
+    optional string name = 3; 
+    optional uint32 school = 4;
+    optional int32 grade = 5;
+    optional int32 rank_shift = 6;
+}
+
+message LuanShiMoYingScoreRank{
+    optional uint32 pid = 1; 
+    optional uint32 score = 2;
+    optional string name = 3; 
+    optional int32 grade = 4;
+    optional int32 rank_shift = 5;
+}
+
+message ImperialexamRank {
+    optional uint32 pid = 1;
+    optional uint32 usetime = 2;
+    optional string name = 3;
+    optional int32 rank_shift = 4;
+}
+
+message WorldCupRank {
+    optional uint32 pid = 1; //玩家pid
+    optional uint32 school = 2; //门派
+    optional string name = 3; //玩家名称
+    optional uint32 suc_count = 4; //猜中次数
+    optional uint32 suc_rate = 5; //猜中胜率
+    optional int32 rank_shift = 6;
+}
+
+message GS2CGetRankInfo {
+    optional uint32 idx  = 1;               //排行榜索引
+    optional uint32 page = 2;               //排行榜页数
+    optional uint32 first_stub = 3;         //第一次生成的排行榜, 1表示第一次
+    optional uint32 my_rank = 4;            //玩家自己的排名
+    repeated UpvoteRank upvote_rank = 5;    //点赞榜单
+    repeated GradeRank grade_rank = 6;      //等级排行榜
+    repeated PlayerScoreRank player_score_rank = 7; 
+    repeated RoleScoreRank role_score_rank = 8; 
+    repeated SummonScoreRank summon_score_rank = 9; 
+    repeated FriendDegreeRank friend_degree_rank = 10;
+    repeated BiWuRank biwu_rank = 11;
+    optional uint32 my_rank_value = 12;            //我的排行榜数据
+    repeated OrgPrestigeRank prestige_rank = 13;            //帮派威望榜
+    repeated KaiFuGradeRank kaifu_grade_rank = 14;            //开服等级
+    repeated KaiFuScoreRank kaifu_score_rank = 15;            //开服玩家评分
+    repeated KaiFuSummonRank kaifu_summon_rank = 16;            //开服宠物
+    repeated KaiFuOrgRank kaifu_org_rank = 17;            //开服宠物
+    repeated ScoreSchoolRank score_school_rank = 18; //门派排行
+    repeated JuBaoPenScoreRank jubaopen_score_rank = 19; //聚宝盆积分排行
+    repeated CommonRankUnit resume_goldcoin = 20;       //每日消费榜
+    repeated CommonRankUnit treasure_find = 21;         //宝藏发掘榜
+    repeated CommonRankUnit fuyuan_box = 22;            //福缘宝箱开启数
+    repeated CommonRankUnit wash_summon = 23;           //每日冲榜-洗宠
+    repeated CommonRankUnit make_equip = 24;            //每日冲榜-打造
+    repeated CommonRankUnit send_flower = 25;           //每日冲榜-送花
+    repeated CommonRankUnit kill_ghost = 26;            //每日冲榜-抓鬼
+    repeated CommonRankUnit kill_monster = 27;          //每日冲榜-杀怪
+    repeated CommonRankUnit strength_equip = 28;        //每日冲榜-强化
+    repeated ThreeBiWuRank threebiwu_rank = 29;
+    repeated LuanShiMoYingScoreRank luanshimoying_score_rank = 30; //乱世魔影-积分排行
+    repeated ImperialexamRank imperialexam_firststage = 31;             //科举乡试
+    repeated ImperialexamRank imperialexam_secondstage = 32;        //科举殿试
+    repeated WorldCupRank worldcup_rank = 33; //世界杯排行
+
+}
+
+message RankRoleInfo {
+    optional uint32 pid = 1;                //玩家ID
+    optional string name = 2;               //玩家名字
+    optional uint32 upvote = 3;             //赞数
+    optional uint32 school = 4;             //门派
+    optional uint32 value = 5;              //榜单排序数据
+    optional base.ModelInfo model_info = 6; //玩家简明信息
+}
+
+message RankSummonInfo{
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 type = 3;
+    optional uint32 score = 4;
+}
+
+message GS2CGetRankTop3 {
+    optional uint32 idx  = 1;               //排行榜索引
+    optional uint32 my_rank = 2;
+    repeated RankRoleInfo role_info = 3;    //玩家基本信息
+    repeated RankSummonInfo summon_info = 4;    //宠物基本信息
+}
+
+message GS2CGetUpvoteAmount {
+    optional uint32 pid = 1;
+    optional uint32 upvote = 2;
+}
+
+message GS2CSumBasciInfo{
+    optional base.SummonInfo summondata = 1;
+}

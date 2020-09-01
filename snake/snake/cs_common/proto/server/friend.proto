@@ -1,0 +1,119 @@
+import "base/common.proto";
+
+message SingleChat {
+    optional string message_id = 1;
+    optional string msg = 2;
+}
+
+message LoginFriendChat {
+    optional uint32 pid = 1;
+    repeated SingleChat chat_list = 2;
+}
+
+message RecommendFriend {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional string shape = 3;
+    optional uint32 type = 4;
+    optional uint32 grade = 5;
+    optional uint32 school = 6;
+    optional uint32 icon = 7;
+}
+
+message OnlineStatusInfo{
+    optional uint32 pid = 1;
+    optional uint32 onlinestatus = 2;
+}
+
+message GS2CLoginFriend {
+    repeated LoginFriendChat friend_chat_list = 1;
+    repeated uint32 black_list = 2;
+    repeated OnlineStatusInfo friend_onlinestatus_list = 3;
+}
+
+message GS2CAddFriend {
+    repeated base.FriendProfile profile_list = 1;
+}
+
+message GS2CDelFriend {
+    repeated uint32 pid_list = 1;
+}
+
+message GS2CUpdateFriendDegree {
+    optional uint32 pid = 1;
+    optional uint32 friend_degree = 2;
+}
+
+message GS2CAckChatTo {
+    optional uint32 pid = 1;
+    optional string message_id = 2;
+}
+
+message GS2CChatFrom {
+    optional uint32 pid = 1;
+    optional string msg = 2;
+    optional string message_id = 3;
+}
+
+message GS2CRecommendFriends {
+    repeated RecommendFriend recommend_friend_list = 1; 
+}
+
+message GS2CStrangerProfile {
+    repeated base.FriendProfile profile_list = 1;
+}
+
+message GS2CFriendShield {
+    repeated uint32 pid_list = 1;
+}
+
+message GS2CFriendUnshield {
+    repeated uint32 pid_list = 1;
+}
+
+message GS2COpenSendFlowerUI {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 icon = 3;
+    optional uint32 grade = 4;
+    optional uint32 friend_degree = 5;
+    optional uint32 role_type = 6;
+}
+
+message GS2CSendFlowerSuccess {
+    optional uint32 pid = 1;
+    optional string bless = 2;
+}
+
+message GS2CRefreshFriendProfile {
+    optional base.FriendProfile profile = 1;
+}
+
+message GS2CVerifyFriend {
+    optional uint32 pid = 1;
+    optional string name = 2;
+}
+
+message VerifyFriendConfirm {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional string msg = 3;
+}
+
+message GS2CVerifyFriendConfirm {
+    repeated VerifyFriendConfirm verify_list = 1;
+}
+
+message GS2CNotifyRefuseStrangerMsg {
+    optional uint32 pid = 1;
+}
+
+message GS2CRefreshFriendProfileBoth {
+    optional uint32 pid = 1;
+    optional uint32 both = 2;
+}
+
+message GS2CPlayerProfile {
+    repeated base.FriendProfile profile_list = 1;
+    optional uint32 flag = 2; //1.结拜
+}

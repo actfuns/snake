@@ -1,0 +1,68 @@
+-- ./excel/fight/orgtask.xlsx
+return {
+
+    [62208] = {
+        auto_start = 1,
+        barrage_send = 0,
+        barrage_show = 0,
+        boss_war_type = 0,
+        desc = "盗贼",
+        friend = {},
+        id = 62208,
+        lineup = {1, 1},
+        monster = {{["monsterid"] = 11001, ["count"] = 1}, {["monsterid"] = 11020, ["count"] = 2}, {["monsterid"] = 11021, ["count"] = 2}},
+        monster_pos = {},
+        sky_war = 0,
+        speek_id = 0,
+        weather = 0,
+    },
+
+    [62209] = {
+        auto_start = 1,
+        barrage_send = 0,
+        barrage_show = 0,
+        boss_war_type = 0,
+        desc = "强盗",
+        friend = {},
+        id = 62209,
+        lineup = {1, 1},
+        monster = {{["monsterid"] = 11002, ["count"] = 1}, {["monsterid"] = 11020, ["count"] = 2}, {["monsterid"] = 11022, ["count"] = 2}},
+        monster_pos = {},
+        sky_war = 0,
+        speek_id = 0,
+        weather = 0,
+    },
+
+    [62210] = {
+        auto_start = 1,
+        barrage_send = 0,
+        barrage_show = 0,
+        boss_war_type = 0,
+        desc = "熊猫灵兽",
+        friend = {},
+        id = 62210,
+        lineup = {1, 1},
+        monster = {{["monsterid"] = 11003, ["count"] = 1}, {["monsterid"] = 11023, ["count"] = 2}, {["monsterid"] = 11024, ["count"] = 2}},
+        monster_pos = {},
+        sky_war = 0,
+        speek_id = 0,
+        weather = 0,
+    },
+
+    [62211] = {
+        auto_start = 1,
+        barrage_send = 0,
+        barrage_show = 0,
+        boss_war_type = 0,
+        desc = "帮派守护兽",
+        friend = {},
+        id = 62211,
+        lineup = {1, 1},
+        monster = {{["monsterid"] = 11004, ["count"] = 1}},
+        monster_pos = {},
+        sky_war = 0,
+        speek_id = 0,
+        weather = 0,
+    },
+
+}

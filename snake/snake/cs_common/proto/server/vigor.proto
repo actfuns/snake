@@ -1,0 +1,50 @@
+
+//炼化格子的信息
+message VigorGrid {
+    optional uint32 timeout = 1;                         //炼化完成时间戳
+    optional uint32 value = 2;                             //炼化完成获取的值
+}
+
+//炼化一种类型的信息
+message VigorItem {
+    optional uint32 is_change_all = 1;                //是否勾选一键炼化
+    optional uint32 grid_size =2 ;                       //已经开启的格子数
+    optional uint32 change_type = 3;                //炼化的类型
+    repeated VigorGrid grid_info = 4;               //格子的信息列表
+}
+
+// 打开炼化界面发给客户端信息
+message GS2CVigorChangeInfo {
+    optional uint32 vigor_value = 1;              //玩家精气值
+    repeated VigorItem list_info = 2;              //所有类型的炼化信息列表
+}
+
+// 购买一个新格子
+message GS2CVigorItemGetNewGrid {
+    optional uint32 change_type =1;           //炼化类型
+    optional uint32 grid_size = 2;                //格子数
+}
+
+//收取一个产出后的变动信息
+message GS2CVigorItemGetProduct {
+    optional VigorItem item_info = 1;            //该类型条目的变动信息
+}
+
+//单个类型可收取信息
+message HasProduct {
+    optional uint32 change_type = 1;         //可收取的炼化类型
+    optional uint32 grid_amount = 2;         //可收取的个数
+}
+
+//炼化产出完成的提示
+message GS2CVigorItemHasProduct {
+    repeated HasProduct  products_info = 1;  //可以收取产出的信息列表
+}
+
+message GS2CVigorRedPoint {
+}
+
+message GS2CVigorChangeItemStatus {
+    optional uint32 is_change_all = 1;                  //是否勾选一键炼化
+    optional uint32 change_type = 2;                    //炼化类型
+}

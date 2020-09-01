@@ -1,0 +1,108 @@
+-- ./excel/reward/test.xlsx
+return {
+
+    [1001] = {
+        exp = "5000+60*lv",
+        gold = "0",
+        id = 1001,
+        item = {},
+        mail = 0,
+        partnerexp = "2500+30*lv",
+        ride = "0",
+        silver = "30*lv+15000",
+        summexp = "2500+30*lv",
+        summon = {},
+    },
+
+    [1002] = {
+        exp = "5000+60*lv",
+        gold = "0",
+        id = 1002,
+        item = {1001},
+        mail = 0,
+        partnerexp = "2500+30*lv",
+        ride = "0",
+        silver = "30*lv+15000",
+        summexp = "2500+30*lv",
+        summon = {},
+    },
+
+    [1998] = {
+        exp = "0",
+        gold = "0",
+        id = 1998,
+        item = {1997, 1998, 1999},
+        mail = 0,
+        partnerexp = "0",
+        ride = "0",
+        silver = "0",
+        summexp = "0",
+        summon = {},
+    },
+
+    [1999] = {
+        exp = "0",
+        gold = "25",
+        id = 1999,
+        item = {1997, 1998, 1999, 2000},
+        mail = 0,
+        partnerexp = "0",
+        ride = "0",
+        silver = "0",
+        summexp = "0",
+        summon = {},
+    },
+
+    [2001] = {
+        exp = "0",
+        gold = "0",
+        id = 2001,
+        item = {2001},
+        mail = 0,
+        partnerexp = "0",
+        ride = "0",
+        silver = "0",
+        summexp = "0",
+        summon = {},
+    },
+
+    [2002] = {
+        exp = "0",
+        gold = "0",
+        id = 2002,
+        item = {},
+        mail = 0,
+        partnerexp = "0",
+        ride = "1001",
+        silver = "0",
+        summexp = "0",
+        summon = {},
+    },
+
+    [2003] = {
+        exp = "0",
+        gold = "0",
+        id = 2003,
+        item = {},
+        mail = 0,
+        partnerexp = "0",
+        ride = "0",
+        silver = "0",
+        summexp = "0",
+        summon = {10001},
+    },
+
+    [2004] = {
+        exp = "0",
+        gold = "0",
+        id = 2004,
+        item = {},
+        mail = 3,
+        partnerexp = "0",
+        ride = "0",
+        silver = "0",
+        summexp = "0",
+        summon = {11001, 11002},
+    },
+
+}

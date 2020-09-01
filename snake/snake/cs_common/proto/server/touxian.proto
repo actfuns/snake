@@ -1,0 +1,4 @@
+import "base/common.proto";
+message GS2CUpgradeTouxianInfo {
+    optional base.TouxianInfo infos = 1;
+}

@@ -1,0 +1,48 @@
+import "base/common.proto";
+
+message Option {
+    optional uint32 question_id = 1;
+    optional uint32 answer = 2;
+}
+
+message GS2CMentoringStartAnswer {          //开始答题
+    optional uint32 type = 1;               //1:师傅,2:徒弟
+    repeated Option option_list = 2;        //上次登记选项
+}
+
+message GS2CMentoringRecommendMentor {              //推荐拜师
+    repeated base.SimplePlayer mentor_list = 1;     //推荐导师列表
+}
+
+message TaskUnit {
+    optional uint32 task_id = 1;                    //任务id
+    optional uint32 task_cnt = 2;                   //任务次数
+}
+
+message RewardUnit {
+    optional uint32 reward_id = 1;                  //奖励编号
+    optional uint32 reward_cnt = 2;                 //领取次数
+}
+
+message GS2CMentoringTask {                         //打开考核界面
+    repeated TaskUnit task_list = 1;                //任务列表
+    optional uint32 progress = 2;                   //进度
+    repeated RewardUnit reward_list = 3;            //已获得奖励
+    optional string key = 4;                        //key= 师傅id|徒弟id
+    repeated StepUnit step_list = 5;
+    optional uint32 target_grade = 6;               //等级-师傅打开显示徒弟，反之
+    optional uint32 target_score = 7;               //评分-师傅打开显示徒弟，反之
+    optional uint32 growup_num = 8;                 //成功出师人数
+}
+
+message StepUnit {
+    optional uint32 step_id = 1;                    //步骤id
+    optional int32 status = 2;                      //-1:过期，0未领取，1已领取
+    optional uint32 step_cnt = 3;                   //次数
+}
+
+message GS2CMentorEvalutaion {                      //评价界面,走callback
+    optional uint32 grade = 1;                      //等级
+    optional uint32 sessionidx = 2;                 //会话id
+}
+

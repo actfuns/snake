@@ -1,0 +1,69 @@
+import "base/common.proto";
+
+message RideSkillInfo {
+    optional uint32 sk = 1;
+    optional uint32 level = 2;
+    optional uint32 type = 3;
+    optional uint32 row = 4;
+    optional uint32 col = 5;
+}
+
+message PosInfo {
+    optional uint32 pos = 1;
+    optional uint32 summon = 2;              
+}
+
+message RideInfo {
+    optional uint32 ride_id = 1;
+    optional uint32 got_time = 2;	           // 获得时间
+    optional int32 left_time = 3;           // 
+    repeated PosInfo summons = 4;
+    repeated base.ItemInfo wenshi = 5;
+    optional uint32 skill = 6;              // 纹饰技能
+    optional uint32 skill_effect = 7;       // 1 有效 
+}
+
+message PlayerRideInfo {
+    optional string mask = 1;
+    optional uint32 grade = 2;
+    optional uint32 exp = 3;
+    optional uint32 point = 4;                          // 技能点
+    optional uint32 use_ride = 5;
+    repeated uint32 choose_skills = 6;
+    optional uint32 learn_sk = 7;
+    repeated RideSkillInfo skills = 8;
+    repeated RideInfo ride_infos = 9;
+    repeated base.ApplyInfo attrs = 10;
+    optional uint32 score = 11;             // 公共评分
+}
+
+message GS2CPlayerRideInfo {                    // 玩家的坐骑数据，更新也用这个协议
+    optional PlayerRideInfo info = 1;
+}
+
+message GS2CAddRide {
+    optional RideInfo ride_info = 1;
+}
+
+message GS2CDeleteRide {
+    optional uint32 ride_id = 1;
+}
+
+message GS2CUpdateRide {
+    optional RideInfo ride_info = 1;
+}
+
+message GS2CUpdateUseRide {
+    optional uint32 ride_id = 1;
+}
+
+message GS2CShowRandomSkill {
+    optional uint32 skill = 1;
+}
+
+message GS2CResetSKillInfo {
+    optional uint32 cost_exp = 1;
+    optional uint32 grade = 2;
+    optional uint32 point = 3;
+}
+

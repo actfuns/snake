@@ -1,0 +1,23 @@
+message GS2CLoginOpenSys {
+    repeated string open_sys = 1;
+}
+
+message SysOpenInfo {
+    optional string sys = 1;    // open表的系统id
+    optional uint32 open = 2;   // 0/1 是否开启
+}
+
+message GS2COpenSysChange {
+    repeated SysOpenInfo changes = 1;
+}
+
+//  运营后台通过渠道控制某部分功能的开关
+message SysSwitchInfo {
+    optional uint32 systype = 1;            //1 FEEDBACK   2 FEEDBACKINFO
+    optional uint32 channel = 2;
+    optional uint32 state = 3;          // 1 关闭 0 开启
+}
+
+message GS2CSysSwitch {
+    repeated SysSwitchInfo syslist = 1;
+}

@@ -1,0 +1,38 @@
+
+message StateInfo {
+    optional uint32 state_id = 1;          //状态id
+    optional uint32 time = 2;               //剩余时间
+    optional string name = 3;            
+    optional string desc = 4;
+    repeated  StateAttr data =5;
+    optional string hide = 6;               // 1 隐藏
+}
+
+message StateAttr{
+    optional string key = 1;
+    optional uint32 value = 2;
+}
+
+message GS2CLoginState {
+    repeated StateInfo state_info = 1;
+}
+
+message GS2CAddState {
+    optional StateInfo state_info = 1;
+}
+
+message GS2CRemoveState {
+    optional uint32 state_id = 1;
+}
+
+message GS2CRefreshState {
+    optional StateInfo state_info = 1;
+}
+
+message GS2CAddBaoShi{
+    optional uint32 count = 1;
+    optional uint32 sliver = 2;
+}
+
+message GS2CBaoShiSilver{
+}

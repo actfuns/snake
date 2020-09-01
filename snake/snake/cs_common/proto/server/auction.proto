@@ -1,0 +1,61 @@
+import "base/common.proto";
+
+/*
+type
+ 1         --道具
+ 2         --宠物
+*/
+
+message SellUnit {                      //拍卖品简明信息
+    optional uint32 id = 1;             //拍卖品全局唯一id
+    optional uint32 type = 2;           //拍卖品类型,道具|召唤兽
+    optional uint32 sid = 3;            //拍卖品SID
+    optional uint32 price = 4;          //当前价格
+    optional uint32 money_type = 5;     //货币类型
+    optional uint32 bidder = 6;         //当前最高出价人
+    optional uint32 show_time = 7;      //公示到期时间
+    optional uint32 price_time = 8;     //竞价到期时间
+    optional uint32 is_follow = 9;      //是否关注
+    optional uint32 proxy_bidder = 10;  //当前代理竞价人
+    optional uint32 proxy_price =11;    //玩家当前代理竞价价格
+    optional uint32 view_time = 12;     //下次拍卖预览到期时间
+    optional uint32 sys_idx = 13;       //系统编号
+    optional uint32 quality = 14;       //品质
+    optional uint32 base_price = 15;    //基础价格
+}
+
+message GS2COpenAuction {               //打开拍卖界面
+    optional uint32 cat_id = 1;         //目录ID
+    optional uint32 sub_id = 2;         //子目录ID
+    repeated SellUnit sell_list = 3;    //拍品列表
+    optional uint32 total = 4;          //目录列表总数
+    optional uint32 page = 5;           //当前页数
+}
+
+message GS2CRefreshSellUnit {           //刷新单个拍品信息
+    optional SellUnit unit = 1;         //拍品信息
+}
+
+message GS2CShowLink {                  //拍品链接页面
+    optional uint32 cat_id = 1;         //目录ID
+    optional uint32 sub_id = 2;         //子目录ID
+    repeated SellUnit sell_list = 3;    //拍品列表
+    optional uint32 total = 4;          //目录列表总数
+    optional uint32 page = 5;           //当前页数
+    optional uint32 status = 6;         //公示阶段1, 购买阶段2
+    optional uint32 target = 7;         //目标拍品
+}
+
+message GS2CAuctionPriceChange {        //价格变动提示
+    optional uint32 id = 1;             //拍品ID
+    optional uint32 price = 2;          //当前价格
+    optional uint32 price_time = 3;     //拍卖结束时间
+    optional uint32 bidder = 4;         //当前竞价人
+}
+
+message GS2CAuctionDetail {             //拍品详情
+    optional uint32 id = 1;             //拍品ID
+    optional uint32 type = 2;           //拍品类型
+    optional base.ItemInfo itemdata = 3;
+	optional base.SummonInfo summondata = 4;
+}

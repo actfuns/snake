@@ -1,0 +1,28 @@
+import "base/common.proto";
+
+message C2GSSyncPosQueue {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    repeated base.PosQueueInfo poslist = 3;
+}
+
+message C2GSTransfer {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    optional uint32 transfer_id = 3;
+}
+
+message C2GSClickWorldMap {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    optional uint32 map_id = 3;
+}
+
+message C2GSClickTrapMineMap {
+    optional uint32 scene_id = 1;
+    optional uint32 map_id = 2;
+}
+
+message C2GSStartWaterWalk {
+    optional uint32 walkid = 1;
+}

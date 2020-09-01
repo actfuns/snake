@@ -1,0 +1,91 @@
+
+message SkillInfo {
+    optional uint32 sk = 1;                               //技能编号
+    optional uint32 level = 2;                          //技能等级
+    optional uint32 type = 3;		     //消耗类型,1:金币,2:银币
+    optional uint32 needmoney = 4;                   //学习消耗
+    optional uint32 needpoint = 5;                      //学习消耗技能点
+}
+
+message CultivateSkillInfo {
+    optional uint32 sk = 1;                               //技能编号
+    optional uint32 level = 2;                          //技能等级
+    optional uint32 extra_level = 3;               //额外等级
+    optional uint32 exp = 4;                           //当前经验
+}
+
+message OrgSkillInfo {
+    optional uint32 sk = 1;                               //技能编号
+    optional uint32 level = 2;                          //技能等级
+}
+
+message ItemUseLimit {
+    optional uint32 itemsid = 1;                       //物品的的sid 10007（仙灵丹） 或 10008（炼体丹）
+    optional uint32 count_limit = 2;                //继续可用个数
+    optional uint32 flag_limit = 3;                    //玩家使用个数受到等级限制   限制 1   不受限制 0
+}
+
+message GS2CLoginSkill {
+    repeated SkillInfo active_skill = 1;	//门派主动技能
+    repeated SkillInfo passive_skill = 2;	//门派被动技能
+}
+
+message GS2CRefreshSkill {
+    optional SkillInfo skill_info = 1;
+}
+
+message GS2CAllCultivateSkill {
+    optional uint32 role_sk = 1;                            //已选玩家技能编号
+    optional uint32 partner_sk =2;                      //已选伙伴技能编号
+    repeated CultivateSkillInfo skill_info = 3;     //修炼技能信息
+    optional uint32 upperlevel = 4;                     //可修炼等级上限
+    optional uint32 limit = 5;                     //修炼等级限制条件 0 等级 1 帮贡
+    repeated ItemUseLimit item_useinfo = 6;   //物品还可使用个数
+}
+
+message GS2CRefreshCultivateSkill {
+    optional CultivateSkillInfo skill_info = 1;
+    optional uint32 upperlevel = 2;                     //可修炼等级上限
+    optional uint32 limit = 3;                     //修炼等级限制条件 0 等级 1 帮贡
+    repeated ItemUseLimit item_useinfo = 4;    //刷新仙灵丹或炼体丹的继续可用个数          
+}
+
+message GS2CSetCultivateSkill {
+    optional uint32 sk = 1;
+}
+
+message GS2CRefreshSkillMaxLevel {
+    optional uint32 upperlevel = 1;                     //可修炼等级上限   
+    optional uint32 limit = 2;                     //修炼等级限制条件 0 等级 1 帮贡
+}
+
+message GS2COrgSkills {
+    repeated OrgSkillInfo org_skill = 1;
+}
+
+message ItemInfo {
+    optional uint32 itemid = 1;
+    optional uint32 cnt = 2;          
+}
+
+message GS2CUseOrgSkill {
+    repeated ItemInfo infos = 1;
+}
+
+message FuZhuanSkill{
+    optional uint32 sk = 1;    
+    optional uint32 level = 2;    
+}
+
+message GS2CAllFuZhuanSkill{    //刷新全部
+    repeated FuZhuanSkill skill_list = 1;
+}
+
+message GS2CRefreshFuZhuanSkill{ //刷新单个
+    optional uint32 sk = 1;    
+    optional uint32 level = 2;    
+}
+
+message GS2CMarrySkill{    
+    repeated SkillInfo skill_list = 1;
+}

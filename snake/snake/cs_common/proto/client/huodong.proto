@@ -1,0 +1,728 @@
+import "base/common.proto";
+
+// 擂台
+message C2GSArenaFight {
+    optional uint32 fight = 1;
+    optional uint32 enemy = 2;
+}
+
+message C2GSArenaViewList {
+}
+
+message C2GSArenaFightList {
+    repeated uint32 pidlst = 1;
+    optional uint32 team = 2;   //1.队伍 2.单人(无队伍的个人 和 暂离)
+}
+
+//骰子
+message C2GSShootCrapOpen{
+}
+
+message C2GSShootCrapStart{
+}
+
+message C2GSShootCrapEnd{
+}
+
+//跳舞
+message C2GSDanceStart {
+    optional uint32 flag = 1;  // 使用快捷购买 1
+}
+
+message C2GSDanceEnd {
+}
+
+message C2GSDanceInspired{
+}
+
+message C2GSDanceAuto{
+}
+
+// 帮派篝火
+message C2GSCampfireAnswer {
+    optional uint32 id = 1;          // 题目id（暂时用于answer校验）
+    optional uint32 answer = 2;      // 答案序号
+    optional string fill_answer = 3; // 填空答案
+}
+
+message C2GSCampfireDesireQuestion {
+    // 询问服务端是否有题目
+}
+
+message C2GSCampfireDrink {
+    // 执行扣物品加buff，二级确认前端确认后再上行
+    optional uint32 amount = 1; // 喝酒数量
+}
+
+message C2GSCampfireQueryGiftables {
+    // 请求可赠与的角色列表
+}
+
+message C2GSCampfireGiftOut {
+    optional uint32 target = 1; // 目标角色pid
+    optional uint32 quick = 2;  // 是否快速答谢(0/1)
+}
+
+message C2GSCampfireThankGift {
+    optional uint32 target = 1; // 答谢目标pid
+}
+
+//每日签到
+message C2GSSignInDone {        //今日签到
+}
+
+message C2GSSignInReplenish {      //补签
+}
+
+message C2GSSignInLottery {     //签到抽奖
+}
+
+message C2GSSignInMainInfo {    //获取签到数据
+}
+
+
+//武林盟主
+message C2GSMengzhuOpenPlayerRank {         //打开个人积分榜
+}
+
+message C2GSMengzhuOpenOrgRank {            //打开帮派积分榜
+}
+
+message C2GSMengzhuOpenPlunder {            //打开掠夺界面
+}
+
+message C2GSMengzhuStartFightBoss {         //开始挑战波旬
+}
+
+message C2GSMengzhuStartPlunder {           //开始掠夺玩家
+    optional uint32 target = 1;             //目标玩家ID
+}
+
+message C2GSMengzhuMainUI {                 //打开武林盟主活动
+}
+
+message C2GSBWRank{
+}
+
+message C2GSBWMakeTeam{
+    optional uint32 op = 1;            //1.自动组队 0.不组队
+}
+
+//门派试练
+message C2GSSchoolPassClickNpc {
+}
+
+message C2GSOrgTaskRandTask{    //抽取任务
+
+}
+
+message C2GSOrgTaskResetStar{   //重置星级
+    
+}
+
+message C2GSOrgTaskReceiveTask{ //领取任务
+
+}
+
+message C2GSOrgTaskFindNPC{     //自动寻路帮派总管
+}
+
+//六道百科
+message C2GSBaikeOpenUI {           //打开六道百科答题界面
+}
+
+message C2GSBaikeChooseAnswer {     //选择题目答案
+    optional uint32 id = 1;
+    repeated uint32 answer = 2;
+    optional uint32 cost_time = 3;
+}
+
+message C2GSBaikeLinkAnswer {       //连线题目答案
+    optional uint32 id = 1;
+    repeated base.BaikeLinkAnswer answer = 2;
+    optional uint32 cost_time = 3;
+}
+ 
+message C2GSBaikeGetNextQuestion {      //获取、刷新题目
+}
+
+message C2GSBaikeWeekRank {             //周榜
+}
+
+message C2GSChargeRewardGradeGift {     //一本万利领取
+    optional string type = 1;           //奖励类型：grade_gift1 | grade_gift2
+    optional uint32 grade = 2;          //标识
+}
+
+message C2GSChargeRewardGoldCoinGift {  //元宝大礼领取
+    optional string type = 1;           //奖励类型：goldcoin_gift_1
+}
+
+message C2GSChargeCheckBuy {            //查看是否能购买
+    optional string reward_key = 1;
+}
+
+message C2GSChargeGetDayReward {
+    optional string reward_key = 1;     //gift_day_1,gift_day_2 etc...
+}
+
+message C2GSBottleDetail {              //获取瓶子内容
+    optional uint32 bottle = 1;         //瓶子id
+} 
+
+message C2GSBottleSend {                //传递瓶子
+    optional uint32 bottle = 1;         //瓶子id
+    optional string content = 2;        //祝福语
+}
+
+//---六脉---
+message C2GSLMLookInfo{
+    optional uint32 school = 1;         //门派
+}
+
+// --灵犀------------
+// 参与灵犀日程活动
+message C2GSLingxiPaticipate { }
+
+// 点击领任务
+message C2GSLingxiClickAcceptTask { }
+
+// 点击自动匹配
+message C2GSLingxiClickMatch { }
+
+// 停止自动组队匹配
+message C2GSLingxiStopMatch { }
+//------------
+
+message C2GSRewardFirstPayGift {     //首充礼包
+    optional uint32 type = 1; // 1第一重 2 第二重 3 第三重
+}
+
+message C2GSRewardWelfareGift {     //充值返利(rebate), 七彩神灯(login)
+    optional string type = 1;
+    optional string gift_key = 2;
+}
+
+//--精英副本
+message C2GSJoinJYFuben{
+}
+//--精英副本
+
+message C2GSRedeemCollectGift {
+    optional string gift_key = 1;
+}
+
+message C2GSCaishenStartChoose {
+    optional uint32 reward_key = 1;     //开始转转盘
+}
+
+message C2GSCaishenOpenUI {        //打开UI
+}
+
+message C2GSCaishenRefreshRecordList {  //刷新记录列表
+    optional uint32 time = 1;    //获取time时间戳之后的记录
+}
+
+message C2GSOrgWarOpenMatchList {       //帮派内按钮打开对阵表
+    optional uint32 week_day = 1;       //周几
+}
+
+message C2GSOrgWarTryGotoNpc {
+}
+
+message C2GSOrgWarOpenTeamUI {          //打开场景组队信息
+}
+
+message C2GSOrgWarOpenWarScoreUI {      //打开战绩
+}
+
+message C2GSOrgWarStartFight {
+    optional uint32 target = 1;         //挑战的目标玩家
+}
+
+//--帮派任务
+message C2GSOrgTaskStarReward {
+}
+//--帮派任务
+
+message C2GSTrialOpenUI{
+}
+
+message C2GSTiralStartFight {
+}
+
+message C2GSTrialGetReward {
+    optional uint32 pos = 1;            //位置id
+}
+
+//----画舫灯谜-------
+// 进场
+message C2GSHfdmEnter {
+}
+
+// 选答案，需要在玩家进入答案区的时候上行，用于后端记录其选答案的时间
+message C2GSHfdmSelect {
+    optional uint32 ques_id = 1; // 校验用
+    optional uint32 answer = 2; // 由于上次答题时停在答案区，下一题出现时视为立即答题，需要马上上行
+}
+
+message C2GSHfdmUseSkill {
+    optional uint32 id = 1;
+    optional uint32 target = 2; // pid
+    optional uint32 my_answer = 3; // 自己当前答案更新（假答案），技能使用以此答案代表的答题区为准
+}
+//-------------------
+
+//成长
+message C2GSGrowReward{
+    optional uint32 index = 1;
+}
+
+message C2GSReturnGoldCoinGetReturn {
+    optional uint32 key = 1;        //领取返还key值:1, 2, 3
+}
+
+message C2GSReturnGoldCoinGetFreeGift {
+}
+
+message C2GSReturnGoldCoinBuyGift {
+    optional uint32 key = 1;       //第几个神秘礼包
+}
+
+message C2GSKFGetTXRank{
+}
+
+message C2GSKFGetOrgLevelReward{
+    optional uint32 level = 1; 
+}
+
+message C2GSKFGetOrgCntReward{
+    optional uint32 cnt = 1; 
+}
+
+message C2GSKFGetScoreReward{
+    optional uint32 score = 1; 
+}
+
+message C2GSKFGetGradeReward{
+    optional uint32 grade = 1; 
+}
+
+message C2GSKFGetRankReward{
+}
+
+message C2GSSevenDayGetReward{
+    optional uint32 day = 1; 
+}
+
+message C2GSEveryDayChargeGetReward{
+    optional uint32 day = 1; 
+    optional string flag = 2; 
+}
+
+message C2GSOnlineGift{
+    optional uint32 key = 1;
+}
+
+message C2GSSuperRebateGetReward{
+}
+
+message C2GSSuperRebateGetRecord{
+}
+
+message C2GSSuperRebateLottery{
+}
+
+//每日累充
+message C2GSTotalChargeGetReward{
+    optional uint32 level = 1;
+}
+
+message C2GSTotalChargeSetChoice{
+    optional uint32 level = 1;  //级别
+    optional uint32 slot = 2;   //第几个格子
+    optional uint32 index = 3;//格子选项奖励的下标索引
+}
+
+//战力礼包
+
+message C2GSFightGiftbagGetReward{
+    optional uint32 score = 1;
+}
+
+message C2GSFightGiftbagGetInfo{
+}
+
+message C2GSFightGiftbagSetChoice{
+    optional uint32 score = 1;  //级别
+    optional string slot = 2;   //slot1 slot2  extra ...
+    optional uint32 index = 3;//格子选项奖励的下标索引
+}
+
+message C2GSDayExpenseGetReward{
+    optional string group_key = 1; //奖励组的id(新旧服务器不同)
+    optional uint32 reward_key = 2; //奖励的id 对应累计消费的元宝
+}
+
+message C2GSDayExpenseSetRewardOption {
+    optional string group_key = 1;
+    optional uint32 reward_key = 2;                              //奖励的key 对应着一个累计花费
+    optional uint32 grid = 3;                                            //格子位置
+    optional uint32 option = 4 ;                                        //选项
+}
+
+message C2GSDayExpenseOpenRewardUI {  //打开界面（或者登录时候推送也可以，可能需要推送消费的元宝信息等）
+}
+
+message C2GSOpenFuYuanBox {
+    optional uint32 box_idx = 1; //宝箱编号
+    optional uint32 times = 2; // 1 打开一次 10 打开十次
+    optional uint32 use_goldcoin = 3; //是否使用元宝 1 使用 0 不使用
+}
+
+//三人比武
+message C2GSThreeBWGetFirstReward{
+}
+
+message C2GSThreeBWGetFiveReward{
+}
+
+message C2GSThreeBWGetRankInfo{
+}
+
+message C2GSThreeSetMatch{
+    optional uint32 match = 1;//1.参与匹配 0.取消匹配 
+}
+
+message C2GSRewardSecondPayGift {     //次充奖励
+}
+
+message C2GSOpenActivePointGiftView {  //打开活跃度礼包界面
+    
+}
+
+message C2GSSetActivePointGiftGridOption {
+    optional uint32 point_key = 1;      //礼包id
+    optional uint32 grid_id = 2;            //礼包内部格子id
+    optional uint32 option = 3;             //格子的物品选项
+}
+message C2GSGetActivePointGift{
+    optional uint32 point_key = 1;
+}
+
+message C2GSGetActivePointGiftByGoldCoin {
+    optional uint32 point_key = 1;
+}
+
+message C2GSJuBaoPen {
+    optional uint32 times = 1;
+}
+
+message C2GSJuBaoPenScoreReward {
+    optional uint32 score = 1;
+}
+
+message C2GSOpenJuBaoPenView {
+
+}
+
+message C2GSQiFuGetDegreeReward{
+    optional uint32 degree = 1;//1.2.3.4.5
+}
+
+message C2GSQiFuGetLotteryReward{
+    optional uint32 flag = 1;//1.单抽 10.十抽
+}
+
+message C2GSDrawCardOpenView { //打开疯狂翻牌界面
+}
+
+message C2GSDrawCardBuyTimes {  //策划默认购买一次
+}
+
+message C2GSDrawCardOpenOne {
+    optional uint32 card_id = 1; //开启一张牌，牌的编号（1--6）
+}
+
+message C2GSDrawCardOpenList {  //一键翻牌   
+}
+
+message C2GSDrawCardReset {     //重置跳到开始界面
+}
+
+message C2GSDrawCardStart {     //重新获取新的牌面
+    
+}
+
+message C2GSDrawCardSetPopupState {
+    optional uint32 popup_state = 1;              //翻牌花费元宝二次弹窗状态
+}
+
+message C2GSContinuousChargeSetChoice {
+    optional uint32 type = 1;  //类型 1 每日的可选， 2 累计的可选
+    optional uint32 day = 2;  //级别
+    optional uint32 slot = 3;   //第几个格子
+    optional uint32 index = 4;//格子选项奖励的下标索引
+}
+
+//连环充值奖励
+message C2GSContinuousChargeReward {
+    optional uint32 day = 1;
+}
+
+//连环充值累计奖励
+message C2GSContinuousChargeTotalReward{
+    optional uint32 day = 1;
+}
+
+message C2GSContinuousExpenseSetChoice {  //打开连环消费界面
+    optional uint32 type = 1;  //类型 1 每日的可选， 2 累计的可选
+    optional uint32 day = 2;  //级别
+    optional uint32 slot = 3;   //第几个格子
+    optional uint32 index = 4;//格子选项奖励的下标索引
+}
+
+//连环消费奖励
+message C2GSContinuousExpenseReward {
+    optional uint32 day = 1;
+}
+
+//连环消费累计奖励
+message C2GSContinuousExpenseTotalReward{
+    optional uint32 day = 1;
+}
+
+message C2GSFengYaoAutoFindNPC{
+}
+
+message C2GSShootCrapsExchangeCnt{
+}
+
+message C2GSNianShouFindNPC{
+}
+
+message C2GSGoldCoinPartyGetDegreeReward{
+    optional uint32 degree = 1;//1.2.3.4.5
+}
+
+message C2GSGoldCoinPartyGetLotteryReward{
+    optional uint32 lottery = 1;//1.单抽 10.十抽
+    optional uint32 flag = 2;//1.元宝 2.道具
+}
+
+message C2GSGoldCoinPartyGetRewardInfo{
+}
+
+message C2GSMysticalboxOperateBox {
+    optional uint32 operator = 1;          // 领取宝箱 1,  打开宝箱（获得道具） 2
+}
+
+//结拜
+message C2GSJieBaiCreate{   //发起结拜
+}
+
+message C2GSJBInvite{   //邀请玩家
+    optional uint32 target = 1; // 邀请玩家pid
+}
+
+message C2GSJBArgeeInvite{  //同意邀请
+}
+
+message C2GSJBDisgrgeeInvite{  //不同意邀请
+}
+
+message C2GSJBKickInvite{  //踢出邀请
+    optional uint32 target = 1;  // 邀请玩家pid
+}
+
+message C2GSQuitJieBai{ //退出邀请或者退出结拜
+}
+
+message C2GSReleaseJieBai{ //解散结拜
+}
+
+message C2GSJBPreStart{ //结拜预开启
+}
+
+message C2GSJBJoinYiShi{
+}
+
+message C2GSJBSetTitle{ //取称谓
+    optional string title  = 1; 
+}
+
+message C2GSJBSetMingHao{ //取名号
+    optional string minghao  = 1; 
+}
+
+message C2GSJBJingJiu{ //敬酒
+}
+
+message C2GSJBEnounce{ //宣言
+    optional string enounce  = 1; 
+}
+
+message C2GSJBKickMember{ //踢出成员
+    optional uint32 pid  = 1;
+}
+
+message C2GSJBVoteKickMember{ //投票踢人
+    optional uint32 op  = 1;  //1.同意 2.不同意
+}
+
+message C2GSJBGetValidInviter{ //获取合法邀请列表
+}
+
+message C2GSJBClickRedPoint { //点击红点事件
+    repeated uint32 type_list  = 1; // 红点枚举类型
+}
+
+//结拜
+
+//乱世魔影
+message C2GSLuanShiMoYing{   //找boss
+}
+//乱世魔影
+
+// 欢乐返利
+message C2GSJoyExpenseBuyGood {
+    optional uint32 shop  = 1; 
+    optional uint32 goodid  = 2; 
+    optional uint32 moneytype  = 3; //1.金币 2.银币 3.元宝 4.代金 5.帮贡 6.武勋 7.竞技场积分
+    optional uint32 amount  = 4; 
+}
+
+message C2GSJoyExpenseGetReward {
+    optional uint32 expense_id = 1;        //消费的档次id
+}
+// 欢乐返利
+
+
+message C2GSSingleWarStartMatch {       //开始匹配
+}
+
+message C2GSSingleWarStopMatch {        //停止匹配
+}
+
+message C2GSSingleWarGetRewardFirst {   //领取首胜奖励
+}
+
+message C2GSSingleWarGetRewardFive {    //领取五战奖励
+}
+
+message C2GSSingleWarRank {             //请求排行榜
+    optional uint32 group_id = 1;       //分组id
+}
+
+//道具投资
+message C2GSItemInvest {
+    optional uint32 invest_id = 1;       //配表投资编号
+}
+
+//一键领取
+message C2GSItemInvestReward {
+    optional uint32 invest_id = 1;       //配表投资编号
+}
+
+//领取第几天的奖励
+message C2GSItemInvestDayReward {
+    optional uint32 invest_id = 1;       //配表投资编号
+    optional uint32 day = 2;       //配表投资编号
+}
+
+message C2GSImperialexamAnswerQuestion {
+    optional uint32 question_id = 1;        //回到问题的id
+    optional uint32 answer = 2;          //选项
+}
+
+//秘宝护送 选择类别
+message C2GSTreasureConvoySelectTask {
+    optional uint32 type = 1; // 1普通护送 2高级护送
+}
+
+//秘宝护送 打劫
+message C2GSTreasureConvoyRob {
+    optional uint32 pid = 1; //打劫对象
+}
+
+//秘宝护送 自动匹配打劫
+message C2GSTreasureConvoyMatchRob {
+}
+
+//秘宝护送 进入NPC保护区
+message C2GSTreasureConvoyEnterNpcArea {
+    optional uint32 npcid = 1;
+}
+
+//秘宝护送 离开NPC保护区
+message C2GSTreasureConvoyExitNpcArea {
+    optional uint32 npcid = 1;
+}
+
+// 优惠甩卖购买
+message C2GSBuyDiscountSale {
+    optional uint32 day = 1;
+}
+
+// 0元大礼包 购买
+message C2GSZeroYuanBuy {
+    optional uint32 type = 1; // 1 豪华橙装 2 外观礼包 3 飞行坐骑
+}
+
+// 0元大礼包 领奖
+message C2GSZeroYuanReward {
+    optional uint32 type = 1; // 1 豪华橙装 2 外观礼包 3 飞行坐骑
+}
+
+// 经验找回
+message C2GSRetrieveExp {
+    repeated uint32 scheduleids = 1;
+    optional uint32 nowtime = 2; // 时间戳（防止在刷天的那个时间点）
+    optional uint32 type = 3;   // 0 free ,1 gold ,2 goldcoin
+}
+
+// 世界杯竞猜单场
+message C2GSWorldCupSingle {
+    optional uint32 game_id = 1;    //比赛id
+    optional uint32 team_id = 2;   //竞猜的队伍id, 如果有平局时,0表示竞猜平局
+}
+
+// 世界杯竞猜冠军队
+message C2GSWorldCupChampion {
+    optional uint32 type = 1; //1 竞猜冠军队 2 取消竞猜冠军队
+    optional uint32 team_id = 2;  //配表中的国家队伍id
+}
+
+//世界杯竞猜 记录
+message C2GSWorldCupHistory {
+}
+
+
+// 打开粽子兑换界面
+message C2GSZongziOpenUI {
+}
+
+// 粽子兑换
+message C2GSZongziExchange {
+    optional uint32 type = 1;       //1:甜 2:咸
+    optional uint32 goldcoin = 2;   //是否元宝购买
+}
+
+// 打开端午祈福界面
+message C2GSDuanwuQifuOpenUI {
+}
+
+// 上交祭品
+message C2GSDuanwuQifuSubmit {
+}
+
+// 领取奖励
+message C2GSDuanwuQifuReward {
+    optional uint32 step = 1;        //阶段奖励编号
+}
+
+// 金玉满堂
+message C2GSEnterOrgHuodong {
+    optional string name = 1;        //活动名
+}
+

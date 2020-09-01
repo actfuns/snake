@@ -1,0 +1,46 @@
+-- ./excel/task/guessgame/task_guessgame.xlsx
+return {
+
+    [622401] = {
+        acceptConditionStr = {},
+        acceptNpcId = 0,
+        autoSubmit = 0,
+        autotype = 1,
+        clientExtStr = "",
+        description = "击败幻象",
+        goalDesc = "找到真·守阵之灵:{real}\n剩余轮次:{ret}/{total}",
+        id = 622401,
+        initConfig = {"$createscene1001", "$createmess", "$tranfer"},
+        missiondone = {},
+        name = "火眼金睛",
+        quickFindWay = 0,
+        submitNpcId = 0,
+        submitRewardStr = {},
+        tasktype = 4,
+        timeout = 0,
+        tips = 0,
+        type = 11,
+    },
+
+    [622402] = {
+        acceptConditionStr = {},
+        acceptNpcId = 0,
+        autoSubmit = 0,
+        autotype = 1,
+        clientExtStr = "",
+        description = "击败幻象",
+        goalDesc = "找到真·守阵之灵:{real}\n剩余轮次:{ret}/{total}",
+        id = 622402,
+        initConfig = {"$createscene1001", "$createmess", "$tranfer"},
+        missiondone = {},
+        name = "火眼金睛",
+        quickFindWay = 0,
+        submitNpcId = 0,
+        submitRewardStr = {},
+        tasktype = 4,
+        timeout = 0,
+        tips = 0,
+        type = 11,
+    },
+
+}

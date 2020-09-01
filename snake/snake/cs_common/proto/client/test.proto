@@ -1,0 +1,57 @@
+
+message C2GSTestWar{
+	optional uint32 count = 1;
+	optional uint32 level = 2;
+	optional string active_skills = 3;
+	optional string	phy_attack = 4;
+	optional string mag_attack = 5;
+	optional string phy_defense = 6;
+	optional string mag_defense = 7;
+	optional string speed = 8;
+	optional uint32 crit_rate = 9;
+	optional uint32 dodge_rate = 10;
+	optional uint32 hp = 11;
+	optional uint32 mp = 12;
+	optional uint32 monster_id = 13;
+	optional string passive_skills = 14;
+	optional uint32 fmt_id = 15;
+	optional uint32 fmt_grade = 16;
+	optional uint32 weather = 17;
+	optional uint32 sky_war = 18;
+	optional string bosswar_type = 19;
+    optional uint32 aitype = 20;
+    optional uint32 shape = 21;
+}
+
+message C2GSTestProto {
+	optional string mask = 1;
+	optional uint32 a = 2;
+	optional string b = 10;
+	optional uint32 c = 12;
+}
+
+message C2GSTestBigPacket {
+	optional string s = 1;
+}
+
+message MT1 {
+	optional uint32 b1 = 1;
+	repeated uint32 b2 = 2;
+}
+
+message MT2 {
+	optional uint32 c1 = 1;
+	repeated string c2 = 2;
+	repeated MT1 c3 = 3;
+}
+
+message C2GSTestCopy {
+	optional uint32 a1 = 1;
+	optional string a2 = 2;
+	optional MT2 a3 = 3;
+}
+
+message C2GSTestOnlineUpdate {
+	optional uint32 a = 1;
+	optional string b = 2;
+}

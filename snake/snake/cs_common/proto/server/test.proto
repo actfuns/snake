@@ -1,0 +1,31 @@
+import "base/common.proto";
+
+message GS2CTestNet {
+    optional uint32 a = 1;
+    optional uint32 b = 2;
+    optional uint32 c = 3;
+    optional uint32 d = 4;
+    optional string e = 5;
+    optional string f = 6;
+    optional string g = 7;
+    optional string h = 8;
+}
+
+message GS2CTestBigPacket {
+    optional string s = 1;
+}
+
+message GS2CTestOnlineUpdate {
+    optional uint32 a = 1;
+    optional string b = 2;
+    optional uint32 c = 3;
+}
+
+message GS2CTestOnlineAdd {
+    optional uint32 a = 1;
+}
+
+message GS2CTestEncode {
+    optional uint32 a = 1;
+    optional string b = 2;
+}

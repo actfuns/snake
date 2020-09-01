@@ -1,0 +1,165 @@
+
+message C2GSClickTask {
+    optional uint32 taskid      = 1;
+}
+
+message C2GSTaskEvent{
+    optional uint32 taskid      = 1;
+    optional uint32 npcid       = 2;
+}
+
+//采集和使用物品使用提交
+message C2GSCommitTask {
+    optional uint32 taskid      = 1;
+}
+
+//放弃任务
+message C2GSAbandonTask{
+    optional uint32 taskid      = 1;
+}
+
+// 采集/使用物品等任务单步执行
+message C2GSStepTask{
+    optional uint32 taskid      = 1;
+    optional uint32 rest_step   = 2;                // 剩余步数(用于检验两端是否对应)
+}
+
+// 前端做的npc领取任务菜单（读配置），因此上行npc
+message C2GSAcceptTask {
+    optional uint32 taskid = 1;
+    optional uint32 npcid = 2;
+}
+
+// 任务扩展UI面板（任务追踪边上临时挂载）
+message C2GSExtendTaskUIClick {
+    optional uint32 taskid = 1;
+    optional uint32 sessionidx = 2;
+    optional uint32 answer = 3;
+}
+
+// -------------------------
+// 异宝求助
+message C2GSYibaoSeekHelp {
+    optional uint32 taskid = 1;
+}
+
+// 异宝协助
+message C2GSYibaoGiveHelp {
+    optional uint32 target = 1;         // 目标玩家pid
+    optional uint32 taskid = 2;         // 协助任务的id
+    optional uint32 create_day = 3;     // 任务的创建日期
+}
+
+// 异宝寻物协助提交物品
+message C2GSYibaoHelpSubmit {
+    optional uint32 target = 1;         // 目标玩家pid
+    optional uint32 taskid = 2;         // 协助任务的id
+    optional uint32 create_day = 3;     // 任务的创建日期
+}
+
+// 异宝日程领取
+message C2GSYibaoAccept {}
+
+// 领取主线章节奖励
+message C2GSRewardStoryChapter {
+    optional uint32 chapter = 1;
+}
+
+message C2GSAnimeQteEnd {
+    optional uint32 anime_id = 1;
+    optional uint32 qte_id = 2;
+    optional uint32 succ = 3;
+}
+
+// 领取每日任务奖励
+message C2GSRewardEverydayTask {
+    optional uint32 taskid = 1;
+}
+
+// ---灵犀----------
+message C2GSLingxiUseSeed {
+    optional uint32 taskid = 1;
+    optional uint32 put_x = 2; // 种植坐标x
+    optional uint32 put_y = 3; // 种植坐标y
+}
+
+// 自己进入情花种植区(种植前的阶段上行，队员前往阶段需判断两人都在附近)
+message C2GSLingxiCloseToGrowPos {
+    optional uint32 taskid = 1;
+}
+// 自己进入情花范围时上行(限花苗成长阶段)，需要先SyncPos
+message C2GSLingxiCloseToFlower {
+    optional uint32 taskid = 1;
+}
+
+// 自己远离情花范围时上行(限花苗成长阶段)，需要先SyncPos
+message C2GSLingxiAwayFromFlower {
+    optional uint32 taskid = 1;
+}
+
+message C2GSLingxiQuestionAnswer {
+    optional uint32 taskid = 1;
+    optional uint32 round = 2;  // 轮次
+    optional uint32 answer = 3; // 答案序号
+}
+// -----------------
+
+message C2GSAcceptBaotuTask {
+}
+
+// -------------------------
+// 跑环协助
+message C2GSRunringGiveHelp {
+    optional uint32 target = 1;      // 目标玩家pid
+    optional uint32 taskid = 2;      // 协助任务的id
+    optional uint32 create_week = 3; // 任务的创建周
+    optional uint32 ring = 4;        // 任务的环数
+}
+// -------------------------
+
+
+//---------悬赏 start--------------
+
+//打开界面
+message C2GSOpenXuanShangView {
+}
+
+//追捕，接受悬赏任务
+message C2GSAcceptXuanShangTask {
+    optional uint32 taskid = 1;
+}
+
+//刷新悬赏
+message C2GSRefreshXuanShang {
+    optional uint32 fastbuy_flag = 1;           //1 快捷购买
+}
+
+message C2GSXuanShangStarTip {
+    optional uint32 confirm = 1; //1 确认 0 取消
+    optional uint32 tip = 2; //1 表示当天不再提示 0 表示下次依然提示
+    optional uint32 fastbuy_flag = 3;   // 1表示悬赏不足时使用快捷购买
+}
+//---------悬赏 end--------------
+
+
+//---------镇魔塔 start--------------
+
+//进入指定层
+message C2GSZhenmoEnterLayer {
+    optional uint32 layer = 1;
+}
+
+//领取最后的特殊奖励
+message C2GSZhenmoSpecialReward {
+}
+
+//领取最后的特殊奖励
+message C2GSZhenmoPlayAnim {
+    optional uint32 anim = 1; // 剧情id
+}
+
+//打开界面
+message C2GSZhenmoOpenView {
+}
+
+//---------镇魔塔 end--------------

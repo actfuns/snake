@@ -1,0 +1,10 @@
+
+1、通知服务器合并excel导表数据，完成后通知客户端
+
+2、客户端运行 ..\daobiao\run.cmd 命令，得到输出变更的客户端导表名称。（通过console输出获取或通过svn提交时获取变更项），注意只需要客户端导表名称。
+
+3、将上步骤获取的客户端导表名称填写到 clientzip.cmd ，如下：
+第20行修改，注意之前的表不要删除，修改完成后保存并运行。
+.\tools\Python27\python.exe clientzip.py .\logic\data\ opendata（open表名称，英文逗号切分）,itemotherdata（道具other表） ./gamedata/server/client-daobiao
+
+4、提交运行导出需推送的客户端文件并上传svn。通知后端操作完成，截图等方式告知svn版本号。客户端工作结束。

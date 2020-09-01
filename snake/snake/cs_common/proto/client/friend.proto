@@ -1,0 +1,64 @@
+
+message C2GSQueryFriendProfile {
+    repeated uint32 pid_list = 1;
+}
+
+message C2GSChatTo {
+    optional uint32 pid = 1;
+    optional string msg = 2;
+    optional string message_id = 3;
+    optional uint32 forbid = 4; /* 违禁ID 默认0 */
+}
+
+message C2GSAckChatFrom {
+    optional uint32 pid = 1;
+    optional string message_id = 2;
+}
+
+message C2GSApplyAddFriend {
+    optional uint32 pid = 1;
+}
+
+message C2GSApplyDelFriend {
+    optional uint32 pid = 1;
+}
+
+message C2GSFindFriend {
+    optional uint32 pid = 1;
+    optional string name = 2;
+}
+
+message C2GSFriendShield {
+    optional uint32 pid = 1;
+}
+
+message C2GSFriendUnshield {
+    optional uint32 pid = 1;
+}
+
+message C2GSSendFlower {
+    optional uint32 pid = 1;
+    optional uint32 type = 2;
+    optional uint32 amount = 3;
+    optional string bless = 4;
+    optional uint32 sys_bless = 5;
+}
+
+message C2GSOpenSendFlowerUI {
+    optional uint32 pid = 1;
+}
+
+message C2GSVerifyFriend {
+    optional uint32 pid = 1;
+    optional string msg = 2;
+}
+
+message C2GSVerifyFriendComfirm {
+    optional uint32 pid = 1;
+    optional uint32 result = 2;
+}
+
+message C2GSQueryPlayerProfile {
+    repeated uint32 pid_list = 1;
+    optional uint32 flag = 2; //1.结拜
+}

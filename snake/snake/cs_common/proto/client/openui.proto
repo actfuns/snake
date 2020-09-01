@@ -1,0 +1,57 @@
+
+message C2GSOpenScheduleUI{
+}
+
+message C2GSWeekSchedule{
+}
+
+message C2GSScheduleReward{
+    optional uint32 rewardidx =1;
+}
+
+message C2GSRewardDoublePoint{
+}
+
+message C2GSOpenInterface {
+    optional uint32 type = 1; /* ORG_ANSWER_TYPE 1 BAIKE_MAINUI_TYPE 2 */
+}
+
+message C2GSCloseInterface {
+    optional uint32 type = 1; /* ORG_ANSWER_TYPE 1 BAIKE_MAINUI_TYPE 2 */
+}
+
+message C2GSOpenFBComfirm{
+    optional uint32 fuben =1;
+}
+
+message C2GSUseAdvanceMap{
+    optional uint32 itemid =1;
+}
+
+// 开宝箱
+message C2GSOpenBox {
+    optional uint32 box_sid = 1;
+}
+
+message C2GSQuickBuyItem {
+    optional uint32 sid = 1;
+    optional uint32 amount = 2;
+}
+
+message C2GSFindHDNpc{
+}
+
+message C2GSFindGlobalNpc{
+    optional uint32 npctype =1;
+}
+
+//元宝兑换货币
+message C2GSExchangeCash{
+    optional uint32 moneytype  = 1; //1.金币 2.银币
+    optional uint32  goldcoin  = 2; //消耗元宝数量
+}
+
+//场景内自动巡逻
+message C2GSXunLuo {
+    optional uint32 type = 1; //1:开始,0:结束
+}

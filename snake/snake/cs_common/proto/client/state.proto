@@ -1,0 +1,8 @@
+
+//点击buff
+message C2GSClickState {
+    optional uint32 state_id = 1;       //状态编号
+}
+
+message C2GSAddBaoShi{
+}

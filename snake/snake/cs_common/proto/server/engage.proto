@@ -1,0 +1,43 @@
+
+message MemberInfo {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 sex = 3;
+    optional uint32 grade = 4;
+    optional uint32 degree = 5;
+    optional uint32 couple = 6;	/* 1 单身*/
+}
+
+message GS2CEngageCondition {
+    repeated MemberInfo members = 1;
+    optional uint32 type = 2;
+    optional uint32 status = 3;     // 0 没开始 1 开始 2　确认
+}
+
+// 响应即可订婚
+message GS2CStartEngageResult {
+}
+
+// 取消订婚
+message GS2CCancelEngage {
+}
+
+// 铭刻宣言界面
+message GS2CSetEngageTextUI {
+}
+
+// 铭刻宣言成功
+message GS2CSetEngageTextRusult {
+}
+
+// 成功
+message GS2CEngageSuccess {
+	optional uint32 type = 1;	
+}
+
+// 操作界面
+message GS2CEngageOperate {
+	optional uint32 type = 1;	/* 0 取消订婚 1 订婚*/
+}
+
+

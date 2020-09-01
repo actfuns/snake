@@ -1,0 +1,355 @@
+import "base/common.proto";
+import "client/openui.proto";
+
+//进度条
+message GS2CLoadUI {
+	optional uint32 sessionidx	= 1;	//回调id
+	optional uint32 type		= 2;	//类型
+	optional uint32 tip		= 3;	//提示
+	optional uint32 time		= 4;	//时间
+}
+
+message GS2CPopTaskItem {
+    optional uint32 sessionidx  = 1;    //回调id
+    optional uint32 taskid      = 2;    //任务id
+    optional uint32 owner       = 3;    //任务属主pid
+}
+
+message GS2CPopTaskSummon {
+    optional uint32 sessionidx = 1;    //回调id
+    optional uint32 taskid     = 2;    //任务id
+    optional uint32 owner      = 3;    //任务属主pid
+}
+
+message GS2COpenShopForTask {
+    optional uint32 sessionidx = 1;    //回调id
+    optional uint32 taskid = 2;
+    optional uint32 owner = 3; // 任务属主pid
+}
+
+// 任务协助交付
+message GS2CHelpTaskGiveItem {
+    optional uint32 sessionidx = 1; // 回调id
+    optional uint32 taskid     = 2; // 任务id
+    optional uint32 owner      = 3; // 任务属主pid
+}
+
+//弹出资源获得界面
+message GS2CShortWay {
+	optional uint32 type		= 1;	//1:金币,2:银币,3:铜币
+}
+
+message GS2CConfirmUI{
+	optional uint32 sessionidx 	= 1;	//回调id
+	optional string sContent 	= 2;	//弹框内容
+	optional string sConfirm 	= 3;	//确认按钮内容
+	optional string sCancle		= 4;	//取消按钮内容
+	optional uint32 time 		= 5;	//默认按钮时间,单位为秒
+	optional uint32 default 	= 6;	//默认按钮内容, 1-sConfirm 0-sCancle
+	optional uint32 extend_close= 7;	//框外点击关闭 1-close
+	optional uint32 replace = 8;		//0-顶掉(默认是0)　 1-不顶
+    optional uint32 close_btn   = 9;    //0表示X按钮不发协议
+}
+
+message HuodongState {
+    optional uint32 scheduleid    = 1;
+    optional uint32 state         = 2;
+    optional string time          = 3; // 提示开启时间
+    optional uint32 opentimestamp = 4; // 真实开始活动时间戳（前端判断活动是否有提前预告,0表示不需要处理）
+}
+
+message ScheduleInfo {
+	optional uint32 scheduleid	= 1;
+	optional uint32 times		= 2;
+	optional uint32 activepoint	= 3;
+	optional uint32 maxtimes	=4;
+}
+
+message GS2CSchedule {
+	repeated HuodongState hdlist	= 1;
+	repeated ScheduleInfo schedules	= 2;
+	optional uint32 activepoint		= 3;
+	optional uint32 rewardidx		= 4;
+	optional uint32 curtime			= 5;
+	optional uint32 db_point		= 6;
+	optional uint32 db_point_limit	= 7;
+}
+
+message SchedulePerHour {
+	optional string time		= 1;
+	repeated uint32 scheduleid	= 2;
+}
+
+message SchedulePerDay {
+	optional uint32 weekday			= 1;
+	repeated SchedulePerHour daychedules	= 2;
+}
+
+message GS2CWeekSchedule {
+	repeated SchedulePerDay weekschedule	= 1;
+}
+
+message GS2CGetScheduleReward {
+	optional uint32 rewardidx	= 1;
+}
+
+//打开商城界面
+message GS2COpenShop {
+	optional uint32 shop_id = 1;	//商城id
+}
+
+message GS2CRefreshSchedule {
+	optional ScheduleInfo schedule	= 1;
+	optional uint32 activepoint		= 2;
+}
+
+//场景内自动巡逻
+message GS2CXunLuo {
+    optional uint32 type = 1;	//1:开始,0:结束
+}
+
+//打开技能修炼界面
+message GS2COpenCultivateUI {
+}
+
+//关闭选项弹窗按钮
+message GS2CCloseConfirmUI {
+	optional uint32 sessionidx = 1;
+}
+
+message GS2CRefreshDoublePoint {
+    optional uint32 db_point        = 1;
+    optional uint32 db_point_limit  = 2;
+}
+
+//活动状态
+message GS2CRefreshHuodongState {
+    optional HuodongState hdlist = 1;
+}
+
+message GS2CRefreshAllHuodongState {
+    repeated HuodongState hdlist = 1;
+}
+
+// 打开日程UI
+message GS2COpenScheduleUI {
+    optional uint32 schedule_id = 1;
+}
+
+// 打开自动匹配队伍UI
+message GS2COpenTeamAutoMatchUI {
+    optional uint32 auto_target = 1;
+}
+
+message YibaoTaskInfo {
+    optional uint32 taskid = 1;
+    optional string name = 2;
+    repeated base.NeedItem needitem = 3;
+    optional uint32 star = 4;
+    repeated base.ValueReward valuereward_preview = 5;  // doing_yibao_info中必须包含
+    repeated base.ItemReward itemreward_preview = 6;
+    optional uint32 yibao_kind = 7; // 1:主任务,2:探险,3:寻物,4:互动
+    //repeated base.NeedItemGroup needitemgroup = 4;
+    //repeated base.NeedSum needsum = 5;
+}
+
+// 异宝界面
+message GS2COpenYibaoUI {
+    optional string mask                    = 1;
+    optional uint32 owner                   = 2; // 面板属于哪个玩家(pid)
+    optional uint32 create_day              = 3; // 异宝创建日期（上行时使用）
+    repeated uint32 seek_gather_tasks       = 4; // 异宝寻物的已用求助的任务id
+    optional uint32 seek_gather_max         = 5; // 异宝寻物的最大求助次数
+    repeated YibaoTaskInfo done_yibao_info  = 6; // 已经完成的异宝任务信息(因为此任务已经删除，但要显示在UI)
+    repeated YibaoTaskInfo doing_yibao_info = 7; // 正在进行的异宝任务信息(因为这个面板可以显示其他玩家的任务状况，自己看自己则不需要此数据)
+    optional YibaoTaskInfo main_yibao_info  = 8; // 主任务信息，主要是预览奖励
+}
+
+// 异宝单个任务完成动作
+message GS2CYibaoTaskDone {
+    optional uint32 taskid  = 1;
+    optional uint32 is_gather_help  = 2; //是不是找物协助完成的 1是 0不是
+}
+
+// 异宝单个任务信息刷新
+message GS2CYibaoTaskRefresh {
+    optional YibaoTaskInfo yibao_info  = 1;
+}
+
+// 异宝求助反馈
+message GS2CYibaoSeekHelpSucc {
+    optional uint32 taskid = 1;
+}
+
+//擂台界面
+message GS2COpenArenaUI { }
+
+// 帮派界面
+message GS2COpenOrgUI { }
+
+// 打开帮派建筑
+message GS2COpenOrgBuild {
+    optional uint32 bid = 1; //建筑id
+}
+
+// QTE界面开启游戏
+message GS2CPlayQte {
+    optional uint32 sessionidx = 1;
+    optional uint32 qteid = 2;
+    optional uint32 lasts = 3;      // 区别与QTE表中的时间，为另外规定
+    optional uint32 forthdone = 4;  // 1是/0否强制完成
+}
+
+// 播放动画
+message GS2CPlayAnime {
+    optional uint32 sessionidx = 1;
+    optional uint32 anime_id = 2;
+}
+
+// 打开打造界面
+message GS2COpenEquipMake {}
+
+// 抽奖
+message GS2CPlayLottery {
+    optional uint32 sessionidx = 1;
+    optional uint32 type = 2;       // 类型 1001:签到抽奖
+    optional uint32 idx = 3;         // 奖励项idx
+}
+
+message GS2COpenFBChoice{
+    optional uint32 flag = 1;         // 1.普通副本 2.精英副本
+}
+
+message GS2CCloseFBComfirm{
+    optional uint32 sessionidx = 1;
+}
+
+message GS2CFBComfirmEnter{
+    optional uint32 sessionidx = 1;
+    optional uint32 pid = 2;
+}
+
+message FBComfirmState{
+    optional uint32 pid = 1;
+    optional uint32 state = 2;
+}
+
+message GS2CFBComfirm{
+    optional uint32 fuben =1;
+    optional uint32 time =2;
+    repeated FBComfirmState plist = 3;   //成员状态
+    optional uint32 sessionidx = 4;
+}
+
+message GS2CRefreshFBComfirm{
+    optional uint32 fuben =1;
+    optional uint32 time =2;
+    repeated FBComfirmState plist = 3;   //成员状态
+    optional uint32 sessionidx = 4;
+}
+
+message FBRewardItem{
+    optional uint32 itemsid =1;
+    optional uint32 amount =2;
+}
+
+message GS2CFBOver{
+    optional uint32 fuben =1;
+    optional uint32 exp =2;
+    optional uint32 expradio =3;
+    optional uint32 silver =4;
+    optional uint32 silverradio =5;
+    optional string level =6;
+    optional uint32 point =7;
+    repeated FBRewardItem itemlist =8;
+}
+
+message GS2CMaintainUI {
+}
+
+message GS2COpenAdvanceMap{
+    optional uint32 itemid =1;
+}
+
+// 显示宝箱UI
+message GS2COpenBoxUI {
+    optional uint32 box_sid = 1;
+    repeated base.ItemReward reward_item = 2; // 此项存在则表示宝箱是开箱展示奖品
+}
+
+// 便捷购买
+message GS2CQuickBuyItemUI {
+    optional uint32 sid = 1;
+    optional uint32 amount = 2;     // 欲购买数量(默认填缺额)
+    optional string msg = 3;        // 提示消息
+}
+
+// 便捷购买成功
+message GS2CQuickBuyItemSucc {
+    optional uint32 sid = 1;
+}
+
+message GS2CCustomShowItem{
+    optional uint32 flag = 1;//1.骰子幸运奖励
+    repeated uint32 itemlist = 2;
+}
+
+message GS2CCloseProgressBar {
+    optional uint32 sessionidx = 1;
+}
+
+message GS2CShowProgressBar {
+    optional uint32 sessionidx = 1;
+    optional string msg = 2;             // 信息
+    optional uint32 sec = 3;             // 持续秒数
+    optional uint32 start_sec = 4;       // 从x秒开始
+    optional uint32 uninterruptable = 5; // 是1否0不可中断
+    optional uint32 modal = 6;           // 是1否0模态
+    optional uint32 pos = 7;             // 坐标区域(按电话机数字分布)
+}
+
+message GS2CRemoveConfirmUI{
+    optional string msg  = 1;           //
+    optional uint32 session  = 2;           // 回调的ID
+}
+
+// 前端去引导玩家执行行为
+message GS2CGuideBehavior {
+    optional uint32 behavior = 1;      // 行为id（见文档）
+}
+
+//元宝兑换货币
+message GS2CExchangeMoney{
+    optional uint32 moneytype  = 1; //1.金币 2.银币
+    optional uint32  goldcoin  = 2; //消耗元宝数量
+    optional uint32  value  = 3; //需要货币具体数值
+}
+
+//元宝兑换道具
+message ExchangeItem{
+    optional uint32  itemsid  = 1;
+    optional uint32  amount  = 2;
+}
+
+message GS2CExecAfterExchange{
+    optional uint32 moneytype  = 1; //1.金币 2.银币
+    optional uint32  goldcoin  = 2; //消耗元宝数量 (货币和道具)
+    optional uint32  moneyvalue  = 3; //需要货币具体数值
+    repeated ExchangeItem itemlist = 4;
+    optional uint32 sessionidx = 5;
+    optional uint32  exchangemoneyvalue  = 6; //兑换货币数值
+    optional uint32 flag = 7; //1.法宝
+}
+
+message FubenReward {
+    optional uint32 fuben_id = 1;       //副本id
+    optional uint32 reward_cnt = 2;     //奖励次数
+}
+
+message GS2CRefreshFubenRewardCnt {
+    repeated FubenReward reward_list = 1;
+}
+
+message GS2CShowIntruction {    //展现介绍说明界面
+    optional uint32 id = 1;  
+}

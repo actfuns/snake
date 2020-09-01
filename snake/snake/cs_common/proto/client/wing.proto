@@ -1,0 +1,27 @@
+
+message C2GSWingWield {                         //装备翅膀道具
+}
+
+message C2GSWingUpStar {                        //升星
+    optional uint32 goldcoin = 1;               //使用元宝代替材料
+}
+
+message C2GSWingUpLevel {                       //升阶
+    optional uint32 goldcoin = 1;               //使用元宝代替材料
+}
+
+message C2GSActiveWing {                        //激活幻化翅膀
+    optional uint32 wing_id = 1;                //翅膀id
+}
+
+message C2GSAddWingTime {                       //翅膀续费
+    optional uint32 wing_id = 1;                //翅膀id
+    optional int32 time = 2;                    //续费时间
+}
+
+message C2GSSetShowWing {                       //设置翅膀造型
+    optional uint32 wing_id = 1;                //0表示取消显示
+}
+
+message C2GSOpenWingUI {                        //打开翅膀UI(不做具体功能，只记录)
+}

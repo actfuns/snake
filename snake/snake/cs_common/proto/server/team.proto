@@ -1,0 +1,197 @@
+import "base/common.proto";
+
+message ApplyInfo {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional base.ModelInfo model_info = 3;
+    optional uint32 school = 4;
+    optional uint32 grade = 5;
+    optional uint32 icon = 6;
+    optional uint32 orgid = 7;
+}
+
+message TargetInfo {
+    optional uint32 auto_target = 1; //0-无目标，其他为活动目标
+    optional uint32 min_grade = 2;
+    optional uint32 max_grade = 3;
+    optional uint32 team_match = 4; // 1-正在匹配，0-不匹配
+}
+
+message TeamInfo {
+    optional uint32 teamid = 1;
+    optional uint32 leader  = 2;
+    repeated base.TeamMem member = 3;
+    optional TargetInfo target_info = 4;
+}
+
+message TargetTeamInfo {
+    optional uint32 teamid = 1;
+    optional uint32 leader  = 2;
+    optional uint32 status = 3; //0-没申请,1-正在申请
+    repeated base.TeamMem member = 4;
+    optional TargetInfo target_info = 5;
+    optional uint32 match_time = 6; //开始匹配的时间戳,不在匹配为0
+}
+
+message TeamMemStatus{
+    optional uint32 pid = 1;
+    optional uint32 status = 2;     //1:成员,2:暂离,3:离线
+}
+
+//增加队伍
+message GS2CAddTeam{
+    optional uint32 teamid = 1;
+    optional uint32 leader  = 2;
+    repeated base.TeamMem member = 3;
+    optional TargetInfo target_info = 4; 
+    repeated TeamPartner partner_list = 5;
+    optional uint32 fmt_id = 6;
+    optional uint32 fmt_grade = 7;
+}
+
+//删除队伍
+message GS2CDelTeam{
+}
+
+//增加队伍成员
+message GS2CAddTeamMember{
+    optional base.TeamMem mem_info = 1;
+}
+
+//刷新队伍状态
+message GS2CRefreshTeamStatus{
+    repeated TeamMemStatus team_status = 1;
+}
+
+message GS2CRefreshMemberInfo {
+    optional uint32 pid = 1;
+    optional base.MemStatusInfo status_info = 2;
+}
+
+//队伍申请信息
+message GS2CTeamApplyInfo{
+    repeated ApplyInfo apply_info = 1;
+    optional uint32 open = 2; //0.不打开 1.打开
+}
+
+//删除一个申请
+message GS2CDelTeamApplyInfo{
+    optional uint32 pid = 1;
+}
+
+//增加申请信息
+message GS2CAddTeamApplyInfo{
+    optional ApplyInfo apply_info = 1;
+}
+
+//邀请信息
+message GS2CInviteInfo {
+    repeated TeamInfo teaminfo = 1;
+    optional uint32 login = 2;//1.登录 0.非登录
+}
+
+//删除一个邀请
+message GS2CRemoveInvite{
+    optional uint32 teamid = 1;
+}
+
+//增加邀请信息
+message GS2CAddInviteInfo {
+    optional TeamInfo teaminfo = 1;
+}
+
+message GS2CTargetInfo {
+    optional TargetInfo target_info = 1;
+}
+
+message GS2CNotifyAutoMatch {
+    optional uint32 player_match = 1;   /*1-正在匹配，0-取消匹配 */
+    optional uint32 auto_target = 2;        //目标id
+}
+
+//活动目标队伍信息
+message GS2CTargetTeamInfo {
+    optional TargetTeamInfo teaminfo = 1;
+}
+
+//活动目标队伍信息列表
+message GS2CTargetTeamInfoList {
+    repeated TargetTeamInfo teaminfo = 1;
+    optional uint32 auto_target = 2;
+}
+
+message GS2CCountAutoMatch {
+    optional uint32 auto_target = 1;
+    optional uint32 member_count = 2;
+    optional uint32 team_count = 3;
+}
+
+message GS2CLeaderActiveStatus {
+    optional uint32 active = 1; //0-呆滞可申请队长，1-活跃不可申请队长
+}
+
+message GS2CTargetTeamStatus {
+    optional uint32 teamid = 1;
+    optional uint32 status = 2; //0-没申请,1-正在申请，2-删除
+}
+
+message GS2CRefreshTeamAppoint {
+    optional uint32 pid = 1; // 刷新委任目标id
+}
+
+message WarCmd {
+    optional uint32 type = 1; // 1-我方，2-敌方
+    repeated string cmds = 2; //指令列表
+}
+
+//战斗指挥指令删除刷新
+message GS2CRefreshDelWarCmd {
+    optional uint32 type  = 1;
+    optional uint32 pos  = 2;
+}
+
+//刷新所有指挥指令
+message GS2CRefreshWarCmd {
+    repeated WarCmd warcmds = 1;
+}
+
+//刷新更改的指令
+message GS2CRefreshTeamWarCmd {
+    optional uint32 type = 1;
+    optional uint32 pos = 2;
+    optional string cmd = 3;
+}
+
+message GS2CInviteeStatus {
+    optional uint32 target = 1; //被邀请者pid
+    optional uint32 target_status = 2; //0:已邀请;1:玩家已下线;2:邀请列表已满;3:玩家已有队伍
+}
+
+message TeamPartner {
+    optional uint32 id = 1;
+    optional uint32 sid = 2;
+    optional uint32 grade = 3;
+    optional base.ModelInfo model_info = 4;
+}
+
+message GS2CGetTeamAllPos {
+    repeated uint32 player_list = 1;
+    repeated uint32 partner_list = 2;
+}
+
+message GS2CTeamPartners {
+    repeated TeamPartner partner_list = 1;
+}
+
+message GS2CTeamLeaderFmt {
+    optional uint32 fmt_id = 1;
+    optional uint32 fmt_grade = 2;
+}
+
+message GS2CButtonState{
+    optional uint32 leave = 1;  //离队按钮 0-无 1-灰
+    repeated uint32 kick = 2; //请离玩家列表
+    optional uint32 shortleave = 3; //0-无 1-取消
+    optional uint32 back = 4;   //0-无 1-取消
+    optional uint32 setleader = 5;  //0-无 玩家ID-取消
+}

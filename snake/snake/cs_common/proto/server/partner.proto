@@ -1,0 +1,36 @@
+import "base/common.proto";
+
+message GS2CLoginPartner {
+    repeated base.PartnerInfo partners = 1;
+    optional uint32 lineup = 2;             //阵容ID
+    repeated uint32 pos_list = 3;           //阵容站位顺序
+}
+
+message GS2CPartnerPropChange {
+    optional uint32 partnerid = 1;
+    optional base.PartnerInfo partner = 2;
+}
+
+message GS2CAddPartner {
+    optional base.PartnerInfo partner = 1;
+}
+
+message LineupUnit {
+    optional uint32 lineup = 1;             //阵容ID
+    optional uint32 fmt_id = 2;             //阵法ID
+    repeated uint32 pos_list = 3;           //阵容站位顺序
+}
+
+message GS2CAllLineupInfo {
+    optional uint32 curr_lineup = 1;        //当前出战的阵容
+    repeated LineupUnit info = 2;
+}
+
+message GS2CSingleLineupInfo {
+    optional uint32 curr_lineup = 1;
+    optional LineupUnit info = 2;
+}
+
+message GS2CSetCurrLineup {
+    optional uint32 lineup = 1;
+}

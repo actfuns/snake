@@ -1,0 +1,234 @@
+import "base/common.proto";
+
+message PropInfo {
+    optional uint32 extra = 2; //附属属性，来自装备、道具等
+    optional uint32 ratio = 3; //百分比，来自外部加成
+    optional string name = 4;
+}
+
+//改变刷新
+message GS2CPropChange{
+    optional base.Role role = 1;
+}
+
+message GS2CServerGradeInfo {
+    optional uint32 server_grade = 1;
+    optional uint32 days = 2;
+    optional string server_type = 3;
+}
+
+// 增量更新部位强化信息（登录时全发）
+message GS2CUpdateStrengthenInfo {
+    optional string mask = 1;
+    repeated base.StrengthenInfo strengthen_info = 2;
+    optional uint32 master_score = 3; // 强化大师评分*1000倍取整
+}
+
+message GS2CGetPlayerInfo {
+    optional uint32 grade = 1;
+    optional string name = 2;
+    optional base.ModelInfo model_info = 3;
+    optional uint32 school = 4;
+    optional uint32 team_id = 5;
+    optional uint32 team_size = 6; //队伍成员数量
+    optional uint32 pid = 7;
+    optional uint32 org_id = 8;
+    optional string org_name = 9;
+    optional uint32 org_level = 10;
+    optional uint32 org_pos = 11;
+    optional string position = 12;
+    optional uint32 position_hide = 13; //0-隐藏地理位置，1-显示位置
+    optional uint32 icon = 14;
+    optional uint32 org_chat = 15;  // 0-没有禁言，1-禁言
+}
+
+// 角色属性加点/洗点
+message GS2CLoginPointPlanInfoList {
+    optional uint32 selected_plan = 1;
+    repeated base.WashPointInfo wash_info_list = 2;
+}
+
+message GS2CPointPlanInfo {
+    optional base.WashPointInfo wash_info = 1;
+}
+
+message GS2CWashPoint {
+    optional uint32 remain_wash_point = 1;  //剩余可洗点
+    optional string prop_name = 2;
+    optional uint32 remain_point = 3;   //剩下潜力点
+}
+
+message GS2CGetSecondProp {  
+    repeated PropInfo  prop_info = 1;
+}
+
+//玩家的道具
+message GS2CPlayerItemInfo {
+    optional uint32 pid = 1;
+    optional base.ItemInfo itemdata   = 2;
+}
+
+//玩家宠物信息
+message GS2CPlayerSummonInfo {
+    optional uint32 pid = 1;
+    optional base.SummonInfo summondata = 2;
+}
+
+message GS2CPlayerPartnerInfo {
+    optional uint32 pid = 1;                        //目标玩家ID
+    optional base.PartnerInfo partnerdata = 2;      //目标伙伴信息
+}
+
+//获取玩家名片
+message GS2CNameCardInfo {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional base.TitleInfo title_info = 3; //称谓
+    optional uint32 grade = 4; 
+    optional uint32 upvote_amount = 5; //点赞人数
+    optional uint32 isupvote = 6; //1-已点赞，0-未点赞
+    optional string orgname = 7; //玩家帮派名
+    optional string partner = 8; //伴侣
+    optional uint32 achieve = 9; //成就
+    optional uint32 score = 10; //评分
+    optional string position = 11; //位置
+    optional uint32 position_hide = 12; //位置隐藏 0-隐藏 1-不隐藏
+    optional uint32 school = 13; //门派
+    optional uint32 rank = 14;      //点赞榜排名
+    optional uint32 show_id = 15;   //靓号ID
+    optional base.ModelInfo model_info = 16;   //模型
+}
+
+//最近玩家点赞信息
+message GS2CPlayerUpvoteInfo {
+    repeated base.SimpleRole info = 1;
+}
+
+message GS2CUpvotePlayer {
+    optional uint32 succuss = 1; //0-失败，1-成功
+}
+
+message UpvoteReward {
+    optional uint32 idx = 1;
+    optional uint32 success = 2;
+}
+
+message GS2CAllUpvoteReward {
+    repeated UpvoteReward info = 1;
+}
+
+message GS2CUpvoteReward {
+    optional UpvoteReward info = 1;
+}
+
+// 常驻npc可见形象更变内容
+message GlobalNpcAppearence {
+    optional uint32 npctype = 1;
+    optional uint32 reset = 2; // 1表示还原(需要清除aoi监听)
+    optional uint32 figure = 3;
+    optional string title = 4;
+}
+
+message GS2CLoginVisibility {
+    repeated base.ValueInfo npcs = 1; // 额外的npc可见性
+    repeated base.ValueInfo scene_effects = 2; // 额外的场景特效可见性
+    repeated GlobalNpcAppearence npc_appears = 3; // 常驻npc形象更变
+}
+
+message GS2CChangeVisibility {
+    repeated base.ValueInfo npcs = 1; // 新增的npc可见性
+    repeated base.ValueInfo scene_effects = 2; // 新增的场景特效可见性
+    repeated GlobalNpcAppearence npc_appears = 3; // 新增的常驻npc形象更变
+}
+
+// 天眼通
+message GS2CSetGhostEye {
+    optional uint32 open = 1; // 是否开启
+}
+
+// 天眼通
+message GS2CLoginGhostEye {
+    optional uint32 open = 1; // 是否开启
+}
+
+message GS2CShowNpcCloseup {
+    optional uint32 npctype = 1; // 常驻npctype
+    optional uint32 parnter = 2; // 伙伴sid
+    optional uint32 summon = 3; // 宠物ID
+}
+
+message GS2CPromote{
+    repeated uint32 radio=1;
+    optional uint32 score = 2;
+    optional uint32 sumscore = 3;
+    optional uint32 result = 4;
+    optional uint32 open = 5;
+    optional uint32 reference_score = 6;
+}
+
+message GS2CSysConfig {
+    optional uint32 on_off = 1; // 二进制开关，前端使用位操作
+    repeated base.ValueInfo values = 2; // 值设置
+}
+
+message GS2CLoginGradeGiftInfo {
+    repeated uint32 rewarded = 1; // 已领取的等级数
+}
+
+message GS2CRewardGradeGift {
+    optional uint32 grade = 1; // 领取礼包等级
+}
+
+message GS2CLoginPreopenGiftInfo {
+    repeated uint32 rewarded = 1; // 已领取的系统id
+}
+
+message GS2CRewardPreopenGift {
+    optional uint32 sys_id = 1; // 领取功能预告礼包
+}
+
+message GS2CGetScore{
+    optional uint32 op = 1; //1.玩家
+    optional uint32 score = 2;
+}
+
+message GS2COpenRanSe{
+    optional uint32 type = 1; //1.头发 2.外观
+    optional uint32 color = 2;//开启的颜色
+}
+
+// 通知前端同步角色的测试信息
+message GS2CSyncTesterKeys {
+    repeated string keys = 1;
+}
+
+message GS2CGamePushConfig {
+    repeated base.ValueInfo values = 1; // 值设置
+}
+
+message ShiZhuang{
+    optional uint32 sz = 1;
+    optional uint32 curclothes = 2;
+    optional uint32 curhair = 3;
+    optional uint32 curpant = 4;
+    optional uint32 forever = 5;//是否永久开启1.是 0.不是
+    optional uint32 time = 6;//结束时间
+}
+
+message GS2CRefreshShiZhuang{
+    optional ShiZhuang szobj = 1 ;
+}
+
+message GS2CAllShiZhuang{
+    repeated ShiZhuang szlist = 1;
+}
+
+// 协助经验
+message GS2CAssistExp{
+    optional uint32 assist_exp = 1;
+    optional uint32 max_assist_exp = 2;
+}
+
+message GS2CLoginShiZhuang {
+    repeated ShiZhuang szlist = 1;
+}

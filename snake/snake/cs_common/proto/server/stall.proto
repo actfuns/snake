@@ -1,0 +1,69 @@
+import "base/common.proto";
+
+message StallGrid {
+    optional uint32 pos_id = 1;                 //单元格位置
+    optional uint32 sid = 2;                    //商品造型
+    optional uint32 amount = 3;                 //商品数量
+    optional uint32 price = 4;                  //商品售价
+    optional uint32 sell_time = 5;              //商品上架时间
+    optional uint32 cash = 6;                   //可取现金
+    optional uint32 quality = 7;                //商品品质
+    optional uint32 query_id = 8;               //商品id(对应导表)
+}
+
+message GS2CStallAllGrid {                      //刷新摆摊出售界面所有信息
+    repeated StallGrid grid_all = 1;            //所有位置信息
+    optional uint32 size_limit = 2;             //最大格子数
+}
+
+message GS2CStallOneGrid {                      //刷新单个格子信息
+    optional StallGrid grid_unit = 1;           //单个位置格子信息
+}
+
+message GS2CSendSizeLimit {
+    optional uint32 size_limit = 1;             //最大格子数
+}
+
+message CatalogUnit {
+    optional uint32 sid = 1;                    //商品SID
+    optional uint32 amount = 2;                 //商品数量
+    optional uint32 price = 3;                  //商品价格
+    optional uint32 type = 4;                   //商品类型 --1玩家摆摊出售 2系统补充生成
+    optional uint32 pos_id = 5;                 //商品位置
+    optional uint32 status = 6;                 //商品状态 --1可出售 2已过期, 3空 
+    optional uint32 quality = 7;                //商品品质
+}
+
+message GS2CSendCatalog {
+    optional uint32 cat_id = 1;                 //主目录ID
+    optional uint32 refresh = 2;                //上次刷新时间
+    repeated CatalogUnit catalog = 3;           //子目录信息
+    optional uint32 page = 4;                   //页数
+    optional uint32 total = 5;                  //商品总数
+}
+
+message GS2CSendCatalogUnit {
+    optional uint32 cat_id = 1;                 //主目录ID
+    optional CatalogUnit unit = 2;              //目录单元信息
+}
+
+message GridCash {
+    optional uint32 pos_id = 1;                 //位置信息
+    optional uint32 cash = 2;                   //可取现金
+}
+
+message GS2CWithdrawAllCash {
+    repeated GridCash cash_list = 1;            //所有位置的现金信息
+}
+
+message GS2CSendItemDetail {
+    optional base.ItemInfo itemdata = 1;        //摆摊道具详细信息
+}
+
+message GS2CDefaultPrice {
+    optional uint32 sid = 1;                    //道具sid
+    optional uint32 price = 2;                  //道具行情价
+}
+
+message GS2CStallRedPoint {                     //摆摊红点
+}

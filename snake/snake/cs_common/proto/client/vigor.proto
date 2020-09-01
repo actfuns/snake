@@ -1,0 +1,48 @@
+
+//打开炼化界面
+message C2GSOpenVigorChange { 
+}
+
+//一个格子炼化开始
+message C2GSVigorChangeStart {
+    optional uint32 change_type = 1;                    //炼化类型
+}
+
+//一个类型的炼制勾选
+message C2GSVigorChangeItemStatus {
+    optional uint32 is_change_all = 1;                  //是否勾选一键炼化
+    optional uint32 change_type = 2;                    //炼化类型
+}
+
+//一键炼制
+message C2GSVigorChangeList {    
+}
+
+//
+message C2GSChangeGoldcoinToVigor {
+}
+
+//用元宝开启一个格子
+message C2GSBuyGrid {
+    optional uint32 change_type = 1;                //开启格子的炼化类型
+}
+
+//获得一个炼化产出
+message C2GSVigorChangeProduct { 
+    optional uint32 change_type = 1;                //产出格子的炼化类型
+}
+
+//获得所有完成的产出
+message C2GSVigorChangeALLProducts {   
+}
+
+//炼化道具
+message ChangeOneItem {
+    optional uint32 item_id = 1;                    //炼化道具的服务器id
+    optional uint32 change_amount = 2;              //炼化此类型道具的数目
+}
+
+//炼化
+message C2GSChangeItemToVigor {
+    repeated ChangeOneItem changeItemList = 1;      //炼化道具组成的列表
+}

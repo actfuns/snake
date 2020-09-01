@@ -1,0 +1,17 @@
+module(..., package.seeall)
+function main()
+	local d1 = require("system.jjc.text")
+	local d2 = require("system.jjc.day_reward")
+	local d3 = require("system.jjc.month_reward")
+	local d4 = require("system.jjc.buy_jjctimes")
+	local d5 = require("system.jjc.day_reward_ratio")
+	local d6 = require("system.jjc.month_reward_ratio")
+	local d7 = require("system.jjc.jjc_global")
+	local d8 = require("system.jjc.challenge_reward_beatall")
+	local d9 = require("system.jjc.challenge_group")
+	
+	local s = table.dump(d1, "TEXT").. "\n" .. table.dump(d2, "DAYREWARD").. "\n" .. table.dump(d3, "MONTHREWARD").. "\n" .. table.dump(d4, "BUYJJCTIME")
+	.. "\n" .. table.dump(d5, "DAYRATIO").. "\n" .. table.dump(d6, "MONTHRATIO").. "\n" .. table.dump(d7, "JJCGLOBAL").. "\n" .. table.dump(d8, "CHALLENGEREWARD")
+	.. "\n" .. table.dump(d9, "CHALLENGEGROUP")
+	SaveToFile("jjc", s)
+end

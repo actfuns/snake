@@ -1,0 +1,87 @@
+import "base/common.proto";
+
+message C2GSLoginAccount {
+    optional string account = 1;
+    optional string token = 2;
+    optional string device = 3;
+    optional uint32 platform = 4;    // {1 : "android", 2 : "rootios", 3 : "ios", 4 : "pc"}
+    optional string mac = 5;    // 唯一标识
+    optional string app_ver = 6;
+    optional string imei = 7;
+    optional string os = 8;
+    optional string client_ver = 9;
+    optional string udid = 10;                  // 设备唯一标识
+}
+
+message C2GSLoginRole {
+    optional uint32 pid = 1;
+    optional uint32 force = 2;                  // 1 当存在KS的时候直接登录
+}
+
+message C2GSCreateRole {
+    optional uint32 role_type = 1;
+    optional string name = 2;
+    optional uint32 school = 3;
+    optional string server_key = 4;
+}
+
+message C2GSQuitLoginQueue {
+}
+
+message C2GSGetLoginWaitInfo {
+}
+
+message C2GSReLoginRole {
+    optional uint32 pid = 1;
+    optional string role_token = 2;
+    optional string app_ver = 3;
+}
+
+message C2GSSetInviteCode {
+    optional string invite_code = 1;
+}
+
+message C2GSQueryLogin {
+    repeated base.ClientResFileVersion res_file_version = 1;
+}
+
+message C2GSGMLoginPid {
+    optional uint32 pid = 1;
+    optional string device = 2;
+    optional uint32 platform = 3;    // {1 : "android", 2 : "rootios", 3 : "ios", 4 : "pc"}
+    optional string mac = 4;    // 唯一标识
+    optional string app_ver = 5;
+    optional string imei = 6;
+    optional string os = 7;
+    optional string client_ver = 8;
+    optional string udid = 9;                  // 设备唯一标识
+}
+
+// GS->KS
+message C2GSKSLoginRole {
+    optional uint32 pid = 1;
+    optional string token = 2;
+    optional string serverkey = 3;
+    optional string device = 4;
+    optional uint32 platform = 5;    // {1 : "android", 2 : "rootios", 3 : "ios", 4 : "pc"}
+    optional string mac = 6;    // 唯一标识
+    optional string app_ver = 7;
+    optional string imei = 8;
+    optional string os = 9;
+    optional string client_ver = 10;
+    optional string udid = 11;                  // 设备唯一标识
+}
+
+// KS->GS
+message C2GSBackLoginRole {
+    optional uint32 pid = 1;
+    optional string token = 2;
+    optional string device = 3;
+    optional uint32 platform = 4;    // {1 : "android", 2 : "rootios", 3 : "ios", 4 : "pc"}
+    optional string mac = 5;    // 唯一标识
+    optional string app_ver = 6;
+    optional string imei = 7;
+    optional string os = 8;
+    optional string client_ver = 9;
+    optional string udid = 10;                  // 设备唯一标识
+}

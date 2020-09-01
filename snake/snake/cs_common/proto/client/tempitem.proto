@@ -1,0 +1,6 @@
+message C2GSTranToItemBag{
+    optional uint32 id    = 1; //0:全部提取; 非0:提取此道具
+}
+
+message C2GSOpenTempItemUI{
+}

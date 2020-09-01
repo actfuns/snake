@@ -1,0 +1,33 @@
+message C2GSArtifactOpenUI {                //打开界面
+}
+
+message C2GSArtifactUpgradeUse {            //神器升级
+    optional uint32 goldcoin = 1;           //是否使用元宝购买(1:表示购买)
+}
+
+message C2GSArtifactStrength {              //神器强化
+    optional uint32 goldcoin = 1;           //是否使用元宝购买(1:表示购买)
+}
+
+message C2GSArtifactSpiritWakeup {          //器灵觉醒
+    optional uint32 spirit_id = 1;          //器灵id
+    optional uint32 goldcoin = 2;           //是否使用元宝购买(1:表示购买)
+}
+
+message C2GSArtifactSpiritResetSkill {      //器灵重置技能
+    optional uint32 spirit_id = 1;          //器灵id
+    optional uint32 goldcoin = 2;           //是否使用元宝购买(1:表示购买)
+}
+
+message C2GSArtifactSpiritSaveSkill {       //保存技能
+    optional uint32 spirit_id = 1;          //器灵id
+}
+
+message C2GSArtifactSetFollowSpirit {       //设置跟随器灵
+    optional uint32 spirit_id = 1;          //器灵id
+}
+
+message C2GSArtifactSetFightSpirit {        //设置参战器灵
+    optional uint32 spirit_id = 1;          //器灵id
+}
+

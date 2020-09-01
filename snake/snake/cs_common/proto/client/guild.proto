@@ -1,0 +1,19 @@
+
+message C2GSOpenGuild {
+    optional uint32 cat_id = 1;
+    optional uint32 sub_id = 2;
+}
+
+message C2GSBuyGuildItem {
+    optional uint32 good_id = 1;
+    optional uint32 amount = 2;
+}
+
+message C2GSSellGuildItem {
+    optional uint32 item_id = 1;
+    optional uint32 amount = 2;
+}
+
+message C2GSGetGuildPrice {
+    optional uint32 good_id = 1;
+}

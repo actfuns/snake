@@ -1,0 +1,1800 @@
+import "base/common.proto";
+//擂台
+message ArenaTeamMem{
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 icon  = 3;
+    optional uint32 school = 4;
+    optional uint32 grade = 5;
+    optional uint32 status = 6;
+}
+
+message ArenaTeamInfo{
+    optional uint32 teamid = 1;
+    optional uint32 leader  = 2;
+    repeated ArenaTeamMem member = 3;
+}
+message ArenaSingleInfo{
+    optional uint32 pid  = 1;
+    optional uint32 grade  = 2;
+    optional uint32 icon  = 3;
+    optional uint32 school  = 4;
+    optional uint32 score  = 5;
+    optional string name = 6;
+}
+
+message GS2CArenaFighterList {
+    optional uint32 team = 1;   //1.队伍 2.单人(无队伍的个人 和 暂离)
+    repeated ArenaSingleInfo singlelist =2;
+    repeated ArenaTeamInfo teamlist =3;
+}
+
+message ArenaBattelInfo{
+    optional uint32 pid  = 1;
+    optional uint32 grade  = 2;
+    optional uint32 icon  = 3;
+    optional uint32 school  = 4;
+    optional uint32 count  = 5; //0.单人
+    optional string name = 6;
+}
+
+message ViewFightList {
+    optional ArenaBattelInfo fight = 1;
+    optional ArenaBattelInfo enemy = 2;
+}
+
+message GS2CArenaNameList {
+    repeated ViewFightList lst = 1;
+}
+
+message GS2CArenaFightEnd {
+    optional uint32 pid = 1;
+}
+
+//骰子
+message GS2CShootCrapOpen{
+    optional uint32 maxcount = 1;
+    optional uint32 count = 2;
+    optional uint32 goldcoincnt=3;
+    optional uint32 sixcnt = 4;
+}
+message GS2CShootCrapUpdate{
+    optional uint32 maxcount = 1;
+    optional uint32 count = 2;
+    optional uint32 goldcoincnt=3;
+    optional uint32 sixcnt = 4;
+    repeated uint32 sixlitemlist = 5;
+}
+message GS2CShootCrapEnd{
+    repeated uint32 point_lst=1;
+    optional uint32 flowerid = 2;
+    optional uint32 sixcnt = 3;
+}
+
+//跳舞
+message GS2CDanceStart {
+    optional uint32 lefttime = 1;
+}
+
+message GS2CDanceEnd {
+}
+
+message GS2CDanceActiveStart {
+    optional uint32 active = 1;
+}
+
+message GS2CDanceActiveEnd {
+}
+
+message GS2CDanceLeftCnt {
+    optional uint32 leftcnt = 1;
+}
+
+message GS2CDanceActive{
+    optional uint32 active = 1;
+}
+
+message GS2CDanceDoubleReward{
+    optional uint32 exp = 1;
+    optional uint32 double = 2; //1.暴击 0.非暴击
+}
+
+// 帮派篝火
+message GS2CCampfireQuestion {
+    optional uint32 id = 1;      // 题目id（暂时用于answer校验）
+    optional uint32 type = 2;    // 类型（1、2=选择(1=定选项,2=变动选项)，3=填空）
+    repeated string choices = 3; // 选项
+    optional uint32 time = 4;    // 剩余秒数
+    optional uint32 cur_round = 5;   // 当前轮次
+    optional uint32 total_round = 6;   // 总轮次
+}
+
+message GS2CCampfireQuestionState {
+    // 登录发
+    optional uint32 cur_round = 1;   // 当前轮次（0=未开始，正整数=当前轮次）
+    optional uint32 total_round = 2; // 总轮次
+    optional uint32 answered = 3;    // 是否答过
+    optional uint32 state = 4;       // 状态（1=就绪、2=开启、3=关闭）
+    optional uint32 correct_cnt = 5; // 答对过数量
+}
+
+message GS2CCampfireCorrectAnswer {
+    optional uint32 id = 1;      // 题目id（暂时用于answer校验）
+    optional uint32 answer = 2;  // 答案序号
+    optional uint32 iscorrect = 3;  // 是否正确
+    optional uint32 correct_cnt = 4; // 答对过数量
+}
+
+message GS2CCampfireInfo {
+    // 帮派篝火活动信息
+    optional string mask = 1;
+    optional uint32 state = 2; // 状态(1=准备就绪,2=开启,3=关闭)，服务端有个活动准备阶段，客户端是看不到的
+    optional uint32 drink_buff_adds = 3; // 喝酒收益加成百分比
+    optional uint32 lefttime = 4; // 剩余时间(负数表示没有)
+}
+
+message GS2CCampfirePreOpen {
+    // 通知篝火活动准备就绪（弹提示窗，活动场景内/等级不足玩家不要弹窗）
+    optional uint32 time = 1; // 等待秒数
+}
+
+message GS2CCampfireGotGift {
+    optional uint32 fromer = 1; // 来自角色pid
+    optional string fromer_name = 2; // 来自角色名字
+    optional uint32 exp = 3;    // 获得的经验
+}
+
+message PlayerInfo {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 icon = 3;
+    optional uint32 grade = 4;
+    optional base.TitleInfo title_info = 5; //称谓
+    optional uint32 org_pos = 6; // 帮派职务
+}
+
+message GS2CCampfireShowGiftables {
+    // 显示可赠与列表
+    repeated PlayerInfo players = 1;
+}
+
+message GS2CCampfireGiftTimes {
+    optional uint32 given_times = 1;
+    optional uint32 give_times_limit = 2;
+    optional uint32 received_times = 3;
+    optional uint32 receive_times_limit = 4;
+}
+
+message GS2CCampfireInHuodongScene {
+    optional uint32 is_in = 1; // 是否在活动场景:活动state与此标记执行bool'&'操作表示UI需要出现，state为关闭时也会收到is_in为true(活动结束后此协议毋须收到，理解为当前场景变为非活动场景)
+}
+
+message GS2CCampfireThankGift {
+    optional uint32 thanker = 1; // 答谢者（收礼方）pid
+    optional string thanker_name = 2; // 答谢者（收礼方）名字
+}
+
+//每日签到
+message GS2CSignInOpenUI {
+}
+
+message GS2CSignInMainInfo {
+    optional uint32 extrasignincnt = 1;      // 可补签次数
+    optional uint32 rewardset = 2;       // 签到奖励集合
+    optional uint32 fortune = 3;         // 没有默认为0
+    optional uint32 lottery = 4;           // 抽奖次数
+    optional uint32 today = 5;             // 当天签到情况
+    optional uint32 signincnt = 6;             // 已签到个数
+    optional uint32 firstmonth = 7;          // 签到的首月 首月 1
+}
+
+
+//武林盟主
+message PlayerPointUnit {
+    optional uint32 pid = 1;                //角色ID
+    optional string name = 2;               //角色名称
+    optional uint32 school = 3;             //门派
+    optional uint32 grade = 4;              //等级
+    optional string org_name = 5;           //帮派名
+    optional uint32 point = 6;              //积分
+}
+
+message OrgPointUnit {
+    optional uint32 org_id = 1;             //帮派ID
+    optional string org_name = 2;           //帮派名
+    optional string chairman = 3;           //帮主名
+    optional uint32 total = 4;              //参与人数
+    optional uint32 point = 5;              //积分
+}
+
+message PlunderUnit {
+    optional base.SimplePlayer role = 1;    //角色信息
+    optional uint32 score = 2;              //积分
+    optional uint32 protect_time = 3;       //保护时间
+    optional base.TouxianInfo tx_info = 4;  //头衔
+    optional uint32 grade = 5;              //等级
+    optional string org_name = 6;           //帮派名
+}
+
+message GS2CMengzhuOpenPlayerRank {             //个人积分榜
+    repeated PlayerPointUnit player_list = 1;   //个人积分
+    optional uint32 my_rank = 2;                //我的排名
+    optional uint32 my_point = 3;               //我的积分
+    optional uint32 boss_time = 4;              //挑战波旬时间
+    optional uint32 plunder_time = 5;           //掠夺积分时间
+    optional uint32 game_start_time = 6;        //活动开启时间
+}
+
+message GS2CMengzhuOpenOrgRank {            //帮派积分榜
+    repeated OrgPointUnit org_list = 1;     //帮派积分
+    optional uint32 my_rank = 2;            //当前帮派排名
+    optional uint32 my_point = 3;           //当前帮派积分
+    optional uint32 total = 4;              //参与人数
+    optional string chairman = 5;           //帮主名
+    optional uint32 boss_time = 6;          //挑战波旬时间
+    optional uint32 plunder_time = 7;       //掠夺积分时间
+}
+
+message GS2CMengzhuOpenPlunder {
+    repeated PlunderUnit player_list = 1;   //掠夺列表
+}
+
+message GS2CMengzhuEventList {
+    repeated string event_list = 1;         //战况事件
+}
+
+message GS2CMengzhuGameStart {
+    optional uint32 ret_time = 1;           //剩余时间(单位秒)
+}
+
+message ResultUnit {                        //战斗结果单元
+    optional uint32 sid = 1;                //伙伴为sid, 玩家为icon
+    optional uint32 die = 2;                //1-表示死亡
+}
+
+message GS2CMengzhuPlunderResult {          //掠夺战斗结果
+    optional uint32 win_side = 1;           //1-success, 2-fail
+    optional string name = 2;               //玩家名字
+    optional uint32 score = 3;              //玩家评分
+    optional uint32 grade = 4;              //玩家等级
+    optional uint32 school = 5;             //门派
+    repeated ResultUnit partner = 6;        //伙伴信息
+    optional ResultUnit player = 7;         //玩家信息
+    optional uint32 point = 8;              //获得积分
+}
+
+message GS2CMengzhuPlunderNotify {          //目标无法被抢夺
+    optional uint32 target = 1;             //目标玩家
+    optional uint32 timeout = 2;            //玩家受保护时间戳
+}
+
+message GS2CMengzhuBossResult {             //挑战波旬结果
+    optional uint32 point = 1;              //获得积分
+    optional uint32 bout = 2;               //回合数
+    optional uint32 damage = 3;             //总伤害
+}
+
+message GS2CMengzhuMainUI {                 //打开武林盟主活动
+    optional uint32 state = 1;              //状态，对应text表
+}
+
+message GS2CBWMyRank{
+    optional uint32 rank = 1; 
+    optional uint32 point = 2; 
+    optional uint32 maxwin = 3; 
+    optional uint32 fail = 4; 
+    optional uint32 starttime = 5; 
+    optional uint32 matchtime = 6;//>0倒数时间 , ==0 不显示
+    optional uint32 matchendtime = 7;
+}
+
+message BWRank{
+    optional uint32 rank = 1;
+    optional uint32 point = 2;
+    optional string name = 3;
+    optional uint32 grade = 4;
+    optional uint32 pid = 5;
+    optional uint32 school = 6;
+    optional uint32 war = 7;
+    optional uint32 maxwin = 8;
+}
+
+message GS2CBWRank{
+    repeated BWRank ranklist = 1;
+    optional uint32 maketeam = 2; //1.自动组队 0.不组队
+}
+
+message GS2CBWMakeTeam{
+    optional uint32 op = 1;            //1.自动组队 0.不组队
+}
+
+message BWBattle{
+    optional uint32 icon = 1; 
+    optional uint32 point = 2; 
+    optional string name = 3;
+    optional uint32 school = 4; 
+    optional uint32 grade = 5; 
+    optional uint32 score = 6; 
+}
+
+message GS2CBWBattle {
+    repeated BWBattle match1 = 1;
+    repeated BWBattle match2 = 2;
+    optional uint32 time = 3; 
+}
+
+message ItemReward{
+    optional uint32 itemsid = 1; 
+    optional uint32 amount = 2; 
+}
+
+message GS2CBWReward{
+    repeated ItemReward itemlist = 1;
+    optional uint32 wincount = 2; 
+    optional uint32 exp = 3; 
+    optional uint32 silver = 4; 
+    optional uint32 sumexp = 5; 
+    optional uint32 point = 6; 
+    optional uint32 prewincount = 7; 
+}
+
+message OrgTaskItem{
+    optional uint32 itemsid = 1; 
+    optional uint32 amount = 2; 
+}
+
+message GS2COpenOrgTaskUI{
+    optional uint32 task = 1; //0.没有任务,否则是任务编号
+    repeated uint32 starlist = 2; //已经开通星级
+    optional uint32 ringcnt = 3; //完成环数
+    optional uint32 star = 4; //当前task的星级
+    optional uint32 starexp = 5;
+    optional uint32 starorgoffer = 6;
+    repeated OrgTaskItem staritem = 7;
+    optional uint32 taskexp = 8;
+    optional uint32 taskorgoffer = 9;
+    repeated OrgTaskItem taskitem = 10;
+    optional uint32 bout = 11; //完成轮数
+    optional OrgTaskPreTask pretaskinfo = 12; //任务预览
+}
+
+message GS2COrgTaskRandTask{
+    optional uint32 task = 1;
+    optional uint32 star = 2;
+    optional uint32 ringcnt = 3; //完成环数
+    optional uint32 taskexp = 4;
+    optional uint32 taskorgoffer = 5;
+    repeated OrgTaskItem taskitem = 6;
+    optional uint32 bout = 7; //完成轮数
+    optional OrgTaskPreTask pretaskinfo = 8; //任务预览
+}
+
+message OrgTaskPreTask{
+    optional uint32 npctype = 1;
+    optional uint32 mapid = 2;
+    optional uint32 itemsid = 3;
+    optional string npcname = 4;
+}
+
+
+message GS2COrgTaskResetStar{
+    optional uint32 task = 1;
+    optional uint32 star = 2;
+}
+
+message GS2COrgTaskCleanStarlist{
+}
+
+message BKChoice {
+    optional string text = 1;
+    optional uint32 icon = 2;
+}
+
+//六道百科
+message GS2CBaikeQuestion {
+    optional uint32 id = 1;
+    optional uint32 type = 2;
+    optional string content = 3;
+    repeated BKChoice choices = 4;
+    optional uint32 ring = 5;           //第几题
+    optional uint32 answer_cnt = 6;
+    optional uint32 answer_time = 7;
+}
+
+message GS2CBaikeChooseResult {
+    optional uint32 result = 1;         //1-正确 
+    repeated uint32 right_answer = 2;   //当result为0时才有数据
+}
+
+message GS2CBaikeLinkResult {
+    optional uint32 result = 1;         //1-正确
+    repeated base.BaikeLinkAnswer right_answer = 2;
+}
+
+message GS2CBaikeFinish {
+}
+
+message BaikeUnit {
+    optional uint32 pid = 1;
+    optional string name = 2;
+    optional uint32 score = 3;
+}
+
+message GS2CBaikeCurRank {
+    repeated BaikeUnit unit = 1;
+}
+
+message GS2CBaikeCurRankScore {
+    optional uint32 score = 1;
+}
+
+message GS2CBaikeWeekRank {
+    repeated BaikeUnit unit = 1;
+    optional uint32 score = 2;
+}
+
+message ChargeUnit {
+    optional string key = 1;
+    optional uint32 val = 2;
+    optional uint32 days = 3;       //元宝大礼的剩余天数
+}
+
+message GS2CChargeGiftInfo {
+    optional string mask = 1;
+    repeated ChargeUnit gift_day_list = 2;          //每日礼包
+    repeated ChargeUnit gift_goldcoin_list = 3;     //元宝大礼
+    repeated ChargeUnit gift_grade_list = 4;        //一本万利
+}
+
+message GS2CChargeRefreshUnit {                     //刷新单个Unit
+    optional ChargeUnit unit = 1;
+}
+
+message GS2CChargeCheckBuy {
+    optional string reward_key = 1;                 //购买项key值
+    optional uint32 can_buy = 2;                    //0-不可购买,1-可购买
+}
+
+message GS2CBottleRecv {                //收到瓶子
+    optional uint32 bottle = 1;         //瓶子id
+}
+
+message GS2CBottleDetail {              //获取瓶子内容
+    optional uint32 bottle = 1;         //瓶子id
+    optional uint32 send_id = 2;        //发送人,0表示系统
+    optional string name = 3;           //发送人名字
+    optional string content = 4;        //祝福语,系统发送的为空
+    optional uint32 send_time = 5;      //发送时间
+    optional base.ModelInfo model_info = 6;  //model_info信息
+}
+
+// --灵犀------------
+message GS2CLingxiMatching {
+    optional uint32 rest_sec = 1;  // 剩余持续秒数
+}
+
+message GS2CLingxiMatchEnd {
+    optional uint32 succ = 1;  // 1/0是否匹配成功
+}
+
+// 显示灵犀用花地点提示
+message GS2CLingxiShowFlowerUsePos {}
+
+// 灵犀情花诗行动画
+message GS2CLingxiShowFlowerPoem {
+    optional uint32 sec = 1;    // 用时
+}
+// ------------------
+
+//---六脉---
+message GS2CLMMyPoint{
+    optional uint32 point = 1;
+    optional uint32 win = 2;
+    optional uint32 fail = 3;
+    optional uint32 gamestate = 4;//1.积分 2.淘汰
+    optional uint32 rank = 5;
+    optional uint32 starttime = 6;
+    optional uint32 matchtime = 7;//>0倒数时间 , ==0 不显示
+}
+
+message LMPointRank{
+    optional uint32 rank = 1;
+    optional uint32 point = 2;
+    optional string name = 3;
+    optional uint32 grade = 4;
+    optional uint32 pid = 5;
+    optional uint32 school = 6;
+    optional uint32 war = 7;
+}
+
+message GS2CLMPointRank{
+    repeated LMPointRank ranklist = 1; 
+}
+
+message LMBattler{
+    optional string name = 1;
+    optional uint32 pid = 2;
+    optional uint32 icon = 3;
+    optional uint32 grade = 4;
+    optional base.ModelInfo model_info = 5;  //model_info信息
+}
+
+message LMBattle{
+    optional LMBattler fighter1 = 1;
+    optional LMBattler fighter2 = 2;
+    optional uint32 win = 3;//0.没有胜利者,1.还在战斗中 , 其他就是其中一个
+    optional uint32 jijun = 4;//1.季军争夺
+}
+
+message GS2CLMBatte{
+    repeated LMBattle battlelist = 1; 
+    optional uint32 step = 2; //16-16强.. 2.冠军和季军
+    optional uint32 time = 3;//开始时间
+    optional uint32 open = 4;//1.强行打开UI
+}
+
+message LMSXInfo{
+    optional string name = 1;
+    optional uint32 pid = 2;
+    optional uint32 school = 3;
+    optional uint32 grade = 4;
+    optional uint32 point = 5;
+    optional uint32 first = 6;//1.冠军
+}
+
+message GS2CLMShouXi{
+    repeated LMSXInfo sxlist = 1; 
+}
+
+message GS2CLMGameState{
+    optional uint32 state = 1; //0.未开始 1.积分赛 2.淘汰 3.结束
+}
+
+//------------
+
+message GS2CShootCrapReward{
+    optional uint32 exp = 1;
+    optional uint32 silver = 2;
+}
+
+
+//---精英副本--
+message GS2CCloseJYFBComfirm{
+    optional uint32 sessionidx = 1;
+}
+
+message GS2CJYFBComfirmEnter{
+    optional uint32 sessionidx = 1;
+    optional uint32 pid = 2;
+}
+
+message JYFBComfirmState{
+    optional uint32 pid = 1;
+    optional uint32 state = 2;
+}
+
+message GS2CJYFBComfirm{
+    optional uint32 time =1;
+    repeated JYFBComfirmState plist = 2;   //成员状态
+    optional uint32 sessionidx = 3;
+}
+
+message GS2CRefreshJYFBComfirm{
+    optional uint32 time =1;
+    repeated JYFBComfirmState plist = 2;   //成员状态
+    optional uint32 sessionidx = 3;
+}
+
+message JYFBRewardItem{
+    optional uint32 itemsid =1;
+    optional uint32 amount =2;
+}
+
+message GS2CJYFBGameOver{
+    optional uint32 exp =1;
+    optional uint32 silver =2;
+    optional uint32 point =3;
+    repeated JYFBRewardItem itemlist =4;
+    optional uint32 open =5;
+    optional uint32 expradio =6;
+    optional uint32 silverradio =7;
+}
+
+message GS2CJYFubenFloorName{
+    optional uint32 floor = 1;
+    optional string name = 2;
+}
+//---精英副本--
+
+message GS2CWelfareGiftInfo {
+    optional string mask = 1;
+    repeated ChargeUnit first_pay_gift = 2;         //首冲 第一重
+    repeated ChargeUnit rebate_gift = 3;            //充值返利
+    repeated ChargeUnit login_gift = 4;            //七彩神灯
+    optional uint32 new_day_time = 5;              //七彩神灯下一天
+    repeated ChargeUnit second_pay_gift = 6;       //次充奖励
+    repeated ChargeUnit first_pay_gift_second = 7; //首冲 第二重
+    repeated ChargeUnit first_pay_gift_third = 8;  //首冲 第三重
+    optional uint32 store_charge_rmb = 9;  //当前从商城充值的人民币总数(单位:元)
+}
+
+//集字兑换
+message UnitInfo {
+    optional string key = 1;
+    optional uint32 val = 2;
+}
+
+message CollectGiftInfo {
+    optional string collect_key = 1;
+    repeated UnitInfo gift_list = 2;
+    optional uint32 start_time = 3;
+    optional uint32 end_time = 4;
+}
+
+message GS2CCollectGiftInfo {
+    repeated CollectGiftInfo collect_gift = 1;
+}
+
+message GS2CUpdateCollectStatus {
+    optional string collect_key = 1;
+    optional uint32 status = 2; // 0 close 1 open
+    optional CollectGiftInfo collect = 3;
+}
+
+message GS2CGuessGameDone {
+    optional uint32 silver = 1;         //最终获得银币
+}
+
+message GS2CHuodongIntroduce {          //活动介绍
+    optional string id = 1;             //活动名称
+}
+
+message GS2CGuessGameIntroduce {
+}
+
+message GS2CCaishenRefreshRewardKey {
+    optional string group_key = 1;     //当前活动对应的抽奖key
+    optional uint32 reward_key = 2;     //已经领取过的奖励编号
+    optional uint32 start_time = 3;     //开始时间
+    optional uint32 end_time = 4;       //结束时间
+    optional uint32 reward_surplus = 5;  //剩余次数
+    optional uint32 status = 6;  //活动的开启状态
+}
+
+message CaishenRewardRecord {
+    optional string name = 1;           //玩家名字
+    optional uint32 multiple = 2;       //获得奖励的倍数
+}
+
+message GS2CCaishenRefreshRewardRecord {
+    repeated CaishenRewardRecord record_list = 1;  //记录列表
+    optional uint32 last_time = 2; // 最新一条记录的时间戳
+}
+
+message OrgWarMatchUnit {
+    optional uint32 org_id = 1;                     //帮派id
+    optional uint32 org_show_id = 2;                //帮派显示id
+    optional string org_name = 3;                   //帮派名字
+    optional uint32 org_boom = 4;                   //帮派繁荣度
+    optional uint32 org_status = 5;                 //帮派状态1-赢,2-输,3-平,4-空,0-无
+}
+
+message OrgWarMatchPair {                           //对战帮派
+    optional OrgWarMatchUnit org_unit1 = 1;         
+    optional OrgWarMatchUnit org_unit2 = 2;         
+}
+
+message GS2COrgWarOpenMatchList {                   //帮派对阵表
+    repeated OrgWarMatchPair match_list = 1;        //帮派列表
+}
+
+message GS2COrgWarEnterPrepareRoom {                //进入帮战准备厅
+    optional uint32 action_point = 1;               //玩家行动力
+    optional uint32 fight_time = 2;                 //战斗开启时间
+}
+
+message OrgWarTeamUnit {
+    optional uint32 team_id = 1;                    //队伍id
+    optional uint32 leader = 2;                     //队长
+    repeated base.TeamMem mem_list = 3;             //队员信息
+}
+
+message GS2COrgWarOpenTeamUI {                      //打开场景组队信息
+    repeated base.SimpleRole single_list = 1;       //场景未组队玩家
+    repeated OrgWarTeamUnit team_list = 2;          //场景队伍信息
+}
+
+message GS2COrgWarEnterFightScene {                 //进入帮战比武场景
+    optional uint32 action_point = 1;               //玩家行动力
+}
+
+message GS2COrgWarRefreshActionPoint {              //刷新玩家行动力
+    optional uint32 action_point = 2;               //玩家行动力
+}
+
+message WarScoreUnit {
+    optional uint32 pid = 1;                        //玩家id
+    optional string name = 2;                       //玩家名字
+    optional uint32 score = 3;                      //玩家战绩积分
+}
+
+message OrgScoreUnit {
+    optional uint32 org_id = 1;                     //帮派id
+    optional string org_name = 2;                   //帮派名字
+    optional uint32 org_score = 3;                  //帮派积分
+    repeated WarScoreUnit score_list = 4;           //帮派成员战绩
+}
+
+message GS2COrgWarOpenWarScoreUI {                  //帮派战绩界面
+    repeated OrgScoreUnit org_list = 1;             //对战帮派战绩信息
+}
+
+message TrialUnit {
+    optional uint32 pid = 1;                        //玩家id
+    optional base.SimpleRole base_info = 2;         //玩家简明信息
+    optional uint32 score = 3;                      //玩家评分
+    optional uint32 status = 4;                     //领取奖励 0-需战斗,1-战胜,可领取奖励,2.已领取奖励
+}
+
+message GS2CTrialOpenUI {
+    repeated TrialUnit trial_list = 1;
+    optional uint32 ret_time = 2;                   //剩余次数
+    optional uint32 total = 3;                      //总个数
+}
+
+message GS2CTrialRefreshUnit {
+    optional TrialUnit trial_unit = 1;              //单个试炼信息
+    optional uint32 pos = 2;                        //位置信息
+}
+
+//----画舫灯谜-------
+// 题目状态
+message GS2CHfdmQuesState {
+    optional uint32 total_round = 1; // 总轮次
+    optional uint32 correct_cnt = 2; // 正确数
+    optional int32 wait_sec = 3; // 等待时间 (-1表示没有等到时间)
+    optional uint32 state = 4; // 1:等待下一题出题, 2:答题倒计时, 3:答题结束, 4:等待活动开始
+    repeated string winners = 5; // 获胜玩家名字，这个出现时，state为3，其他计数无
+}
+
+message GS2CHfdmQuestion {
+    optional uint32 round = 1; // 当前轮次
+    optional uint32 ques_id = 2;
+    optional string title = 3; // 题干
+    repeated string choices = 4; // 答案
+}
+
+// 答题结果(公布答案)
+message GS2CHfdmAnswerResult {
+    optional uint32 ques_id = 1; // 校验用
+    optional uint32 iscorrect = 2; // 是否正确
+    optional uint32 correct_cnt = 3; // 正确数
+    optional uint32 correct_answer = 4; // 正确答案
+    optional uint32 my_answer = 5; // 自己的已选答案（可能在后端因校验而修改，从而与前端不一致）
+}
+
+// 前端选答案的反馈，后端是否认可
+message GS2CHfdmSelectAnswer {
+    optional uint32 ques_id = 1; // 校验用
+    optional uint32 select = 2; // 选择的选项(0为未成功选择选项)
+}
+
+// 需要累积答题奖励信息
+message GS2CHfdmNeedCorrectRewardInfo {
+    optional uint32 total_cnt = 1; // 累积正确数 (0表示不出现额外累积奖励)
+    optional uint32 need_cnt = 2; // 需要正确数
+    optional uint32 rewardid = 3; // 奖励id
+}
+
+// 进入/离开画舫时下行通知是否在场景
+message GS2CHfdmInScene {
+    optional uint32 is_in = 1; // 0/1是否在场景
+}
+
+message HfdmSkill {
+    optional uint32 id = 1;
+    optional uint32 cd = 2; // 0表示无cd
+}
+
+message GS2CHfdmSkillStatus {
+    repeated HfdmSkill skills = 1;
+}
+
+message HfdmRank {
+    optional uint32 rank = 1;
+    optional uint32 pid = 2;
+    optional string name = 3;
+    optional uint32 score = 4;
+}
+
+// 排行榜
+message GS2CHfdmRankInfo {
+    repeated HfdmRank ranks = 1;
+}
+
+// 自己的排行排名
+message GS2CHfdmMyRank {
+    optional uint32 rank = 1;
+    optional uint32 score = 2;
+}
+
+// 显示活动介绍
+message GS2CHfdmIntro {}
+//-------------------
+
+//成长
+message GS2CRefreshGrow{
+    optional uint32 index = 1;
+    optional uint32 reward = 2;//0.未完成 1.可领取 2.已经领取
+    optional uint32 finish = 3;//0.未完成 1.完成
+}
+message GrowLevelInfo{
+    optional uint32 reward = 1;//0.未完成 1.可领取 2.已经领取
+    optional uint32 finish = 2;//0.未完成 1.完成
+    optional uint32 index = 3;
+}
+
+message GS2CAllGrowInfo{
+    repeated GrowLevelInfo growinfo = 1;
+}
+
+message GS2CReturnGoldCoinRefresh {
+    optional uint32 cbtpay = 1;     //封测充值金额
+    optional uint32 reward = 2;     //是否领取过返还奖励，位标识, 0x1<<(次数-1)
+    optional uint32 free_gift = 3;  //是否领取过免费神秘大礼
+    optional uint32 gift_1_time = 4;    //神秘礼包1过期时间
+    optional uint32 gift_1_buy = 5;     //是否已经购买
+    optional uint32 gift_2_time = 6;    //神秘礼包2过期时间
+    optional uint32 gift_2_buy = 7;     //是否已经购买
+}
+
+message KFTouxianRank{
+    optional uint32 level = 1; 
+    optional uint32 pid = 2; 
+    optional string name = 3; 
+    optional uint32 rank = 4; 
+}
+
+message GS2CKFTouxianRank{
+    repeated KFTouxianRank touxianrank = 1 ;
+}
+
+message KFRewardUnit{
+    optional uint32 flag = 1; 
+    optional uint32 reward = 2; //0.不能领取 1.可领取 2.已领取 3.活动结束
+}
+
+message KFReward{
+    repeated KFRewardUnit rewarddata  =1 ;
+    optional uint32 endtime = 2; 
+    optional uint32 orgcnt = 3; 
+}
+
+message GS2CKaiFuRankReward{
+    optional KFReward orgcnt = 1; 
+    optional KFReward orglevel = 2; 
+    optional KFReward playerscore = 3; 
+    optional KFReward playergrade = 4; 
+    optional uint32 txendtime = 5; 
+    optional uint32 sumendtime = 6; 
+    optional uint32 createtime = 7; 
+}
+
+message GS2CShowGradeGiftUI{
+}
+
+//七天登录
+message GS2CSevenDayStart{
+    optional uint32 endtime = 1; 
+    optional uint32 starttime = 2; 
+}
+
+message GS2CSevenDayEnd{
+}
+
+message GS2CSevenDayReward{
+    repeated uint32 rewardlist  =1 ;    //1.可领取 2已领取 ； 下标是第几天
+}
+
+//每日充值
+message GS2CEveryDayChargeStart{
+    optional uint32 endtime = 1; 
+    optional string reward_key = 2; 
+}
+
+message GS2CEveryDayChargeEnd{
+}
+
+message EveryDayChargeReward{
+    optional string flag = 1;   // 6 30 .. 648
+    optional uint32 day = 2;    //第几天
+    optional uint32 reward = 3; //可领取奖励数量
+    optional uint32 rewarded = 4;  //已经领取奖励数量
+}
+
+message GS2CEveryDayChargeReward{
+    repeated EveryDayChargeReward rewardlist  =1 ;
+    optional uint32 curday = 2;    
+}
+
+message OnlineGift {
+    optional uint32 key = 1;
+    optional uint32 status = 2; // 1可领取，2已领取
+}
+
+message GS2COnlineGift {
+    repeated OnlineGift statuslist = 1;
+    optional uint32 start_time = 2;
+    optional uint32 end_time = 3;
+    optional uint32 login_time = 4;
+}
+
+message GS2COnlineGiftUnit {
+    optional OnlineGift unit = 1;
+}
+
+//超级返利
+message GS2CSuperRebateStart{
+    optional uint32 endtime = 1; 
+}
+
+message GS2CSuperRebateEnd{
+}
+
+message GS2CSuperRebateReward{
+    optional uint32 lotterycnt = 1;     //已经抽奖次数
+    optional uint32 value = 2;  // value>0表示可以领取返利
+    optional uint32 rebate = 3; //获得返利的加成索引
+}
+
+message SuperRebateRecord{
+    optional string name = 1; 
+    optional uint32 value = 2; 
+}
+
+message GS2CSuperRebateRecord{
+    repeated SuperRebateRecord recordlist = 1; 
+}
+
+//每日累充
+message GS2CTotalChargeStart{
+    optional uint32 endtime = 1; 
+    optional uint32 mode = 2;   //1.new 2.old 3.third
+}
+
+message GS2CTotalChargeEnd{
+}
+
+message TotalChargeSlot{
+    optional uint32 slot = 1; 
+    optional uint32 index = 2; 
+}
+
+message TotalChargeReward{
+    optional uint32 level = 1; 
+    optional uint32 reward = 2; 
+    optional uint32 rewarded = 3; 
+    repeated TotalChargeSlot slotlist = 4; 
+}
+
+message GS2CTotalChargeReward{
+    repeated TotalChargeReward rewardlist = 1; 
+    optional uint32 todaygoldcoin = 2; 
+}
+
+//战力礼包
+message FightGiftbagSlot{
+    optional uint32 slot = 1;   //0表示额外
+    optional uint32 index = 2; 
+}
+
+message FightGiftbagReward{
+    optional uint32 score = 1; 
+    optional uint32 reward = 2; 
+    optional uint32 rewarded = 3; 
+    repeated FightGiftbagSlot slotlist = 4; 
+    optional uint32 rank = 5;//第几名或者还剩余多少
+    optional uint32 inrank = 6;//1.在 0.不在
+}
+
+message GS2CFightGiftbagReward{
+    repeated FightGiftbagReward rewardlist = 1; 
+    optional uint32 endtime = 2; 
+}
+
+message ServerDayExpenseRewardGrid {
+    optional uint32 grid = 1;                            //一条奖励中的一个奖励（位置）
+    optional uint32 option = 2;                          //格子的物品选项
+}
+
+message DayExpenseRewardList {
+    optional uint32 reward_key = 1;       //一条奖励的key 对应相应的元宝消费
+    optional uint32 reward_state = 2;   //0 不可领取 ，1可领取，2已经领取
+    repeated ServerDayExpenseRewardGrid grid_list = 3;  //一条奖励
+} 
+message GS2CDayExpenseReward{
+    optional string group_key = 1;     //奖励组id（来源于运营后台）                             
+    repeated DayExpenseRewardList  reward_list = 2;      //奖励列表
+    optional uint32 goldcoin = 3;   //今日花费的元宝数
+    optional uint32 end_time = 4;   //活动结束时间
+    optional uint32 state = 5;          //活动状态 0  关闭  1 开启   2 准备开启（运营设置开启，但是开启时间未到）
+}
+
+//打开福缘宝箱界面
+message GS2COpenFuYuanBoxView {
+    optional uint32 box_idx = 1;       //宝箱编号
+    repeated uint32 reward_ids = 2;       //随机奖励物品的id列表
+}
+
+//关闭福缘宝箱界面
+message GS2CCloseFuYuanBoxView {
+}
+
+message FuYuanBoxReward {
+    optional uint32 id = 1;       //道具id
+    optional uint32 amount = 2;       //道具数量
+}
+
+//福缘宝箱奖励
+message GS2CFuYuanBoxReward {
+    optional uint32 times = 1;     //1 1次的奖励 10 10次的奖励                             
+    repeated FuYuanBoxReward rewards = 2;
+}
+
+message GS2CFuYuanLottery {
+    optional uint32 sessionidx = 1;
+    optional uint32 id = 2;
+}
+
+//三人比武
+message GS2CThreeBWMyRank{
+    optional uint32 rank = 1; 
+    optional uint32 point = 2; 
+    optional uint32 lastwin = 3; //连胜
+    optional uint32 win = 4; //胜利
+    optional uint32 fight = 5; //战斗场次
+    optional uint32 starttime = 6; //活动正式开始时间戳
+    optional uint32 match = 7; //1.参与匹配 0.没有参与匹配
+    optional uint32 endtime = 8;
+    optional uint32 matchendtime = 9;
+}
+
+message ThreeRankData{
+    optional uint32 rank = 1; 
+    optional uint32 point = 2; 
+    optional uint32 maxwin = 3; //最大连胜
+    optional string name = 4;
+}
+
+message GS2CThreeBWEndRank{
+    repeated ThreeRankData rankdata=1;
+}
+
+message GS2CThreeBWNomalRank{
+    repeated ThreeRankData rankdata=1;
+    optional uint32 point = 2; 
+    optional uint32 rank = 3; 
+    optional uint32 win = 4; //胜利
+    optional uint32 lastwin = 5; //连胜
+    optional uint32 firstwin = 6; //首胜 0.未达到 1.可以领取 2.已经领取 
+    optional uint32 fivewin = 7; //5胜 0.未达到 1.可以领取 2.已经领取 
+    optional uint32 endtime = 8;
+}
+
+message ThreeBWBattle{
+    optional uint32 icon = 1; 
+    optional uint32 point = 2; 
+    optional string name = 3;
+    optional uint32 school = 4; 
+    optional uint32 grade = 5; 
+    optional uint32 score = 6; 
+}
+
+message GS2CThreeBWBattle {
+    repeated ThreeBWBattle match1 = 1;
+    repeated ThreeBWBattle match2 = 2;
+    optional uint32 time = 3; 
+}
+
+//河神祈福
+message GS2CQiFuStart{
+    optional uint32 endtime = 1; 
+}
+
+message GS2CQiFuEnd{
+}
+
+message QiFuLotteryReward{
+    optional uint32 itemsid = 1; 
+    optional uint32 amount = 2;
+    optional uint32 baoji = 3;
+}
+
+message GS2CQiFuReward{
+    optional uint32 point = 1; 
+    repeated uint32 rewardlist = 2;//0.未达到 1.可以领取 2.已经领取
+}
+
+message GS2CQiFuLottery{
+    repeated QiFuLotteryReward rewardlist = 1;
+}
+
+message ActivePointGiftGrid {
+    optional uint32 grid_id = 1;
+    optional uint32 option = 2;
+}
+
+message ActivePointGift {
+    optional uint32 point_key = 1;
+    optional uint32 reward_state = 2;      //不可领取 0    可领取 1   已经领 2
+    repeated ActivePointGiftGrid grid_list = 3;
+}
+
+message GS2COpenActivePointGiftView {
+    repeated ActivePointGift gift_list = 1;  //所有可领取或已经领取礼包的状态
+}
+
+message GS2CActivePointGiftTotalPoint {
+    optional uint32 total_point = 1;
+}
+
+message GS2CActivePointGiftState {
+    optional uint32 state = 1;          //活动的开启状态   关闭 0    开启 1 等待开启（开启时间还未到） 2
+    optional uint32 end_time = 2;
+}
+
+message GS2CActivePointSetGridOptionResult {
+    optional uint32 point_key = 1;  //礼包id
+    optional uint32 grid_id = 2;     //所在格子
+    optional uint32 option = 3;     //格子内部选项
+}
+
+message JuBaoPenScoreState {
+    optional uint32 score = 1; //积分段
+    optional uint32 state = 2; //状态 1 可领 2 已领
+}
+
+message GS2CJuBaoPenInfo {
+    optional uint32 free_count = 1; //免费次数
+    optional uint32 free_endtime = 2; //免费的CD结束时间戳
+    optional uint32 ten_ext_times = 3; //距离10次的额外奖励还要抽多少次
+    repeated JuBaoPenScoreState score_reward = 4;  //积分奖励状态
+    optional uint32 score = 5; //自己积分
+}
+
+message JuBaoPenRecord {
+    optional string rolename = 1; //玩家名称
+    optional uint32 itemid = 2; //道具id
+    optional uint32 num = 3; //道具数量
+}
+
+message GS2CJuBaoPenRecord {
+    repeated JuBaoPenRecord records = 1;  //聚宝盆记录
+}
+
+message JuBaoPenReward {
+    optional uint32 id = 1; //道具id
+    optional uint32 amount = 2; //数量
+}
+
+message GS2CJuBaoPen {
+    optional uint32 times = 1;     //1 1次的奖励 10 10次的奖励                             
+    repeated JuBaoPenReward rewards = 2;
+    repeated JuBaoPenReward extrewards = 3; //额外奖励
+}
+
+message GS2CJuBaoPenStart {
+    optional uint32 showrank = 1; //是否是显示结束排行榜 1 显示 2 不显示
+    optional uint32 endtime = 2; //聚宝盆活动结束时间戳
+}
+
+message GS2CJuBaoPenEnd {
+    optional uint32 showrank = 1; //是否是显示结束排行榜 1 显示 2 不显示
+}
+
+message GS2CDrawCardState {
+    optional uint32 state = 1;       //活动开启状态 关闭 0 开启 1 等待开启 2
+    optional uint32 end_time = 2;
+}
+
+message GS2CDrawCardTimes {
+    optional uint32 times = 1;      //翻牌的可重置次数
+    optional uint32 purchased_times = 2;    //已经购买的次数
+}
+
+message DrawCardCard {
+    optional uint32 card_info = 1;   //牌面奖励信息 item_idx
+    optional uint32 card_state = 2; //牌的翻面状态  未翻面 0  翻开 1
+    optional uint32 card_id = 3;    //牌的id
+}
+
+message GS2CDrawCardGetList {
+    repeated DrawCardCard   card_list = 1;    //一组牌面 重置 则为空
+    optional uint32 card_count = 2;     //未翻开的牌数
+}
+
+message GS2CDrawCardDrawResult {
+    optional uint32 success = 1;          // 翻牌是否成功 失败 0， 成功 1
+    optional uint32 card_count = 2;     // 当前未翻牌的个数
+    repeated DrawCardCard card_list = 3; //状态改变的牌的列表
+}
+
+message GS2CContinuousChargeStart{
+    optional uint32 starttime = 1; 
+    optional uint32 endtime = 2; 
+    optional uint32 mode = 3;   //1.new 2.old 
+}
+
+message GS2CContinuousChargeEnd{
+}
+
+message ContinuousChargeState{
+    optional uint32 day = 1; 
+    optional uint32 state = 2; // 1 充值 2 可领取 3 已领取 4 已过时
+}
+
+message ContinuousChargeTotalState{
+    optional uint32 day = 1; 
+    optional uint32 state = 2; // 1 可领取 2已领取
+}
+
+message ContinuousChoice {
+    optional uint32 day = 1; 
+    optional uint32 slot = 2;
+    optional uint32 index = 3;
+}
+
+message GS2CContinuousChargeReward{
+    repeated ContinuousChargeState states = 1; 
+    repeated ContinuousChargeTotalState totalstates = 2;
+    optional uint32 curday = 3; //当前是活动第几天 
+    optional uint32 curgoldcoin = 4; //当天的充值元宝 
+    optional uint32 totalcoldcoin = 5; //活动开始到当前的累计充值元宝
+    repeated ContinuousChoice choice = 6; //可选奖励
+    repeated ContinuousChoice totalchoice = 7; //累计的可选奖励
+}
+
+message GS2CContinuousExpenseStart{
+    optional uint32 starttime = 1; 
+    optional uint32 endtime = 2; 
+    optional uint32 mode = 3;   //1.new 2.old 
+}
+
+message GS2CContinuousExpenseEnd{
+}
+
+message ContinuousExpenseState{
+    optional uint32 day = 1; 
+    optional uint32 state = 2; // 1 充值 2 可领取 3 已领取 4 已过时 
+}
+
+message ContinuousExpenseTotalState{
+    optional uint32 day = 1; 
+    optional uint32 state = 2; // 1 可领取 2已领取
+}
+
+message GS2CContinuousExpenseReward{
+    repeated ContinuousExpenseState states = 1; 
+    repeated ContinuousExpenseTotalState totalstates = 2;
+    optional uint32 curday = 3; //当前是活动第几天 
+    optional uint32 curgoldcoin = 4; //当天的消费元宝 
+    optional uint32 totalcoldcoin = 5; //活动开始到当前的累计消费元宝
+    repeated ContinuousChoice choice = 6; //可选奖励
+    repeated ContinuousChoice totalchoice = 7; //累计的可选奖励
+}
+
+message GS2CEveryDayRankStart {         //每日冲榜开始
+    optional uint32 rank_idx = 1;       //排行榜索引
+    optional uint32 start_time = 2;     //开始时间
+    optional uint32 end_time = 3;       //结束时间
+}
+
+message GS2CEveryDayRankEnd {           //每日冲榜结束
+}
+
+message NSClientNpc {   //年兽npc
+    optional uint32 npctype = 1;
+    optional uint32 npcid = 2;
+    optional string name = 3;
+    optional string title = 4;
+    optional uint32 map_id = 5;
+    optional base.PosInfo pos_info = 6;
+    optional base.ModelInfo model_info = 7;
+}
+
+message GS2CNSGetPlayerNPC{
+    repeated NSClientNpc npclist = 1;
+}
+
+message GS2CNSRemovePlayerNPC{
+    optional uint32 npcid = 1;
+}
+
+message GS2CNSYanHua{
+    optional uint32 x = 1;
+    optional uint32 y = 2;
+}
+
+//元宝狂欢
+message GS2CGoldCoinPartyStart{
+}
+
+message GS2CGoldCoinPartyEnd{
+}
+
+message GoldCoinPartyLotteryReward{
+    optional uint32 pos = 1; 
+    optional uint32 amount = 2;
+}
+
+message GoldCoinPartyRecord{
+    optional string name = 1; 
+    optional uint32 pos = 2; 
+    optional uint32 goldcoin = 3; 
+}
+
+message GS2CGoldCoinPartyReward{
+    optional uint32 point = 1; //进度点数
+    repeated uint32 rewardlist = 2;//0.未达到 1.可以领取 2.已经领取
+    repeated GoldCoinPartyRecord recordlist = 3;//历史记录
+    optional uint32 allgoldcoin = 4; //奖金池
+    optional uint32 endtime = 5; 
+}
+
+message GS2CGoldCoinPartyLottery{
+    repeated GoldCoinPartyLotteryReward rewardlist = 1;
+}
+
+message GS2CGoldCoinPartyUpdateInfo{
+    optional uint32 allgoldcoin = 1; //奖金池
+    repeated GoldCoinPartyRecord recordlist = 2;//历史记录
+}
+
+message GS2CMysticalboxGetState {
+    optional uint32 state = 1; // 可领取箱子（无时间戳） 1  已经领取箱子（有时间戳） 2  已经打开箱子获取道具 3
+    optional uint32 open_time = 2; //解锁的时间戳 
+}
+
+message HotTopicHD {
+    optional uint32 hd_id = 1;
+}
+
+message GS2CHotTopicList {
+    repeated HotTopicHD hd_list = 1;
+}
+
+//结拜
+message JBInviterInfo{ //结拜邀请人基本信息
+    optional uint32 pid = 1;
+    optional uint32 invitetime = 2; //发出邀请时间
+    optional uint32 invitestate = 3; // 1.已确认 0.待确认
+    optional string minghao = 4; //名号
+    optional uint32 owner = 5; //邀请人
+}
+
+message JBFullInviteInfo{
+    optional uint32 id = 1; //结拜编号
+    optional uint32 owner = 2; //结拜大哥
+    optional uint32 createtime = 3; //创建结拜时间
+    optional uint32 state = 4;  //结拜进度 1.结拜仪式前,2.结拜仪式期间 3.结拜仪式完成
+    optional JBInviterInfo invite_info = 5; 
+}
+
+message JBMemberInfo{ //结拜成员基本信息
+    optional uint32 pid = 1;
+    optional uint32 memtime = 2;
+    optional string minghao = 3;
+    optional uint32 free_minghao = 4; //改名号是否免费 1 免费 0 不免费
+}
+
+message JBKickVote{
+    optional uint32 owner = 1; //发起投票
+    optional uint32 pid = 2;    //被投票的人
+    optional uint32 time = 3; //发起时间
+    repeated uint32 agreelist = 4; //同意投票列表
+    repeated uint32 disagreelist = 5; //不同意投票列表
+}
+
+message JBInviteAnnounce{
+    optional uint32 pid = 1;    //邀请人
+    optional uint32 target = 2; //被邀请人
+}
+
+message JBAllInfo{  //结拜总体信息
+    optional uint32 id = 1;
+    optional uint32 owner = 2;
+    optional uint32 state = 3; //  1.结拜仪式前,2.结拜仪式期间 3.结拜仪式完成
+    optional uint32 createtime = 4;
+    repeated JBInviterInfo allinviter = 5;
+    repeated JBMemberInfo allmember = 6;
+    optional uint32 createystime = 7; //发起结拜仪式失败时间
+    optional uint32 ysstate = 8; //  0.为开启 1.收集,2.取称谓 3.取名号 4.喝酒
+    optional string title = 9;
+    optional uint32 ysstarttime = 10; //仪式每个阶段开启的时间
+    optional string enounce = 11; //结拜宣言
+    optional uint32 jieyi = 12; //结义值
+    optional JBKickVote kickout = 13; //投票踢人
+    repeated JBInviteAnnounce invite_announce = 14;
+    optional uint32 invite_limit = 15; //邀请上限
+}
+
+message GS2CJiaBaiClickNpc { //点击npc
+    optional uint32 flag = 1; // 1 了解结拜 2 结拜流程说明
+}
+
+message GS2CJiaBaiCreate { //创建结拜
+    optional JBAllInfo jiebai_info = 1;
+}
+
+message GS2CJBAddInviter{  //增加邀请人
+    optional JBInviterInfo invite_info = 1;
+}
+
+message GS2CJBBecomeInviter{ //成为邀请人
+    optional JBFullInviteInfo fullinvite_info = 1;
+}
+
+message GS2CJBInviterOnLogin{  //未答应的邀请人登录
+    optional JBFullInviteInfo fullinvite_info = 1;
+}
+
+message GS2CJBInvitedOnLogin{  //已经答应的邀请人登录
+    optional JBAllInfo jiebai_info = 1;
+}
+
+message GS2CJBRemoveInviter{ //删除邀请
+    optional uint32 pid = 1;
+}
+
+message GS2CJBRefreshInviter{ //刷新邀请信息
+    optional JBInviterInfo invite_info = 1;
+}
+
+message GS2CJBMemberOnLogin{  //结拜成员登录
+    optional JBAllInfo jiebai_info = 1;
+}
+
+message GS2CJBAddMember{  //增加邀请人
+    optional JBMemberInfo mem_info = 1;
+}
+
+message GS2CJBBecomeMember{  //成为结拜一员
+    optional JBAllInfo jiebai_info = 1;
+}
+
+message GS2CJBRemoveMember{ //删除成员
+    optional uint32 pid = 1;
+}
+
+message GS2CJBRefreshMember{ //刷新邀请信息
+    optional JBMemberInfo mem_info = 1;
+}
+
+message GS2CJBRemoveJieBai{ //删除结拜
+}
+
+message GS2CJBRefresh{  //刷新结拜信息
+    optional JBAllInfo jiebai_info = 1;
+}
+
+message GS2CJBHejiu{  //开始喝酒
+}
+
+message GS2CJBYiShiChuiCu{  //吹促好友
+}
+
+message GS2CJBValidInviter{  //合法邀请结拜列表
+    repeated uint32 plist = 1;
+}
+
+message GS2CJBRedPoint{  //结拜红点
+    optional uint32 red_point = 1;
+}
+
+//结拜
+
+//欢乐返利
+message GS2CJoyExpenseState {
+    optional uint32 state = 1;             //活动开启状态 关闭0 开启 1 准备开启 
+    optional uint32 end_time = 2;     //结束的时间戳
+    optional uint32 mode_id = 3;      //奖励模式（老服 1001 新服 1002）通过其获得对应的奖励表和商店id
+}
+
+message JoyExpenseReward {
+    optional uint32 expense_id = 1;     //奖励的档次id
+    optional uint32 reward_state = 2;   //奖励的领取状态 不可领取 0 可领取 1 已领取 2
+}
+
+message GS2CJoyExpenseRewardState {
+    repeated JoyExpenseReward reward_list = 1;    //可领取奖励列表    
+}
+
+message GS2CJoyExpenseGoldCoin {
+    optional uint32 goldcoin = 1;               //在欢乐返利商城消费的元宝数
+}
+//欢乐返利
+
+message GS2CRplGoldCoinGift {
+    optional uint32 multiple = 1;        //返利的列表 倍数 × 100
+    optional uint32 flag = 2;                //是否显示
+}
+
+/**********蜀山论道***************/
+message SingleWarInfo {
+    optional string mask = 1;               //掩码
+    optional uint32 pid = 2;                //玩家id
+    optional uint32 prepare_time = 3;       //准备时间
+    optional uint32 start_time = 4;         //开始时间
+    optional uint32 end_time = 5;           //结束时间
+    optional uint32 win = 6;                //胜场
+    optional uint32 win_seri_max = 7;       //最大连胜
+    optional uint32 war_cnt = 8;            //参战次数
+    optional uint32 rank = 9;               //排名
+    optional uint32 point = 10;             //积分
+    optional uint32 reward_first = 11;      //首胜(0:初始,1:可领,2:已领取)
+    optional uint32 reward_five = 12;       //五战(0:初始,1:可领,2:已领取)
+    optional uint32 win_seri_curr = 13;     //当前连胜
+    optional uint32 group_id = 14;          //参战分组
+    optional uint32 is_match = 15;          //是否在匹配池中
+}
+
+message GS2CSingleWarInfo {                 //刷新协议
+    optional SingleWarInfo info = 1;        //刷新内容
+}
+
+message GS2CSingleWarMatchResult {          //匹配结果
+    optional base.SimplePlayer role = 1;    //角色信息
+    optional uint32 score = 2;              //评分
+}
+
+message GS2CSingleWarStartMatch {           //开始匹配
+}
+
+message RankUnit {
+    optional uint32 pid = 1;
+    optional uint32 grade = 2;
+    optional uint32 point = 3;              //积分
+    optional uint32 score = 4;              //评分
+    optional uint32 win_seri_max = 5;       //最大连胜
+    optional string name = 6;               //名字
+}
+
+message SingleWarRank {
+    optional uint32 group_id = 1;           //分组
+    repeated RankUnit rank_info = 2;        //排名信息
+}
+
+message GS2CSingleWarFinalRank {            //离开场景显示排行榜
+    optional uint32 group_id = 1;           //分组
+    optional uint32 my_rank = 2;            //排名
+    optional uint32 point = 3;              //积分
+    repeated SingleWarRank rank_list = 4;   //排行
+}
+
+message GS2CSingleWarRank {                 //客户端请求排行榜
+    optional SingleWarRank rank = 1;        //排行榜信息
+}
+
+//道具投资领取信息
+message ItemInvestInfoDay {
+    optional uint32 day = 1; // 第几天
+    optional uint32 status = 2; //状态 1 可领取 2 已领取
+}
+
+//每个道具投资的信息
+message ItemInvestInfo {                 
+    optional uint32 invest_id = 1;  //道具投资编号
+    repeated ItemInvestInfoDay day_info = 2; //道具的领取状态
+}
+
+//道具投资状态
+message GS2CItemInvestState {
+    optional uint32 state = 1; //状态 1 投资阶段 2 投资结束可领取阶段 3 结束
+    optional uint32 invest_endtime = 2; //投资的结束时间
+    optional uint32 reward_endtime = 3; //奖励可领取的时间戳
+    optional uint32 mode = 4; //模式
+}
+
+//道具投资信息
+message GS2CItemInvest {
+    repeated ItemInvestInfo info = 1;  //投资道具的信息
+}
+
+//刷新单个投资道具信息
+message GS2CItemInvestUnit {
+    optional uint32 invest_id = 1; //道具投资编号
+    repeated ItemInvestInfoDay day_info = 2; //道具的领取状态
+}
+
+message GS2CImperialexamState {
+    optional uint32 state = 1;           //活动开启状态 关闭 0 乡试 1  乡试结束--等待殿试 2 殿试 3
+}
+
+message GS2CImperialexamGiveQuestion {
+    optional uint32 question_id = 1;   //题目的索引id
+    optional uint32 use_time = 2;       //到目前位置花费总时间
+    optional uint32 cur_round = 3;      //当前问题轮数
+}
+
+message GS2CImperialexamGiveAnswer {
+    optional uint32 question_id = 1;   //题目的所以id
+    optional uint32 right_answer = 2;          //正确答案
+    optional uint32 wrong_time = 3;             //错误罚时时长
+}
+
+//秘宝押送
+message GS2CTreasureConvoyState {
+    optional uint32 state = 1;   // 活动状态 1准备阶段 2开始阶段 3结束
+    optional uint32 end_time = 2; // 阶段的结束时间
+}
+
+//秘宝护送玩家的信息
+message GS2CTreasureConvoyInfo {
+    optional uint32 convoy_count = 1; //护送次数
+    optional uint32 rob_count = 2; //打劫次数
+    optional uint32 robbed_count = 3; //被打劫次数
+    optional uint32 convoy_pregress = 4; //当次护送进度
+    optional uint32 convoy_endtime = 5; //当次护送结束时间戳
+}
+
+//秘宝护送 领取任务时弹出选择界面
+message GS2CTreasureConvoyOpenView {
+}
+
+//秘宝护送 标记
+message GS2CTreasureConvoyFlag {
+    optional uint32 flag = 1; //护送标记 1 有 0 没有
+}
+
+// 优惠甩卖
+message BuyUnit {
+    optional uint32 day = 1; // 第几天
+    optional uint32 status = 2; //状态 1 已买 0 未买
+}
+
+// 优惠甩卖
+message GS2CDiscountSale {
+    optional uint32 start_time = 1; //  开始时间
+    repeated BuyUnit buy_info = 2; //
+}
+
+message ForeShowInfo {
+    optional uint32 content_id = 1;
+    optional uint32 show_type = 2;
+}
+
+message GS2CForeShowInfo {
+    repeated ForeShowInfo info_list = 1;    //今日的展示列表
+}
+
+// 0元大礼包
+message ZeroYuanUnit {
+    optional uint32 type = 1; // 1 豪华橙装 2 外观礼包 3 飞行坐骑
+    optional uint32 status = 2; //状态 0 没买 1 买了但还没到返还时间 2 到返还时间可领 3 已领
+    optional uint32 buy_endtime = 3; //限购结束时间戳
+    optional uint32 back_endtime = 4; //返还结束时间戳
+}
+
+// 0元大礼包
+message GS2CZeroYuanInfo {
+    optional uint32 activity_endtime = 1; //活动结束时间
+    repeated ZeroYuanUnit info = 2; //内容信息
+}
+
+// 0元大礼包 刷新单个信息
+message GS2CZeroYuanInfoUnit {
+    optional ZeroYuanUnit unit_info = 1; //内容信息
+}
+
+message RetrieveUnit {
+    optional uint32 scheduleid = 1;
+    optional uint32 count = 2;
+}
+
+// 经验找回
+message GS2CRetrieveExp {
+    repeated RetrieveUnit retrieves = 1; // 找回列表
+}
+
+// 世界杯状态
+message GS2CWorldCupState {
+    optional uint32 state = 1;   //1 活动开启阶段 2 活动结束
+}
+
+// 单场比赛信息
+message OneGameInfo {
+    optional uint32 id = 1;        //每场比赛的唯一id
+    optional uint32 phase = 2;     //阶段 1.小组赛 2.1/8决赛 3.1/4决赛 4.半决赛 5.季军赛 6决赛
+    optional uint32 round = 3;     //轮数
+    optional uint32 start_time = 4; //比赛开始的时间戳
+    optional uint32 home_team = 5;   //主队 0表示待定
+    optional uint32 away_team = 6;   //客队 0表示待定
+    optional uint32 status = 7;   //状态 1 未开始 2 比赛中 3 已结束
+    optional uint32 win_team = 8;   //比赛未开始或未结束时-1 比赛结束后 不是平局给获胜队伍id, 平局为0
+    optional uint32 has_match = 9;   //是否有平局 1 有 2 没有
+}
+
+// 世界杯猜单场 赛程信息
+message GS2CWorldCupSingleInfo {
+    optional uint32 phase = 1;  //阶段 1.小组赛 2.1/8决赛 3.1/4决赛 4.半决赛 5.季军赛 6决赛
+    repeated OneGameInfo games = 2; //赛程信息
+}
+
+// 玩家竞猜的单场比赛信息
+message OneGameGuessInfo {
+    optional uint32 id = 1;        //竞猜的比赛
+    optional uint32 guess_team = 2;     //竞猜的队伍，　平局为0
+}
+
+// 世界杯猜单场 刷新单场比赛信息
+message GS2CWorldCupSingleGuessInfo {
+    repeated OneGameGuessInfo guess_info = 1;
+}
+
+// 世界杯猜单场 刷新单场比赛信息
+message GS2CWorldCupSingleGuessInfoUnit {
+    optional OneGameGuessInfo guess_info_unit = 1;
+}
+
+message WorldCupGuess {
+    optional uint32 id = 1;        //每场比赛的唯一id
+    optional uint32 home_team = 2;  //主队
+    optional uint32 away_team = 3;  //客队
+    optional uint32 win_team = 4;   // 获胜队伍id, 平局为0
+    optional uint32 guess_team = 5; //竞猜的队伍
+    optional uint32 create_time = 6; //竞猜的的时间戳, 用来显示和排序
+}
+
+// 世界杯当场 竞猜历史
+message GS2CWorldCupHistory {
+    repeated WorldCupGuess history = 1;
+    optional uint32 suc_count = 2; //自己猜中次数
+    optional uint32 suc_rate = 3; //自己猜中胜率
+}
+
+message TeamSupport {
+    optional uint32 team_id = 1; //队伍id
+    optional uint32 num = 2; //支持人数
+}
+
+// 世界杯猜冠军 信息
+message GS2CWorldCupChampionInfo {
+    optional uint32 support_team = 1; //支持队伍 没有的时候为0
+    repeated uint32 out_team = 2; //淘汰的队伍
+    repeated TeamSupport support_info = 3; //所有队伍的支持数据
+}
+
+// 世界杯猜冠军 刷新单个队伍的支持数据
+message GS2CWorldCupChampionInfoUnit {
+    optional TeamSupport support_info_unit = 1; //单个队伍的支持数据
+}
+
+// 粽子大赛活动状态
+message GS2CZongziGameState {
+    optional uint32 open = 1;               //1表示开启
+}
+
+// 粽子大赛刷新协议
+message GS2CRefreshZongziGame {
+    optional uint32 zongzi1 = 1;            //甜粽子兑换数目
+    optional uint32 zongzi2 = 2;            //咸粽子兑换数目
+    optional uint32 starttime = 3;          //活动开启时间
+    optional uint32 endtime = 4;            //活动结束时间
+    optional uint32 vote_num = 5;           //当前拥有的票数
+    optional uint32 vote_buy = 6;           //元宝已购买的次数
+}
+
+// 端午祈福活动状态
+message GS2CDuanwuQifuState {
+    optional uint32 open = 1;               //1表示已开启
+}
+
+// 端午祈福
+message GS2CRefreshDuanwuQifu{
+    optional string mask = 1;
+    optional uint32 starttime = 2;          //开启时间
+    optional uint32 endtime = 3;            //结束时间
+    optional uint32 total = 4;              //已上交的祭品
+    repeated uint32 reward_step = 5;        //是否已领取奖励
+}
+

@@ -1,0 +1,124 @@
+import "base/common.proto";
+
+message GS2CHeartBeat {
+    optional uint32 time = 1;
+}
+
+message GS2CGMMessage {
+    optional string msg = 1;
+}
+
+// 合成宠物统计
+message SummonCountInfo {
+    optional uint32 sid = 1;				// 宠物id	
+    optional string sname = 2;			// 宠物名字	
+    optional string stype = 3;			// 宠物属性
+    optional uint32 num = 4;			// 合成结果次数
+    optional float percent = 5;			// 合成结果占比
+    optional uint32 carry = 6;			// 携带等级
+}
+
+message GS2CSummonCount {
+    optional uint32 sid1 = 1;			// 合成宠物1
+    optional uint32 sid2 = 2;			// 合成宠物2
+    optional uint32 cnt = 3;				// 合成次数
+    repeated SummonCountInfo infolist = 4;	// 统计信息	
+    optional float bypercent = 5;			// 变异占比
+    optional float xypercent = 6;			// 稀有占比
+}
+
+message GS2COnline {
+    optional uint32 pid = 1;
+}
+
+message GS2COffline {
+    optional uint32 pid = 1;
+}
+
+message GS2CBigPacket {
+    optional uint32 type = 1;
+    optional uint32 total = 2;
+    optional uint32 index = 3;
+    optional bytes data = 4;
+}
+
+message GS2CClientUpdateCode {
+    optional string code = 1;
+}
+
+message GS2COpSessionResponse {
+    optional string session = 1;
+}
+
+message GS2CQRCToken {
+    optional string token = 1;
+    optional uint32 validity = 2;
+}
+
+message GS2CQRCScanSuccess {
+}
+
+message GS2CQRCAccountInfo {
+    optional bytes account_info = 1;
+    optional bytes transfer_info = 2;
+}
+
+message GS2CQRCInvalid {
+}
+
+message GS2CPayInfo {
+    optional string order_id = 1;
+    optional string product_key = 2;
+    optional uint32 product_amount = 3;
+    optional uint32 product_value = 4;
+    optional string callback_url = 5;
+}
+
+message GoldCoinUnit {
+    optional string key = 1;        //充值项
+    optional uint32 val = 2;        //表示充值次数
+}
+
+message GS2CPayForGoldInfo {
+    repeated GoldCoinUnit goldcoin_list = 1;
+}
+
+message GS2CRefreshGoldCoinUnit {
+    optional GoldCoinUnit unit = 1;
+}
+
+message GS2CQrpayScan {
+    optional bytes transfer_info = 1;
+}
+
+message GS2CMergePacket{
+    repeated bytes packets = 1;
+}
+
+message GS2CClientUpdateResVersion {
+    repeated string res_file = 1;
+    optional uint32 delay = 2;
+}
+
+message GS2CClientUpdateRes {
+    repeated base.ClientResFileContent res_file = 1;
+    repeated string delete_file = 2;
+}
+
+// 打开说明界面
+message GS2CShowInstruction {
+    optional uint32 instruction = 1;    
+}
+
+message FeedBackQuestion {
+    optional uint32 question_id = 1;
+    optional string question = 2;
+    optional uint32 question_time = 3;
+    optional string answer = 4;             
+    optional uint32 answer_time = 5; 
+}
+
+message GS2CFeedBackAnswerList {
+    repeated FeedBackQuestion question_list = 1;
+    optional uint32 check_state = 2;      // 1 全部读取 0 还未阅读回复
+}

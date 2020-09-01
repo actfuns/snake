@@ -1,0 +1,38 @@
+-- ./excel/system/role/roleprop.xlsx
+return {
+
+    [1] = {
+        agility = 0,
+        critical_multiple = 2,
+        cure_power = 10,
+        endurance = 0,
+        energy = 0,
+        exp = 0,
+        grade = 0,
+        hit_ratio = 100,
+        hit_res_ratio = 5,
+        mag_attack = 80,
+        mag_critical_ratio = 0,
+        mag_defense = 60,
+        mag_hit_ratio = 100,
+        mag_hit_res_ratio = 0,
+        magic = 0,
+        max_hp = 200,
+        max_mp = 200,
+        phy_attack = 100,
+        phy_critical_ratio = 3,
+        phy_defense = 50,
+        phy_hit_ratio = 100,
+        phy_hit_res_ratio = 5,
+        physique = 0,
+        point = 0,
+        res_mag_critical_ratio = 0,
+        res_phy_critical_ratio = 0,
+        res_seal_ratio = 0,
+        seal_ratio = 0,
+        sp = 0,
+        speed = 70,
+        strength = 0,
+    },
+
+}

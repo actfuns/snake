@@ -1,0 +1,235 @@
+-- ./excel/reward/story.xlsx
+return {
+
+    [1] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1001,
+        ratio = 10000,
+        sid = "30602",
+        sys = 0,
+        type = 0,
+    },
+
+    [2] = {
+        amount = 10,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1002,
+        ratio = 10000,
+        sid = "30666",
+        sys = 0,
+        type = 0,
+    },
+
+    [3] = {
+        amount = 3,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1003,
+        ratio = 10000,
+        sid = "10031",
+        sys = 0,
+        type = 0,
+    },
+
+    [4] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 1,
+        idx = 1004,
+        ratio = 10000,
+        sid = "1000(Value=1)",
+        sys = 0,
+        type = 1,
+    },
+
+    [5] = {
+        amount = 2,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1005,
+        ratio = 10000,
+        sid = "10015",
+        sys = 0,
+        type = 0,
+    },
+
+    [6] = {
+        amount = 3,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1006,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [7] = {
+        amount = 6,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1007,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [8] = {
+        amount = 9,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1008,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [9] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1009,
+        ratio = 10000,
+        sid = "11085",
+        sys = 0,
+        type = 0,
+    },
+
+    [10] = {
+        amount = 20,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1010,
+        ratio = 10000,
+        sid = "11092",
+        sys = 0,
+        type = 0,
+    },
+
+    [11] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1011,
+        ratio = 10000,
+        sid = "10007",
+        sys = 0,
+        type = 0,
+    },
+
+    [12] = {
+        amount = 3,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1012,
+        ratio = 10000,
+        sid = "10077",
+        sys = 0,
+        type = 0,
+    },
+
+    [13] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1013,
+        ratio = 10000,
+        sid = "29001",
+        sys = 0,
+        type = 0,
+    },
+
+    [14] = {
+        amount = 12,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1014,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [15] = {
+        amount = 12,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1015,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [16] = {
+        amount = 15,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1016,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [17] = {
+        amount = 15,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1017,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [18] = {
+        amount = 15,
+        bind = 1,
+        check_equip_role = 0,
+        idx = 1018,
+        ratio = 10000,
+        sid = "10167",
+        sys = 0,
+        type = 0,
+    },
+
+    [19] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1019,
+        ratio = 10000,
+        sid = "1024(Value=3)",
+        sys = 0,
+        type = 0,
+    },
+
+    [20] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1020,
+        ratio = 10000,
+        sid = "1024(Value=4)",
+        sys = 0,
+        type = 0,
+    },
+
+    [21] = {
+        amount = 1,
+        bind = 0,
+        check_equip_role = 0,
+        idx = 1021,
+        ratio = 10000,
+        sid = "1024(Value=5)",
+        sys = 0,
+        type = 0,
+    },
+
+}

@@ -1,0 +1,29 @@
+
+// 获取订婚条件信息
+message C2GSEngageCondition {
+    optional uint32 type = 1;	/*1 银 2 金 3 钻石*/	
+}
+
+// 即可订婚
+message C2GSStartEngage {
+    optional uint32 type = 1;
+}
+
+// 同意订婚
+message C2GSConfirmEngage {
+	optional uint32 agree = 1; /*1 同意*/
+}
+
+// 铭刻宣言
+message C2GSSetEngageText {
+	optional string text = 1;
+}
+
+// 解除订婚
+message C2GSDissolveEngage {
+}
+
+// 取消订婚
+message C2GSCancelEngage {
+}
+

@@ -1,0 +1,97 @@
+import "base/common.proto";
+
+message GS2CShowScene {
+    optional uint32 scene_id = 1;
+    optional uint32 map_id = 2;
+    optional string scene_name = 3;
+    optional uint32 x = 4;
+    optional uint32 y = 5;
+}
+
+message GS2CEnterScene {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    optional base.PosInfo pos_info = 3;
+}
+
+message GS2CEnterAoi {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    optional uint32 type = 3; /*1 player,2 npc, 3 scene_effect*/
+
+    optional base.PlayerAoi aoi_player = 4;
+    optional base.NpcAoi aoi_npc = 5;
+    optional base.EffectAoi aoi_effect = 6;
+}
+
+message GS2CLeaveAoi {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+}
+
+message GS2CSyncAoi {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    optional uint32 type = 3; /*1 player,2 npc*/
+
+    optional base.PlayerAoiBlock aoi_player_block = 4;
+    optional base.NpcAoiBlock aoi_npc_block    = 5;
+}
+
+message GS2CSyncPos {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    optional base.PosInfo pos_info = 3;
+}
+
+message GS2CSyncPosQueue {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    repeated base.PosQueueInfo poslist = 3;
+}
+
+message GS2CTrunBackPos {
+    optional uint32 scene_id = 1;
+    optional uint32 eid = 2;
+    optional base.PosInfo pos_info = 3;
+}
+
+message GS2CAutoFindPath{
+    optional uint32 npcid  = 1;
+    optional uint32 map_id  = 2;
+    optional uint32 pos_x = 3;
+    optional uint32 pos_y = 4;
+    optional uint32 autotype = 5;       //自动寻路类型,1:先跳场景,再寻路,2:通过跳转点寻路
+    optional uint32 callback_sessionidx = 6;
+    optional uint32 functype = 7;       //功能类型。1:宝图罗盘
+}
+
+message GS2CSceneCreateTeam {
+    optional uint32 scene_id = 1;
+    optional uint32 team_id = 2;
+    repeated uint32 pid_list = 3;
+}
+
+message GS2CSceneRemoveTeam {
+    optional uint32 scene_id = 1;
+    optional uint32 team_id = 2;
+}
+
+message GS2CSceneUpdateTeam {
+    optional uint32 scene_id = 1;
+    optional uint32 team_id = 2;
+    repeated uint32 pid_list = 3;
+}
+
+message GS2CSceneEffect {
+    optional uint32 effect = 1;
+}
+
+// npc气泡说话
+message GS2CNpcBubbleTalk {
+    optional uint32 npcid = 1;
+    optional string msg = 2;
+    optional uint32 timeout = 3; // -1表示永久显示（直到npc移除），0表示默认时间，正数为显示秒数
+}
+
+message GS2CWaterWalkSuccess {}

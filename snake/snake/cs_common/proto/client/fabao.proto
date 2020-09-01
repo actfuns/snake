@@ -1,0 +1,42 @@
+message C2GSCombineFaBao{
+    optional uint32 op = 1;//1.普通合成 2.指定合成
+    optional uint32 fabao = 2;//指定合成法宝类型
+}
+
+message C2GSWieldFaBao{
+    optional uint32 id = 1;
+}
+
+message C2GSUnWieldFaBao{
+    optional uint32 id = 1;
+}
+
+message C2GSDeComposeFaBao{
+    optional uint32 id = 1;
+}
+
+message C2GSUpGradeFaBao{
+    optional uint32 id = 1;
+}
+
+message C2GSXianLingFaBao{
+    optional uint32 id = 1;
+    optional uint32 op = 2;//1.提升 2.重置
+    optional string attr = 3;//属性 例如:physique对应体质
+}
+
+//开启觉醒技能
+message C2GSJueXingFaBao{ 
+    optional uint32 id = 1;
+}
+
+//觉醒技能升级
+message C2GSJueXingUpGradeFaBao{ 
+    optional uint32 id = 1;
+}
+
+//法宝之魂觉醒
+message C2GSJueXingHunFaBao{ 
+    optional uint32 id = 1;
+    optional uint32 hun = 2;//天魂=1 地魂=2 人魂=3
+}

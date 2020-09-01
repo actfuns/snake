@@ -1,0 +1,58 @@
+-- ./excel/perform/perform_marry.xlsx
+return {
+
+    [8501] = {
+        ai_action_type = 53,
+        ai_target = 2,
+        cd = 3,
+        desc = "技能使用后，在对方受到物理伤害攻击时候自动保护。保护不占用回合数，每回合最多触发2次。",
+        effectType = 1114,
+        id = 8501,
+        is_active = 1,
+        name = "同甘共苦",
+        passiveDelay = 0,
+        passiveIcon = "51032",
+        pflogic = 8501,
+        priority = 100,
+        skill_icon = 58000,
+        timing = 2,
+        type_desc = "情缘技能",
+    },
+
+    [8502] = {
+        ai_action_type = 53,
+        ai_target = 2,
+        cd = 3,
+        desc = "回复伴侣生命值（使用占用1回合）",
+        effectType = 1114,
+        id = 8502,
+        is_active = 1,
+        name = "相濡以沫",
+        passiveDelay = 0,
+        passiveIcon = "",
+        pflogic = 8502,
+        priority = 100,
+        skill_icon = 58001,
+        timing = 0,
+        type_desc = "情缘技能",
+    },
+
+    [8503] = {
+        ai_action_type = 53,
+        ai_target = 2,
+        cd = 3,
+        desc = "复活倒地的伴侣，回复伴侣生命值（使用占用1回合）",
+        effectType = 1114,
+        id = 8503,
+        is_active = 1,
+        name = "生死同心",
+        passiveDelay = 0,
+        passiveIcon = "",
+        pflogic = 8503,
+        priority = 100,
+        skill_icon = 58002,
+        timing = 0,
+        type_desc = "情缘技能",
+    },
+
+}

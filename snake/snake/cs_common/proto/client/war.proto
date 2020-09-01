@@ -1,0 +1,77 @@
+
+message C2GSWarSkill {
+    optional uint32 war_id = 1;
+    repeated uint32 action_wlist = 2;
+    repeated uint32 select_wlist = 3;
+    optional uint32 skill_id = 4;
+}
+
+message C2GSWarNormalAttack {
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 select_wid = 3;
+}
+
+message C2GSWarProtect {
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 select_wid = 3;
+}
+
+message C2GSWarEscape {
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+}
+
+message C2GSWarDefense {
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+}
+
+message C2GSWarSummon{
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 sum_id = 3;
+}
+
+message C2GSWarAutoFight {
+    optional uint32 war_id = 1;
+    optional uint32 type = 2;       //0:取消自动战斗,1:触发自动战斗
+    optional uint32 aitype = 3;     //AI类型
+}
+
+message C2GSChangeAutoPerform {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 auto_perform = 3;        //攻击1，防御2
+}
+
+message C2GSWarUseItem{
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 select_wid = 3;
+    optional uint32 item_id = 4;
+}
+
+message C2GSWarCommand{ 
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 select_wid = 3;
+    optional string scmd = 4;
+}
+
+message C2GSWarCommandOP{
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 op = 3; //1-每回合清除
+}
+
+message C2GSWarAnimationEnd {       //动画播放结束 
+    optional uint32 war_id = 1;     //战斗id
+    optional uint32 bout_id = 2;    //回合id
+}
+
+// 重进战斗
+message C2GSReEnterWar {        
+}
+

@@ -1,0 +1,23 @@
+import "base/common.proto";
+
+message C2GSAllFormationInfo {
+}
+
+message C2GSSingleFormationInfo {
+    optional uint32 fmt_id = 1;         //阵法ID
+}
+
+message C2GSSetPlayerPosInfo {
+    optional uint32 fmt_id = 1;         //阵法ID
+    repeated uint32 player_list = 2;    //玩家阵型站位信息
+    repeated uint32 partner_list = 3;   //伙伴阵型站位
+}
+
+message BookInfo {
+    optional uint32 itemid = 1;
+    optional uint32 amount = 2;
+}
+message C2GSUpgradeFormation {
+    optional uint32 fmt_id = 1;     //阵法ID
+    repeated BookInfo book_list = 2; //使用的阵法书和碎片列表
+}

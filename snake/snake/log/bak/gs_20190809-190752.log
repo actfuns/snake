@@ -1,0 +1,82 @@
+[:08-09_19-02-10][:00000001] LAUNCH logger log/gs.log
+[:08-09_19-02-10][:00000002] LAUNCH snlua bootstrap
+[:08-09_19-02-10][:00000002] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:00000002] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:00000003] LAUNCH snlua launcher
+[:08-09_19-02-10][:00000003] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:00000003] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:00000004] LAUNCH snlua cdummy
+[:08-09_19-02-10][:00000004] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:00000004] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:00000005] LAUNCH harbor 0 4
+[:08-09_19-02-10][:00000006] LAUNCH snlua datacenterd
+[:08-09_19-02-10][:00000006] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:00000006] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:00000007] LAUNCH snlua service_mgr
+[:08-09_19-02-10][:00000007] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:00000007] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:00000008] LAUNCH snlua gs_launcher
+[:08-09_19-02-10][:00000008] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:00000008] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:00000008] [INFO] gs start
+[:08-09_19-02-10][:00000009] LAUNCH snlua debug_console 7001
+[:08-09_19-02-10][:00000009] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:00000009] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:00000009] Start debug console at 127.0.0.1 7001
+[:08-09_19-02-10][:0000000a] LAUNCH snlua res
+[:08-09_19-02-10][:0000000a] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:0000000a] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:0000000b] LAUNCH snlua sharedatad
+[:08-09_19-02-10][:0000000b] mkdir err /home/nucleus-h7/log/ Msg: No such file or directory
+[:08-09_19-02-10][:0000000b] mkdir err /home/nucleus-h7/log/dev_gs10001 Msg: No such file or directory
+[:08-09_19-02-10][:0000000b] lua call [a to :b : 8 msgsz = 3933] error : [31m./skynet/lualib/skynet.lua:583: ./skynet/lualib/skynet.lua:162: ./skynet/service/sharedatad.lua:54: ./lualib/base/commonop.lua:48: loadfile_ex fail daobiao/gamedata/server/data.lua
+stack traceback:
+	[C]: in function 'assert'
+	./lualib/base/commonop.lua:48: in function 'loadfile_ex'
+	res:100: in local 'Require'
+	res:146: in local 'start'
+	./skynet/lualib/skynet.lua:678: in function <./skynet/lualib/skynet.lua:675>
+	[C]: in function 'xpcall'
+	./skynet/lualib/skynet.lua:682: in function 'skynet.pcall'
+	./skynet/service/sharedatad.lua:54: in local 'f'
+	./skynet/service/sharedatad.lua:147: in upvalue 'f'
+	./skynet/lualib/skynet.lua:112: in function <./skynet/lualib/skynet.lua:106>
+stack traceback:
+	[C]: in function 'assert'
+	./skynet/service/sharedatad.lua:54: in local 'f'
+	./skynet/service/sharedatad.lua:147: in upvalue 'f'
+	./skynet/lualib/skynet.lua:112: in function <./skynet/lualib/skynet.lua:106>
+stack traceback:
+	[C]: in function 'assert'
+	./skynet/lualib/skynet.lua:583: in function 'skynet.dispatch_message'[0m
+[:08-09_19-02-10][:0000000a] init service failed: ./skynet/lualib/skynet.lua:412: call failed
+stack traceback:
+	[C]: in function 'error'
+	./skynet/lualib/skynet.lua:412: in upvalue 'yield_call'
+	./skynet/lualib/skynet.lua:423: in function 'skynet.call'
+	./skynet/lualib/sharedata.lua:32: in function 'sharedata.new'
+	./service/res/main.lua:16: in local 'start'
+	./skynet/lualib/skynet.lua:678: in function <./skynet/lualib/skynet.lua:675>
+	[C]: in function 'xpcall'
+	./skynet/lualib/skynet.lua:682: in function 'skynet.pcall'
+	./skynet/lualib/skynet.lua:686: in function 'skynet.init_service'
+	./skynet/lualib/skynet.lua:699: in upvalue 'f'
+	./skynet/lualib/skynet.lua:107: in function <./skynet/lualib/skynet.lua:106>
+[:08-09_19-02-10][:0000000a] KILL self
+[:08-09_19-02-10][:00000008] init service failed: ./skynet/lualib/skynet.lua:412: call failed
+stack traceback:
+	[C]: in function 'error'
+	./skynet/lualib/skynet.lua:412: in upvalue 'yield_call'
+	./skynet/lualib/skynet.lua:423: in function 'skynet.call'
+	(...tail calls...)
+	./service/gs_launcher.lua:14: in local 'start'
+	./skynet/lualib/skynet.lua:678: in function <./skynet/lualib/skynet.lua:675>
+	[C]: in function 'xpcall'
+	./skynet/lualib/skynet.lua:682: in function 'skynet.pcall'
+	./skynet/lualib/skynet.lua:686: in function 'skynet.init_service'
+	./skynet/lualib/skynet.lua:699: in upvalue 'f'
+	./skynet/lualib/skynet.lua:107: in function <./skynet/lualib/skynet.lua:106>
+[:08-09_19-02-10][:00000008] KILL self
+[:08-09_19-02-10][:00000002] KILL self
+[:08-09_19-04-12][:00000009] 2 connected
+[:08-09_19-04-13][:00000009] 2 disconnected

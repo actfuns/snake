@@ -1,0 +1,220 @@
+//请求帮派列表
+message C2GSOrgList {
+    optional uint32 version = 1;
+}
+
+//帮派搜索
+message C2GSSearchOrg {
+    optional string text = 1;
+}
+
+//创建帮派
+message C2GSCreateOrg {
+    optional string name = 1;
+    optional string aim = 2;
+}
+
+//申请入帮
+message C2GSApplyJoinOrg {
+    optional uint32 orgid = 1;
+    optional uint32 flag = 2;
+}
+
+//一键申请入帮
+message C2GSMultiApplyJoinOrg {
+}
+
+//打开响应帮派界面
+message C2GSReadyOrgList {
+}
+
+// 响应帮派信息
+message C2GSReadyOrgInfo {
+    optional uint32 orgid = 1;   
+}
+
+//响应帮派
+message C2GSRespondOrg {
+    optional uint32 orgid = 1;
+    optional uint32 flag = 2;
+}
+
+//一键响应
+message C2GSMultiRespondOrg {
+}
+
+//打开帮派主界面 如果是1表示获取简单的数据
+message C2GSOrgMainInfo {
+    optional uint32 flag = 1;
+}
+
+//请求成员列表
+message C2GSOrgMemberList {
+    optional uint32 version = 1;    
+}
+
+//请求入帮申请列表 1 表示刷新按钮
+message C2GSOrgApplyJoinList {
+    optional uint32 flag = 1;
+}
+
+//入帮申请处理
+message C2GSOrgDealApply {
+    optional uint32 pid = 1;
+    optional uint32 deal = 2;       //1.同意,0.不同意
+}
+
+//全部同意入帮
+message C2GSAgreeAllApply {
+}
+
+//设置职位
+message C2GSOrgSetPosition {
+    optional uint32 pid = 1;
+    optional uint32 position = 2;
+}
+
+//脱离帮派
+message C2GSLeaveOrg {
+}
+
+//请求帮派宗旨
+message C2GSRequestOrgAim {
+    optional uint32 orgid = 1;
+}
+
+// 世界频道宣传帮派
+message C2GSSpreadOrg {
+}
+
+// 修改宣言
+message C2GSUpdateAim{
+    optional string aim = 1;  
+}
+
+// 踢出帮派
+message C2GSKickMember{
+    optional uint32 pid = 1;    
+}
+
+// 自荐帮主
+message C2GSApplyOrgLeader{
+}
+
+// 自荐帮主的投票 0 反对 1同意
+message C2GSVoteOrgLeader{
+    optional uint32 flag = 1;
+}
+
+// 邀请入帮
+message C2GSInvited2Org{
+    optional uint32 pid = 1;   
+}
+
+// 处理邀请入帮
+message C2GSDealInvited2Org {
+    optional uint32 pid = 1;
+    optional uint32 flag = 2;
+}
+
+// 清除申请与响应的记录
+message C2GSClearApplyAndRespond {
+}
+
+//　获取帮派在线成员信息
+message C2GSGetOnlineMember {
+    optional uint32 flag = 1;           // 默认0 　为1时表示包括学徒的信息
+}
+
+// 请求帮派建筑信息
+message C2GSGetBuildInfo {
+}
+
+// 请求建筑升级
+message C2GSUpGradeBuild {
+    optional uint32 bid = 1;
+}
+
+// 建筑加速
+message C2GSQuickBuild {
+    optional uint32 bid = 1;
+    optional uint32 quickid = 2;
+}
+
+// 获取商店信息
+message C2GSGetShopInfo {
+}
+
+// 购买商品
+message C2GSBuyItem {
+    optional uint32 itemid = 1;
+    optional uint32 cnt = 2;
+}
+
+// 帮派福利信息
+message C2GSGetBoonInfo {
+}
+
+// 帮派签到
+message C2GSOrgSign {
+    optional string msg = 1;      
+}
+
+//领取帮派分红
+message C2GSReceiveBonus {
+} 
+
+//领取帮派职位奖励
+message C2GSReceivePosBonus {
+} 
+
+// 获取帮派成就信息
+message C2GSGetAchieveInfo {
+}
+
+// 领取成就奖励
+message C2GSReceiveAchieve {
+    optional uint32 achid = 1;    
+}
+
+//进入场景
+message C2GSEnterOrgScene {
+}
+
+// 获取下一页日志
+message C2GSNextPageLog {
+    optional uint32 lastid = 1;
+}
+
+// 禁言
+message C2GSChatBan {
+    optional uint32 banid = 1;
+    optional uint32 flag = 2;
+}
+
+//点击帮派建筑
+message C2GSClickOrgBuild {
+    optional uint32 build_id = 1;       //101.主殿,102.珍宝阁,103.厢房,104.神殿,105.金库
+}
+
+// 设置自动加成员
+message C2GSSetAutoJoin {
+    optional uint32 flag = 1;       //0 , 1
+}
+
+message C2GSClearApplyList {
+}
+
+message C2GSOrgPrestigeInfo {
+}
+
+message C2GSSendOrgMail {
+    optional string context = 1;
+}
+
+message C2GSRenameNormalOrg {
+    optional string name = 1;
+}
+
+
+

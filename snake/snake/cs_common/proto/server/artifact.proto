@@ -1,0 +1,52 @@
+message AttrUnit {
+    optional string attr = 1;           //属性
+    optional uint32 val = 2;            //值
+}
+
+message SpiritInfo {
+    optional uint32 spirit_id = 1;      //器灵id
+    repeated uint32 skill_list = 2;     //器灵技能
+    repeated uint32 bak_skill_list = 3; //器灵技能-重置缓存 
+    repeated AttrUnit attr_list = 4;    //器灵属性
+}
+
+message Artifact {
+    optional string mask = 1;           //掩码
+    optional uint32 id = 2;             //神器id
+    optional uint32 exp = 3;            //升级经验
+    optional uint32 grade = 4;          //神器等级
+    optional uint32 strength_lv = 5;    //强化等级
+    optional uint32 strength_exp = 6;   //强化经验
+    optional uint32 phy_attack = 7;     //物理攻击
+    optional uint32 phy_defense = 8;    //物理防御
+    optional uint32 mag_attack = 9;     //法术攻击
+    optional uint32 mag_defense = 10;   //法术防御
+    optional uint32 cure_power = 11;    //治疗强度
+    optional uint32 speed = 12;         //速度
+    optional uint32 seal_ratio = 13;    //封印
+    optional uint32 res_seal_ratio = 14;//抗封
+    optional uint32 phy_critical_ratio = 15;    //物理暴击
+    optional uint32 res_phy_critical_ratio = 16;//物理抗爆
+    optional uint32 mag_critical_ratio = 17;    //法术暴击
+    optional uint32 res_mag_critical_ratio = 18;//法术抗爆
+    optional uint32 score = 19;         //评分
+    optional uint32 fight_spirit = 20;  //参战器灵
+    optional uint32 follow_spirit = 21; //跟随器灵
+    repeated SpiritInfo spirit_list = 22;       //觉醒器灵
+    optional uint32 phy_damage_add = 23;        //物理伤害
+    optional uint32 mag_damage_add = 24;        //法术伤害
+    optional uint32 max_hp = 25;                //气血
+    optional uint32 max_mp = 26;                //魔法
+}
+
+message GS2COpenArtifactUI {
+    optional Artifact info = 1;         //神器相关信息
+}
+
+message GS2CRefreshArtifactInfo {
+    optional Artifact info = 1;         //神器相关信息
+}
+
+message GS2CRefreshOneSpiritInfo {      //刷新单个器灵信息
+    optional SpiritInfo spirit = 1;     //器灵信息
+}

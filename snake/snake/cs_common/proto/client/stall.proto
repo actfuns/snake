@@ -1,0 +1,78 @@
+message C2GSAddSellItem {               //指定位置上架
+    optional uint32 pos_id = 1;         //商品位置
+    optional uint32 item_id = 2;        //商品ID
+    optional uint32 amount = 3;         //出售数量
+    optional uint32 price = 4;          //出售价格
+}
+
+message SellItem {
+    optional uint32 item_id = 1;        //商品ID
+    optional uint32 amount = 2;         //出售数量
+    optional uint32 price = 3;          //出售价格
+}
+
+message C2GSAddSellItemList {           //批量上架
+    repeated SellItem item_list = 1;    //商品信息
+}
+
+message C2GSAddOverTimeItem {           //一键上架
+}
+
+message C2GSResetItemPrice {            //设置已过期物品的商品价格
+    optional uint32 pos_id = 1;         //商品位置
+    optional uint32 price = 2;          //出售价格
+}
+
+message PriceUnit {
+    optional uint32 pos_id = 1;         //商品位置
+    optional uint32 price = 2;          //出售价格
+}
+
+message C2GSResetItemListPrice {        //批量设置已过期物品的商品价格
+    repeated PriceUnit item_list = 1;   //道具列表
+}
+
+message C2GSRemoveSellItem {            //下架商品, amount=nil 表示下架所有
+    optional uint32 pos_id = 1;         //商品位置
+    optional uint32 amount = 2;         //商品数量
+}
+
+message C2GSWithdrawAllCash {           //一键提现
+}
+
+message C2GSWithdrawOneGrid {           //对单元格体现
+    optional uint32 pos_id = 1;         //单元格位置
+}
+
+message C2GSUnlockGrid {                //解锁摊位
+}
+
+message C2GSBuySellItem {
+    optional uint32 cat_id = 1;         //主目录
+    optional uint32 pos_id = 2;         //商品位置
+    optional uint32 amount = 3;         //购买数量
+}
+
+message C2GSSellItemDetail {            //请求商品详细信息
+    optional uint32 cat_id = 1;         //主目录
+    optional uint32 pos_id = 2;         //商品位置
+}
+
+message C2GSOpenStall {                 //打开摆摊出售界面
+}
+
+message C2GSOpenCatalog {               //打开目录界面
+    optional uint32 cat_id = 1;         //主目录
+    optional uint32 page = 2;           //页数
+    optional uint32 first = 3;          //是否首次
+    optional uint32 item_sid = 4;       //道具sid
+}
+
+message C2GSRefreshCatalog {            //刷新目录信息
+    optional uint32 cat_id = 1;         //主目录
+    optional uint32 gold = 2;           //元宝刷新
+}
+
+message C2GSGetDefaultPrice {           //获取道具行情价
+    optional uint32 sid = 1;            //道具sid
+}

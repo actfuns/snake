@@ -1,0 +1,43 @@
+message TimeWing {
+    optional uint32 wing_id = 1;                //翅膀id
+    optional int32 expire = 2;                  //过期时间, -1表示永久
+}
+
+message WingInfo {
+    optional string mask = 1;                   //掩码
+    optional uint32 id = 2;                     //翅膀装备sid
+    optional uint32 exp = 3;                    //升星经验
+    optional uint32 star = 4;                   //星级
+    optional uint32 level = 5;                  //等阶
+    optional uint32 score = 6;                  //评分
+    optional uint32 phy_attack = 7;             //物理攻击
+    optional uint32 phy_defense = 8;            //物理防御
+    optional uint32 mag_attack = 9;             //法术攻击
+    optional uint32 mag_defense = 10;           //法术防御
+    optional uint32 cure_power = 11;            //治疗强度
+    optional uint32 speed = 12;                 //速度
+    optional uint32 seal_ratio = 13;            //封印
+    optional uint32 res_seal_ratio = 14;        //抗封
+    optional uint32 phy_critical_ratio = 15;    //物理暴击
+    optional uint32 res_phy_critical_ratio = 16;//物理抗爆
+    optional uint32 mag_critical_ratio = 17;    //法术暴击
+    optional uint32 res_mag_critical_ratio = 18;//法术抗爆
+    repeated TimeWing time_wing_list = 19;      //幻化翅膀
+    optional uint32 show_wing = 20;             //当前显示翅膀
+    optional uint32 max_hp = 21;                //血量
+    optional uint32 max_mp = 22;                //蓝量
+}
+
+message GS2CRefreshWingInfo {                   //刷新协议
+    optional WingInfo info = 1;                 //羽翼相关信息
+}
+
+message GS2CLoginWing {                         //登录时羽翼信息
+    optional WingInfo info = 1;                 //羽翼相关信息
+    optional uint32 has_open = 2;               //曾经打开过界面(1.表示打开过)
+}
+
+message GS2CRefreshOneTimeWing {                //刷新单个幻化(时效)翅膀
+    optional TimeWing info = 1;
+}
+

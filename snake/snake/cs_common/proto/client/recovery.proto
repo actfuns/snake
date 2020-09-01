@@ -1,0 +1,7 @@
+message C2GSRecoveryItem{
+    optional uint32 id = 1;
+}
+
+message C2GSRecoverySum{
+    optional uint32 id = 1;
+}

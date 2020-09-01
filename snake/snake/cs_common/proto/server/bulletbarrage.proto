@@ -1,0 +1,45 @@
+
+message GS2CWarBulletBarrage {
+    optional uint32 war_id = 1;     //战斗ID
+    optional uint32 bout = 2;       //回合
+    optional uint32 secs = 3;       //距离回合开始的时间戳
+    optional string name = 4;       //发弹幕的人
+    optional string msg = 5;        //弹幕信息
+}
+
+message GS2COrgBulletBarrage {
+    optional uint32 orgid = 1;
+    optional string name = 2;
+    optional string msg = 3;
+}
+
+message BulletBarrageBase {
+    optional string name = 1;
+    optional string msg = 2;
+}
+
+message BulletBarrage {
+    optional uint32 sec = 1;
+    repeated BulletBarrageBase base = 2;
+}
+
+message WarBulletBarrage {
+    optional uint32 bout = 1;
+    repeated BulletBarrage lst = 2;
+}
+
+message GS2CWarBulletBarrageData {
+    optional uint32 war_id = 1;
+    optional uint32 type = 2;
+    repeated WarBulletBarrage barrage = 3;
+}
+
+message GS2CStoryBulletBarrageData {
+    optional uint32 story_id = 1;
+    repeated BulletBarrage lst = 2;
+}
+
+message GS2CWarInfoBulletBarrage {
+    optional uint32 war_id = 1;
+    optional string msg = 2;
+}

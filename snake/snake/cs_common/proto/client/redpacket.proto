@@ -1,0 +1,41 @@
+import "base/common.proto";
+
+//发红包
+message C2GSSendRP{
+    optional string  bless = 1;	//祝福语
+    optional uint32 goldcoin = 2;	//元宝额度
+    optional uint32 count = 3;	//红包数量
+    optional uint32 channel = 4;         //101=帮派 102=世界
+}
+
+//抢红包
+message C2GSRobRP{
+    optional uint32 id = 1;         //红包id
+}
+
+//查询 帮派/世界 所有红包
+message C2GSQueryAll{
+    optional uint32 channel = 1;   //101=帮派 102=世界
+}
+
+//查询指定红包信息
+message C2GSQueryBasic{
+    optional uint32 id = 1;	//红包id
+}
+
+//查询玩家红包历史信息
+message C2GSQueryHistory{
+}
+
+//使用红包道具
+message C2GSUseRPItem{
+    optional uint32 itemid = 1; 
+    optional uint32 channel=2; //101=帮派 102=世界
+}
+
+message C2GSActiveSendSYS{
+    optional uint32 index = 1;                 //主动红包列表下标
+    optional uint32 goldcoin = 2;
+    optional string bless = 3;   //祝福语
+    optional uint32 amount = 4;   //数量
+}

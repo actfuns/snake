@@ -1,0 +1,63 @@
+import "base/common.proto";
+
+message C2GSRecruit {
+    optional uint32 sid = 1; //伙伴的配置id
+    optional uint32 flag = 2; //快捷购买碎片
+}
+
+message C2GSUpgradeQuality {
+    optional uint32 partnerid = 1;
+    optional uint32 flag = 2; //便捷伙伴突破
+}
+
+message C2GSUpperGradeLimit {
+    optional uint32 partnerid = 1;
+}
+
+message C2GSUseUpgradeProp {
+    optional uint32 partnerid = 1;
+    optional uint32 itemid = 2;
+}
+
+message C2GSUpgradeSkill {
+    optional uint32 partnerid = 1; //伙伴IID
+    optional uint32  skid = 2; //技能ID 
+    optional uint32 flag = 3; //便捷升级
+}
+
+message C2GSWieldEquip {
+    optional uint32 partnerid = 1; //伙伴ID
+    optional uint32 itemid = 2; //装备ID
+}
+
+message C2GSSetPartnerPosInfo {
+    optional uint32 lineup = 1;         //阵容ID
+    optional uint32 fmt_id = 2;         //阵法ID
+    repeated uint32 pos_list = 3;       //阵型站位顺序
+}
+
+message C2GSGetAllLineupInfo{
+}
+
+message C2GSSetCurrLineup {
+    optional uint32 lineup = 1;
+}
+
+message C2GSSwapProtectSkill {
+    optional uint32 partner_id = 1;
+    optional uint32 skill_old = 2;
+    optional uint32 skill_new = 3;
+}
+
+message C2GSUpgradePartnerEquip {       //伙伴装备升级
+    optional uint32 partner_id = 1;     //伙伴id
+    optional uint32 equip_sid = 2;      //伙伴装备id(导表中的id)
+    optional uint32 goldcoin = 3;       //1表示快捷购买
+}
+
+message C2GSStrengthPartnerEquip {      //伙伴装备强化
+    optional uint32 partner_id = 1;     //伙伴id
+    optional uint32 equip_sid = 2;      //伙伴装备id(导表中的id)
+    optional uint32 quick = 3;          //一键强化(quick=1)
+}
+

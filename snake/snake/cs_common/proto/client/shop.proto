@@ -1,0 +1,10 @@
+message C2GSBuyGood{
+    optional uint32 shop  = 1; 
+    optional uint32 goodid  = 2; 
+    optional uint32 moneytype  = 3; //1.金币 2.银币 3.元宝 4.代金 5.帮贡 6.武勋 7.竞技场积分
+    optional uint32 amount  = 4; 
+}
+
+message C2GSEnterShop{
+    optional uint32 shop  = 1; 
+}

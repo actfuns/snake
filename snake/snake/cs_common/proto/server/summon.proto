@@ -1,0 +1,90 @@
+import "base/common.proto";
+
+message GS2CLoginSummon{
+	repeated base.SummonInfo summondata  = 1;
+	optional uint32 extsize    = 2;		//拓展格子数量
+	optional uint32 fightid    = 3;		//参战宠物id
+	optional uint32 wash_cnt = 4;		// 洗练次数
+}
+
+message GS2CAddSummon{
+	optional base.SummonInfo summondata = 1;
+}
+
+message GS2CDelSummon{
+	optional uint32 id = 1;
+	optional uint32 newid = 2;			//洗宠时这个发新宠id，正常删除为0
+}
+
+message GS2CSummonPropChange{
+	optional uint32 id = 1;
+	optional base.SummonInfo summondata = 2;
+}
+
+message GS2CSummonSetFight{
+	optional uint32 id = 1;		//参战id，无参战发0
+}
+
+//宠物自动加点方案
+message GS2CSummonAutoAssignScheme{
+	optional uint32 id = 1;
+	optional uint32 switch = 2;		//1.开，0.关
+	optional base.AttrInfo scheme = 3;	//自动加点方案
+}
+
+//打开洗宠界面
+message GS2CWashSummonUI{
+}
+
+//合宠结果
+message GS2CSummonCombineResult{
+	optional uint32 id1 = 1;
+	optional uint32 id2 = 2;
+	optional uint32 resultid = 3;
+}
+
+//宠物跟随
+message GS2CSummonFollow{
+	optional uint32 id = 1;		//跟随宠物的id，没有跟随发0
+}
+
+message GS2CSummonInitAttrInfo{
+	optional uint32 id = 1;
+	optional base.AttrInfo initaddattr = 2;         //初始分配属性点
+}
+
+message GS2CSummonRanse{
+    optional uint32 summid = 1;
+    optional uint32 color = 2;
+}
+
+//扩展宠物格子
+message GS2CSummonExtendSize {
+    optional uint32 extsize = 1;
+}
+
+//扩展宠物仓库格子
+message GS2CSummonCkExtendSize {
+    optional uint32 extcksize = 1;
+}
+
+// 下发仓库宠物数据
+message GS2CLoginCkSummon{
+	repeated base.SummonInfo summondata  = 1;
+	optional uint32 extsize    = 2;		//拓展格子数量
+}
+
+// 宠物入仓库
+message GS2CAddCkSummon{
+	optional base.SummonInfo summondata = 1;
+}
+
+// 删除仓库宠物
+message GS2CDelCkSummon{
+	optional uint32 id = 1;
+}
+
+// 珍品洗练提示
+message GS2CSummonWashTips{
+	optional uint32 summid = 1;
+}

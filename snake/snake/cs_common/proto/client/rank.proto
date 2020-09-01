@@ -1,0 +1,18 @@
+
+message C2GSGetRankInfo {
+    optional uint32 idx  = 1;       //排行榜导表索引
+    optional uint32 page = 2;       //排行榜当前页数
+}
+
+message C2GSGetRankTop3 {
+    optional uint32 idx  = 1;       //排行榜导表索引
+}
+
+message C2GSGetUpvoteAmount {
+    optional uint32 pid = 1;
+}
+
+message C2GSGetRankSumInfo{
+        optional uint32 idx  = 1;       //排行榜导表索引
+        optional uint32 rank = 2;
+}

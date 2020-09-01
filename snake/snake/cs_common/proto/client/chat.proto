@@ -1,0 +1,20 @@
+
+message C2GSChat {
+    optional string cmd = 1;
+    optional uint32 type = 2; /*1 世界 2 队伍 3 帮派 4 当前*/
+    optional uint32 forbid = 3; /* 违禁ID 默认0 */
+}
+
+message C2GSChuanYin {
+    optional string cmd = 1;
+    optional uint32 type = 2;
+}
+
+// 队伍匹配信息
+message C2GSMatchTeamChat {
+    optional string cmd = 1;
+    optional uint32 mingrade = 2;
+    optional uint32 maxgrade = 3;
+    optional uint32 ismatch = 4; // 1 表示匹配界面
+    optional uint32 type = 5; // /*1 世界 2 队伍 3 帮派 4 当前*/
+}

@@ -1,0 +1,144 @@
+import "base/common.proto";
+
+message C2GSGetPlayerInfo {
+    optional uint32 pid = 1;
+}
+
+message C2GSSelectPointPlan {
+    optional uint32 plan_id = 1;      //对应washpoint配置表的key
+}
+
+message C2GSAddPoint {
+    optional base.WashPointInfo point_info = 1;
+}
+
+message C2GSWashPoint {
+    optional string prop_name = 1;
+    optional uint32 flag = 2;     //快捷洗点
+}
+
+message C2GSWashAllPoint {
+
+}
+
+//获取二级属性
+message C2GSGetSecondProp  {
+
+}
+
+//请求玩家道具信息
+message C2GSPlayerItemInfo {
+    optional uint32 pid = 1;    //目标玩家的id
+    optional uint32 itemid = 2;
+}
+
+message C2GSPlayerSummonInfo {
+    optional uint32 pid = 1;    //目标玩家的id
+    optional uint32 summonid = 2;
+}
+
+message C2GSPlayerPartnerInfo {
+    optional uint32 pid = 1;        //目标玩家ID
+    optional uint32 partner = 2;    //目标伙伴ID
+}
+
+//获取玩家名片
+message C2GSNameCardInfo {
+    optional uint32 pid = 1;    //目标玩家的id
+}
+
+//点赞
+message C2GSUpvotePlayer {
+    optional uint32 pid =2;
+}
+
+//最近点赞玩家信息
+message C2GSPlayerUpvoteInfo {
+    optional uint32 pid =2; 
+}
+
+message C2GSUpvoteReward {
+    optional uint32 idx = 1;
+}
+
+//改名
+message C2GSRename {
+    optional string rename = 1;
+}
+
+//隐藏地理位置
+message C2GSHidePosition {
+    optional  uint32 hide = 1;  //0-隐藏，1-显示
+}
+
+//观战
+message C2GSObserverWar {
+    optional uint32 camp_id = 1;                //观战阵营
+    optional uint32 npc_id = 2;                 //点击Npc观战
+    optional uint32 target = 3;                 //点击玩家观战
+}
+
+//离开观战
+message C2GSLeaveObserverWar {
+    optional uint32 war_id = 1;                 //战斗id
+}
+
+message C2GSSysConfig {
+    optional uint32 on_off = 1; // 位开关，前端使用位处理每个开关
+    repeated base.ValueInfo values = 2; // 值设置
+}
+
+message C2GSRewardGradeGift {
+    optional uint32 grade = 1; // 领取礼包等级
+}
+
+message C2GSRewardPreopenGift {
+    optional uint32 sys_id = 1; // 领取功能预告礼包
+}
+
+message C2GSGetScore{
+    optional uint32 op = 1; // 1.玩家 2.角色  3宠物  4.魅力
+}
+
+message C2GSGetPromote{
+}
+
+message C2GSPlayerRanSe{
+    optional uint32 clothcolor = 1;
+    optional uint32 haircolor = 2;
+    optional uint32 pantcolor = 3;
+    optional uint32 flag = 4;   //人物染色采用快捷购买
+}
+
+message C2GSOpenShiZhuang{
+    optional uint32 type = 1; // 1.永久 2.7天
+    optional uint32 sz = 2;//时装编号
+}
+
+message C2GSSetSZ{
+    optional uint32 sz = 1;//时装编号
+}
+
+message C2GSSZRanse{
+    optional uint32 sz = 1;//时装编号
+    optional uint32 clothcolor = 2;
+    optional uint32 haircolor = 3;
+    optional uint32 pantcolor = 4;
+    optional uint32 flag = 5;  //快捷购买
+}
+
+message C2GSSetSZColor{
+    optional uint32 sz = 1;//时装编号
+    optional uint32 color = 2;
+}
+
+message C2GSGamePushConfig {
+    repeated base.ValueInfo values = 1; // 值设置
+}
+
+message C2GSGetAllSZInfo{
+}
+
+message C2GSSyncPosition {
+    optional string position = 1;           // 位置信息    
+}

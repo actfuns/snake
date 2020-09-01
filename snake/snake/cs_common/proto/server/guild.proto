@@ -1,0 +1,19 @@
+message GS2CItemUnit {
+    optional uint32 sid = 1;
+    optional uint32 amount = 2;
+    optional uint32 price = 3;
+    optional int32 up_flag = 4;
+    optional uint32 good_id = 5;
+    optional uint32 has_buy = 6;
+}
+
+message GS2COpenGuild {
+    optional uint32 cat_id = 1;
+    optional uint32 sub_id = 2;
+    repeated GS2CItemUnit data = 3;
+}
+
+message GS2CGuildItemPrice {
+    optional uint32 good_id = 1;
+    optional uint32 price = 2;
+}

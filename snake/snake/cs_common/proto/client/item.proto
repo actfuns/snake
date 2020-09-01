@@ -1,0 +1,234 @@
+
+//使用
+message C2GSItemUse{
+    optional uint32 itemid = 1; // 道具id
+    optional uint32 target = 2; // 使用目标
+    optional string exarg = 3;  // 物品使用额外参数（具体实例解析）
+}
+
+message UseInfo{
+    optional uint32 itemid = 1;
+    optional uint32 amount = 2;
+}
+message C2GSItemListUse{
+    repeated UseInfo use_list = 1;
+    optional uint32 target = 2;
+    optional string exarg = 3;  // 物品使用额外参数（具体实例解析）
+}
+
+//请求道具信息
+message C2GSItemInfo{
+    optional uint32 itemid = 1;                         //道具id
+}
+
+//移动到一个位置
+message C2GSItemMove {
+    optional uint32 itemid = 1;                         //道具id
+    optional uint32 pos = 2;                              //目标位置
+}
+
+//整理
+message C2GSItemArrage{
+}
+
+//道具背包开格子
+message C2GSAddItemExtendSize{
+    optional uint32 size = 1;                          //格子数目:5,10
+}
+
+//分解道具
+message C2GSDeComposeItem{
+    optional uint32 id                 = 1;              //id
+    optional uint32 amount     = 2;              //分解数目
+}
+
+message C2GSComposeItem {
+    optional uint32 id = 1;            //id
+    optional uint32 amount = 2;            //合成数目
+    optional uint32 compose_sid = 3;            //合成目标
+}
+
+message C2GSItemsExchangeItem{  //避开与元宝兑换道具重名
+    optional uint32 exchangeid = 1;   //兑换id
+    optional uint32 amount = 2;         //兑换数目
+}
+
+message C2GSRecycleItem {
+    optional uint32 itemid = 1;
+    optional uint32 amount = 2;
+}
+
+//装备修理
+message C2GSFixEquip {
+    optional uint32 pos = 1;
+}
+
+//请求武器的打造信息
+message C2GSMakeEquipInfo {
+    optional uint32 sid = 1;
+}
+
+message C2GSMakeEquip {
+    optional uint32 sid = 1;                    //打造装备的sid
+    optional uint32 flag = 2;                   // 1 快捷打造 
+}
+
+//装备强化
+message C2GSEquipStrength {
+    optional uint32 pos = 1;
+    optional uint32 flag = 2; //快捷强化
+    optional uint32 fast = 3; //一键强化
+}
+
+//请求装备洗练信息
+message C2GSWashEquipInfo {
+    optional uint32 itemid = 1;
+}
+
+//洗装备
+message C2GSWashEquip {
+    optional uint32 itemid = 1;
+    optional uint32 flag = 2; //快捷洗练
+}
+
+//使用洗练属性
+message C2GSUseWashEquip {
+    optional uint32 itemid = 1;
+}
+
+//神魂合成
+message C2GSMergeShenHun {
+    optional uint32 sid = 1;
+}
+
+//使用神魂
+message C2GSUseShenHun {
+    optional uint32 equip_id = 1;                       //武器id
+    optional uint32 shenhun_id = 2;                  //神魂id
+    optional uint32 flag = 3;                              //快捷附魂
+}
+
+message C2GSStrengthInfo {
+    optional uint32 pos = 1;
+}
+
+message C2GSCompoundItem{
+    optional uint32 targetid = 1;
+    optional uint32 compoundtype = 2;  //1：材料不足则合成失败   2：材料不足时使用缺省货币类型来补充材料
+    optional uint32 moneytype = 3;  //材料缺省时货币类型
+}
+
+message C2GSFixAllEquips { }
+
+//装备突破
+message C2GSEquipBreak {
+    optional uint32 pos = 1;
+    optional uint32 flag = 2; //快捷突破
+}
+
+//分解多个道具
+message DeComposeInfo {
+    optional uint32 id = 1;
+    optional uint32 amount = 2;
+}
+
+message C2GSDeComposeItemList {
+    repeated DeComposeInfo items = 1;              //id
+}
+
+// 获取附魂积分奖励
+message C2GSRecFuHunPointReward {
+    optional uint32 sid = 1;            //选取物品id
+}
+
+//请求武器附魂消耗
+message C2GSGetFuHunCost {
+    optional uint32 equip_id = 1;
+}
+
+//请求重置宠物装备技能
+message C2GSSummonEquipResetSkill {
+    optional uint32 equip_id = 1;
+}
+
+//请求宠物装备合成
+message C2GSSummonEquipCombine {
+    repeated uint32 itemid = 1;
+}
+
+//魂石合成1
+message C2GSHSCompose1{
+    optional uint32 itemid = 1;
+    optional uint32 addradio = 2;//1.需要消耗秘术 0.不消耗
+}
+
+//魂石合成2
+message C2GSHSCompose2{
+    optional uint32 itemid1 = 1;
+    optional uint32 itemid2 = 2;
+    optional uint32 addradio = 3;//1.需要消耗秘术 0.不消耗
+}
+
+//魂石分解
+message C2GSHSDeCompose{
+    optional uint32 itemid = 1;
+}
+
+//镶嵌魂石
+message C2GSEquipAddHS{
+    optional uint32 hunshiid = 1;
+    optional uint32 equipid = 2;
+    optional uint32 pos = 3;
+}
+
+//卸下魂石
+message C2GSEquipDelHS{
+    optional uint32 equipid = 1;
+    optional uint32 pos = 2;
+}
+
+message C2GSChangeHS{
+    optional uint32 itemid = 1;
+    optional string attr = 2;
+    optional uint32 color = 3;
+}
+
+// 获取物品yuanbao价格
+message C2GSItemGoldCoinPrice {
+    optional uint32 sid = 1;
+}
+
+// 获取物品的价格,价格来源 商城 npcstore 301 商会 guild 摆摊 stall
+message C2GSFastBuyItemPrice {
+    optional uint32 sid = 1;
+    optional uint32 store_type = 2;   //物品价格的来源
+}
+
+message CItemPrice {
+    optional uint32 sid = 1;
+    optional uint32 store_type = 2;
+}
+
+message C2GSFastBuyItemListPrice {
+    repeated CItemPrice item_list = 1;
+}
+
+//合成纹饰
+message C2GSWenShiMake {
+    optional uint32 itemid = 1;
+}
+
+//纹饰融合
+message C2GSWenShiCombine {
+    optional uint32 itemid1 = 1;    //主
+    optional uint32 itemid2 = 2;
+}
+
+//纹饰洗练
+message C2GSWenShiWash {
+    optional uint32 itemid = 1;
+    repeated uint32 locks = 2;     //锁定属性的index
+    optional uint32 flag = 3;      //1 快捷洗练
+}
+
+

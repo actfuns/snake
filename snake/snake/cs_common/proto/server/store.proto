@@ -1,0 +1,24 @@
+
+message StoreItemInfo {
+    optional uint32 item_id = 1;          // 商品ID
+    optional uint32 week_buy_cnt = 2;          // 本周购买个数
+    optional uint32 forever_buy_cnt = 3;  //永久购买个数
+    optional uint32 day_buy_cnt = 4;          //每日限购测试
+    optional uint32 limit = 5;                     //限购标志    不限制 0 , 限制 大于 0
+}
+
+// 全部
+message GS2CLoginStoreInfo {
+    repeated StoreItemInfo item_info = 1;
+}
+
+// 指定物品
+message GS2CUpdateStoreInfo {
+    repeated StoreItemInfo item_info = 1;
+}
+
+
+message GS2CLimitTimeDiscountInfo {
+	optional uint32 discount_end = 1;  //自己打折结束时间戳
+	optional uint32 show_tip = 2;  //1 提示 
+}

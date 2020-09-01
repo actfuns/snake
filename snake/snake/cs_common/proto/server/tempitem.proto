@@ -1,0 +1,24 @@
+import "base/common.proto";
+
+message GS2CLoginTempItem{
+    repeated base.ItemInfo itemdata = 1;
+}
+
+message GS2CAddTempItem{
+    optional base.ItemInfo itemdata = 1;
+}
+
+message GS2CRefreshTempItem{
+    optional base.ItemInfo itemdata = 1;
+}
+
+message GS2CDelTempItem{
+    optional uint32 id    = 1;
+}
+
+message GS2CRefreshAllTemItem{
+    repeated base.ItemInfo itemdata = 1;
+}
+
+message GS2COpenTempItemUI{
+}

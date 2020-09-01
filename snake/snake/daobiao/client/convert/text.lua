@@ -1,0 +1,13 @@
+module(..., package.seeall)
+function main()
+    local text = require("text")
+    local box = require("system.openbox.text")
+    local bottle = require("huodong.bottle.text")
+    local liumai = require("huodong.liumai.text")
+    local itemtext = require("item.text")
+    local tasktext = require("task.text")
+    local shop = require("economic.shop.text")
+    local s = table.dump(text, "TEXT") .. table.dump(box, "BOX") .. table.dump(bottle, "BOTTLE") .. table.dump(liumai, "SCHOOLMATCH").. table.dump(itemtext, "ITEM")
+    .. table.dump(tasktext, "TASK").. table.dump(shop, "SHOP")
+    SaveToFile("text", s)
+end

@@ -1,0 +1,88 @@
+-- ./excel/system/role/school.xlsx
+return {
+
+    [1] = {
+        born_pos = {["scene"] = 301000, ["x"] = 10.6, ["y"] = 6.6},
+        born_task = 10039,
+        desc = "物理点杀",
+        icon = 1,
+        id = 1,
+        name = "蜀山",
+        points = {["agility"] = 1, ["endurance"] = 1, ["magic"] = 1, ["physique"] = 1, ["strength"] = 1},
+        race = 1,
+        short_name = "ss",
+        skilllist = {1106, 1103, 1105},
+        washpoints = {["agility"] = 1, ["endurance"] = 0, ["magic"] = 0, ["physique"] = 0, ["strength"] = 4},
+    },
+
+    [2] = {
+        born_pos = {["scene"] = 302000, ["x"] = 5.3, ["y"] = 4.3},
+        born_task = 10039,
+        desc = "治疗辅助",
+        icon = 2,
+        id = 2,
+        name = "金山寺",
+        points = {["agility"] = 1, ["endurance"] = 1, ["magic"] = 1, ["physique"] = 1, ["strength"] = 1},
+        race = 1,
+        short_name = "js",
+        skilllist = {1206, 1204, 1201},
+        washpoints = {["agility"] = 1, ["endurance"] = 2, ["magic"] = 0, ["physique"] = 2, ["strength"] = 0},
+    },
+
+    [3] = {
+        born_pos = {["scene"] = 303000, ["x"] = 10.1, ["y"] = 4.1},
+        born_task = 10039,
+        desc = "群体法术",
+        icon = 3,
+        id = 3,
+        name = "太初",
+        points = {["agility"] = 1, ["endurance"] = 1, ["magic"] = 1, ["physique"] = 1, ["strength"] = 1},
+        race = 2,
+        short_name = "tc",
+        skilllist = {1306, 1305, 1301},
+        washpoints = {["agility"] = 0, ["endurance"] = 1, ["magic"] = 4, ["physique"] = 0, ["strength"] = 0},
+    },
+
+    [4] = {
+        born_pos = {["scene"] = 304000, ["x"] = 10.7, ["y"] = 5.5},
+        born_task = 10039,
+        desc = "辅助增益",
+        icon = 4,
+        id = 4,
+        name = "瑶池",
+        points = {["agility"] = 1, ["endurance"] = 1, ["magic"] = 1, ["physique"] = 1, ["strength"] = 1},
+        race = 2,
+        short_name = "yc",
+        skilllist = {1406, 1404, 1405},
+        washpoints = {["agility"] = 1, ["endurance"] = 2, ["magic"] = 0, ["physique"] = 2, ["strength"] = 0},
+    },
+
+    [5] = {
+        born_pos = {["scene"] = 305000, ["x"] = 11.0, ["y"] = 6.0},
+        born_task = 10039,
+        desc = "封印控制",
+        icon = 5,
+        id = 5,
+        name = "青城",
+        points = {["agility"] = 1, ["endurance"] = 1, ["magic"] = 1, ["physique"] = 1, ["strength"] = 1},
+        race = 3,
+        short_name = "qc",
+        skilllist = {1506, 1501, 1502},
+        washpoints = {["agility"] = 2, ["endurance"] = 1, ["magic"] = 0, ["physique"] = 2, ["strength"] = 0},
+    },
+
+    [6] = {
+        born_pos = {["scene"] = 306000, ["x"] = 6.0, ["y"] = 5.0},
+        born_task = 10039,
+        desc = "物理群攻",
+        icon = 6,
+        id = 6,
+        name = "妖神宫",
+        points = {["agility"] = 1, ["endurance"] = 1, ["magic"] = 1, ["physique"] = 1, ["strength"] = 1},
+        race = 3,
+        short_name = "ys",
+        skilllist = {1606, 1605, 1603},
+        washpoints = {["agility"] = 0, ["endurance"] = 0, ["magic"] = 0, ["physique"] = 0, ["strength"] = 5},
+    },
+
+}

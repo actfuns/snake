@@ -1,0 +1,141 @@
+import "base/common.proto";
+
+message JJCTop3Info {
+    optional uint32 type = 1;          // 上阵类型，1.玩家，2.伙伴
+    optional uint32 id = 2;
+    optional uint32 rank = 3;
+    optional string name = 4;
+    optional base.ModelInfo model = 6;
+}
+
+message JJCFighterInfo {
+    optional uint32 id = 1;
+    optional uint32 icon = 2;
+    optional uint32 lv = 3;
+    optional uint32 quality = 4;
+}
+
+message JJCTargetInfo {
+    optional uint32 type = 1;          // 上阵类型，1.玩家，2.伙伴
+    optional uint32 id = 2;
+    optional uint32 rank = 3;
+    optional string name = 4;
+    optional uint32 score = 5;
+    optional base.ModelInfo model = 6;
+    optional uint32 grade = 7;
+    optional uint32 school = 8;
+    repeated JJCFighterInfo fighters = 9;
+}
+
+message JJCLineupInfo {
+    optional uint32 fmtid = 1;
+    optional uint32 fmtlv = 2;
+    optional uint32 summid = 3;
+    optional uint32 summicon = 4;
+    optional uint32 summlv = 5;
+    repeated JJCFighterInfo fighters = 6;
+}
+
+message JJCFightLog {
+    optional string fighter = 1;
+    optional uint32 win = 2;
+    optional uint32 rank = 3;
+    optional uint32 time = 4;
+}
+
+message ChallengeTargetInfo {
+    optional uint32 type = 1;          // 上阵类型，1.玩家，2.伙伴
+    optional uint32 id = 2;
+    optional string name = 3;
+    optional uint32 grade = 4;
+    optional uint32 score = 5;
+    optional base.ModelInfo model = 6;
+    optional uint32 icon = 7;
+}
+
+message ChallengeFighterInfo {
+    optional uint32 type = 1;          // 上阵类型，1.玩家，2.伙伴
+    optional uint32 id = 2;
+    optional uint32 icon = 3;
+    optional uint32 lv = 4;
+    optional uint32 quality = 5;
+}
+
+message ChallengeLineupInfo {
+    optional uint32 fmtid = 1;
+    optional uint32 fmtlv = 2;
+    optional uint32 summid = 3;
+    optional uint32 summicon = 4;
+    optional uint32 summlv = 5;
+    repeated ChallengeFighterInfo fighters = 6;
+}
+
+message ChallengeTargetID {
+    optional uint32 type = 1;          // 对手类型，1.玩家，2.机器人
+    optional uint32 id = 2;
+}
+
+// 竞技场主界面
+message GS2CJJCMainInfo {
+    optional string mask = 1;
+    optional uint32 rank = 2;
+    repeated JJCTargetInfo infos = 3;
+    optional JJCLineupInfo lineup = 4;
+    optional uint32 fighttimes = 5;
+    optional uint32 fightcd = 6;
+    optional uint32 hasbuy = 7;
+    repeated JJCTargetInfo top3 = 8;
+    optional uint32 nextseason = 9;
+    optional uint32 first_gift_status = 10;      // 0:不能领 1:可领, 2:已领
+    optional uint32 refresh_time = 11;      // 刷新时间
+}
+
+// 竞技场对手布阵信息
+message GS2CJJCTargetLineupInfo {
+    optional ChallengeTargetID target = 1;
+    optional JJCLineupInfo lineup = 2;
+}
+
+// 竞技场挑战记录
+message GS2CJJCFightLog {
+    repeated JJCFightLog logs = 2;
+}
+
+// 竞技场战斗结束界面
+message GS2CJJCFightEndInfo {
+    optional uint32 oldrank = 1;
+    optional uint32 newrank = 2;
+    optional uint32 result = 3;
+    repeated base.ItemReward items = 4;
+}
+
+// 挑战玩法选择难度界面
+message GS2CChallengeChooseRank {
+    optional uint32 reward = 1;
+}
+
+// 挑战玩法主界面
+message GS2CChallengeMainInfo {
+    optional string mask = 1;
+    optional uint32 difficulty = 2;
+    repeated ChallengeTargetInfo targets = 3;
+    optional ChallengeLineupInfo lineup = 4;
+    repeated ChallengeTargetID beats = 5;
+    optional uint32 times = 6;
+}
+
+// 挑战玩法对手布阵
+message GS2CChallengeTargetLineup {
+    optional ChallengeTargetID target = 1;
+    optional ChallengeLineupInfo lineup = 2;
+}
+
+// 竞技场消息红点
+message GS2CJJCNotifyLog {
+}
+
+// 竞技场剩余次数
+message GS2CJJCLeftTimes {
+    optional uint32 left_times = 1;
+}
+

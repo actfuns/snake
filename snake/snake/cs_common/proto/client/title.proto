@@ -1,0 +1,5 @@
+// 佩戴 or 取消称谓
+message C2GSUseTitle {
+    optional uint32 tid = 1;
+    optional uint32 flag = 2;   /*0 取消 ,1　佩戴*/
+}

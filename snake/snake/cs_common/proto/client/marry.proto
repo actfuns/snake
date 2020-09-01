@@ -1,0 +1,39 @@
+
+// 结婚支付
+message C2GSMarryPay {
+	optional uint32 flag = 1; /*0 一半 1　全部 */	
+}
+
+// 取消结婚
+message C2GSCancelMarry {
+}
+
+// 结婚照url
+message C2GSSetMarryPic {
+	optional string url = 1;
+}
+
+// 赠送喜糖
+message C2GSPresentXT {
+	optional uint32 targetpid = 1;
+	optional uint32 amount = 2;
+	optional string content = 3;
+}
+
+// 婚礼剧情结束
+message C2GSMarryWeddingEnd {
+}
+
+// 组队展示婚礼
+message C2GSTeamShowWedding {
+}
+
+// 确认结婚
+message C2GSMarryConfirm {
+	optional uint32 flag = 1; /*1 同意*/	
+}
+
+// 结婚跳转原来的场景
+message C2GSMarryReScene {
+}
+

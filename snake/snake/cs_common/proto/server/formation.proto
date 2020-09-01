@@ -1,0 +1,25 @@
+
+message FmtUnit {
+    optional uint32 fmt_id = 1;             //阵法ID
+    optional uint32 exp = 2;                //阵法经验
+    optional uint32 grade = 3;              //阵法等级
+}
+
+message GS2CAllFormationInfo {
+    optional uint32 fmt_curr = 1;           //当前选中的阵法
+    repeated uint32 player_list = 2;        //阵型站位信息
+    repeated uint32 partner_list = 3;       //伙伴阵型站位
+    repeated FmtUnit fmt_list = 4;
+    optional uint32 fmt_learn_limit = 5;      //还可以学习的个数限制
+}
+
+message GS2CSingleFormationInfo {
+    optional FmtUnit fmt_info = 1;
+    optional uint32 fmt_learn_limit = 2;    //还可以学习的个数限制
+}
+
+message GS2CFmtPosInfo {
+    optional uint32 fmt_curr = 1;           //当前选中的阵法
+    repeated uint32 player_list = 2;        //阵型站位信息
+    repeated uint32 partner_list = 3;       //伙伴站位信息
+}

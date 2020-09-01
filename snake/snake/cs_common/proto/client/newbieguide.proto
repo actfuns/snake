@@ -1,0 +1,21 @@
+import "base/common.proto";
+
+// 记录新的已通知开启信息
+message C2GSNewSysOpenNotified {
+    repeated string sys_ids = 1; // 支持一次多个更新
+}
+
+// 记录新手引导链信息
+message C2GSUpdateNewbieGuideInfo {
+    optional string mask = 1;
+    repeated base.GuideLinkInfo guide_links = 2; // 支持一次多个更新
+    optional string exdata = 3;  // 可以存储玩家选择是否玩过回合制等信息
+}
+
+message C2GSSelectNewbieSummon {
+    optional uint32 selection = 1; // 选项
+}
+
+// 获取一些新手引导的数据，暂时只有帮派指引
+message C2GSGetNewbieGuildInfo {
+}

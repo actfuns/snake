@@ -1,0 +1,13 @@
+import "base/common.proto";
+
+message GS2CNpcSay{
+    optional uint32 sessionidx = 1;
+    optional uint32 npcid = 2;
+    optional base.ModelInfo model_info = 3;
+    optional string name = 4;
+    optional string text = 5;
+    optional uint32 type = 6; /*菜单类型 (预先定义)*/
+    optional uint32 lv2 = 7; // 2级菜单标识
+    optional uint32 time = 8;   //对话中倒数时间
+    optional uint32 default = 9; // 默认自动选中选项
+}

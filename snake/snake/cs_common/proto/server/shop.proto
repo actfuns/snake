@@ -1,0 +1,35 @@
+message ShopMoney {
+    optional uint32 moneytype  = 1; //1.金币 2.银币 3.元宝 4.代金 5.帮贡 6.武勋 7.竞技场积分
+    optional uint32 moneyvalue  = 2; //花费数量
+}
+
+message ShopGood{
+    optional uint32 goodid  = 1; //商品编号
+    optional uint32 itemsid  = 2; //物品编号
+    optional uint32 discount  = 3; //打折
+    optional uint32 dayamount  = 4; //每天可购买数量
+    optional uint32 weekamount  = 5; //每周可购买数量
+    repeated ShopMoney money = 6 ;
+    optional uint32 limit  = 7; //0.不限制 1.限制用 dayamount和weekamount、foreveramount数据
+    optional uint32 foreveramount = 8;  //永久限购
+}
+
+message GS2CRefreshGood{
+    optional uint32 shop  = 1; 
+    optional ShopGood good = 2 ;
+}
+
+message GS2CEnterShop{
+    optional uint32 shop  = 1; 
+    repeated ShopGood goodlist = 2 ;
+}
+
+message RewardMoney{
+    optional uint32 source = 1;             //获得的来源
+    optional uint32 moneyvalue = 2; //获得的数目
+}
+message GS2CDailyRewardMoneyInfo{
+    optional uint32 moneytype = 1; //1.金币 2.银币 3.元宝 4.代金 5.帮贡 6.武勋 7.竞技场积分
+    optional uint32 dailyrewardamount = 2;   //今日获得的总数
+    repeated RewardMoney rewardmoneylist = 3;   //获得信息的一个列表
+} 

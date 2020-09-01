@@ -1,0 +1,263 @@
+import "base/common.proto";
+
+message GS2CShowWar {
+    optional uint32 war_id = 1;
+    optional uint32 war_type = 2;
+    optional uint32 sky_war = 3;
+    optional uint32 weather = 4;
+    optional uint32 is_bosswar = 5;
+    optional string tollgate_group = 6; // 关卡组
+    optional uint32 tollgate_id = 7;    // 关卡id
+    optional uint32 barrage_show = 8;   // 弹幕显示 0-不显示 1-显示名字+弹幕 2-显示弹幕
+    optional uint32 barrage_send = 9;   // 是否能发弹幕 0-不能 1-能
+    optional uint32 map_id = 10;        // 战斗场景
+    optional uint32 x = 11;             // 坐标x
+    optional uint32 y = 12;             // 坐标y
+    optional uint32 sys_type = 13;      // 系统玩法类型
+}
+
+message GS2CWarResult {
+    optional uint32 war_id = 1;
+    optional uint32 bout_id = 2;
+}
+
+message GS2CWarBoutStart {
+    optional uint32 war_id = 1;
+    optional uint32 bout_id = 2;
+    optional uint32 left_time = 3;
+}
+
+message GS2CWarBoutEnd {
+    optional uint32 war_id = 1;
+}
+
+message GS2CWarAddWarrior {
+    optional uint32 war_id = 1;
+    optional uint32 camp_id = 2;
+    optional uint32 type = 3; /*1 player,2 npc,3 summon,4 partner,5 roplayer,6 rosummon,7 ropartner */
+
+    optional base.PlayerWarrior warrior = 4;
+    optional base.NpcWarrior npcwarrior = 5;
+    optional base.SumWarrior sumwarrior = 6;
+    optional base.PartnerWarrior partnerwarrior = 7;
+    optional base.RoPlayerWarrior roplayerwarrior = 8;
+    optional base.RoPartnerWarrior ropartnerwarrior = 9;
+    optional base.RoSummonWarrior rosummonwarrior = 10;
+    optional uint32 add_type = 11;      //是否立即执行插入
+    optional uint32 is_summon = 12;     //战斗中召唤入场
+}
+
+message GS2CWarDelWarrior {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 type = 3;
+    optional uint32 war_end = 4;
+}
+
+message GS2CWarNormalAttack {
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 select_wid = 3;
+}
+
+message GS2CWarSkill {
+    optional uint32 war_id = 1;
+    repeated uint32 action_wlist = 2;
+    repeated uint32 select_wlist = 3;
+    optional uint32 skill_id = 4;
+    optional uint32 magic_id = 5;
+}
+
+message GS2CWarProtect {
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+    optional uint32 select_wid = 3;
+}
+
+message GS2CWarEscape {
+    optional uint32 war_id = 1;
+    repeated uint32 action_wid = 2;
+    optional bool success = 3;
+}
+
+message GS2CWarDamage {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 type = 3;           /* 1 miss 2 defense */
+    optional uint32 iscrit = 4;         /* 1 crit */
+    optional int32 damage = 5;
+    optional uint32 hited_effect = 6;   //是否表现受击动作
+}
+
+message GS2CWarWarriorStatus {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 type = 3;
+
+    optional base.WarriorStatus status = 4;
+}
+
+message GS2CWarGoback {
+    optional uint32 war_id = 1;
+    optional uint32 action_wid = 2;
+}
+
+message GS2CWarAddBuff {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 buff_id = 3;
+    optional uint32 bout = 4;
+    repeated base.BuffAttr attrlist = 5;
+}
+
+message GS2CWarDelBuff {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 buff_id =3;
+}
+
+message GS2CWarBuffBout {
+    optional uint32 war_id =1;
+    optional uint32 wid = 2;
+    optional uint32 buff_id = 3;
+    optional uint32 bout = 4;
+    optional uint32 stack = 5;
+    repeated base.BuffAttr attrlist = 6;
+}
+
+//触发被动技能
+message GS2CWarPasssiveSkill {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 skill_id = 3;
+}
+
+//玩家战士进入战斗
+message GS2CPlayerWarriorEnter {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    repeated uint32 sum_list = 3;
+}
+
+// 战斗喊话
+message GS2CWarriorSpeek {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional string content = 3;
+    optional uint32 flag = 4;//0.perform开始(默认即时生效) 1.受击时 2.perform结束
+    optional uint32 show_type = 5;//0 气泡. 1.窗口
+}
+// 战斗有序喊话
+message SpeekInfo {
+    optional uint32 wid = 1;
+    optional string content = 2;
+}
+message GS2CWarriorSeqSpeek {
+    optional uint32 war_id = 1;
+    repeated SpeekInfo speeks = 2;
+    optional uint32 block_ms = 3;     // 阻塞后续喊话、动作等毫秒数
+    optional uint32 block_action = 4; // 是否(0/1)阻塞后面的行动逻辑（含读秒）
+}
+
+message GS2CWarCapture {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2; // 被捕捉的单位
+    optional uint32 succ = 3; // 成功与否0/1
+}
+
+message GS2CStartObserver {                     //开始观战
+    optional uint32 pid = 1;                    //玩家ID
+    optional uint32 war_id = 2;                 //战斗ID
+    optional uint32 camp_id = 3;                //阵营，确定观看方向
+}
+
+message WarCommand{
+    optional uint32 select_wid = 1;
+    optional string cmd = 2;
+}
+
+message GS2CWarCommand {
+    optional uint32 war_id = 1;     //战斗ID
+    optional uint32 op = 2;     //1.增加　0.清除
+    repeated WarCommand lcmd= 3;
+}
+
+message GS2CWarCommandOP {
+    optional uint32 war_id = 1;     //战斗ID
+    optional uint32 op = 2;     //0.清除 1.第一次增加　 2.覆盖增加
+    optional uint32 select_wid = 3;
+    optional string cmd = 4;
+}
+
+message GS2CUpdateWarCommand{
+    optional uint32 war_id = 1;     //战斗ID
+    optional uint32 appoint = 2;     //指挥员
+    optional uint32 appointop = 3;     //1.每回合清除 0.每回合不清除
+}
+
+message GS2CWarUseItem {
+    optional uint32 war_id = 1;     //战斗ID
+    optional uint32 action_wid = 2;
+    optional uint32 select_wid = 3;
+    optional string item_id = 4;    // 物品效果id
+}
+
+message GS2CWarStatus {
+    optional uint32 war_id = 1;     //战斗ID
+    optional uint32 bout = 2;
+    optional uint32 left_time = 3;
+}
+
+message GS2CWarCampFmtInfo {
+    optional uint32 war_id = 1;         //战斗id
+    optional uint32 fmt_id1 = 2;        //阵营1 阵法id
+    optional uint32 fmt_grade1 = 3;     //阵营1 阵法等级
+    optional uint32 fmt_id2 = 4;        //阵营2 阵法id
+    optional uint32 fmt_grade2 = 5;     //阵营2 阵法等级
+}
+
+message KeyUnit {
+    optional string key = 1;
+    optional int32 value = 2;
+}
+
+message GS2CTriggerPassiveSkill {
+    optional uint32 war_id = 1;         //战斗ID
+    optional uint32 pfid = 2;           //招式编号
+    repeated KeyUnit key_list = 3;      // (magic_id:播放动作id,第一顺位),(select_id:选择目标)
+    optional uint32 wid = 4;            //触发单位
+}
+
+message GS2CWarAddMp {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional int32 add_mp = 3;          //mp变化值， 可为负数
+}
+
+message GS2CRefreshPerformCD {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    repeated base.PerformUnit pflist = 3;
+}
+
+message GS2CWarObCount {
+    optional uint32 war_id = 1;     //战斗ID
+    optional uint32 ob_cnt = 2;     //观战人数
+}
+
+message GS2CWarFail {
+    optional uint32 war_id = 1;     //战斗ID
+    optional string gameplay = 2;   //战斗主题
+}
+
+message GS2CWarDelStatus {
+    optional uint32 war_id = 1;
+    optional uint32 wid = 2;
+    optional uint32 status_id =3;
+}
+
+message GS2CWarUpdateStatus {
+    optional uint32 war_id =1;
+    optional uint32 wid = 2;
+    optional base.StatusBuffUnit status = 3;
+}

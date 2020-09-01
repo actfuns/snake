@@ -1,0 +1,29 @@
+
+message mOption {
+    optional uint32 question_id = 1;
+    optional uint32 answer = 2;
+}
+
+message C2GSToBeMentor {                    //登记成为师傅
+    repeated mOption option_list = 1;       //选项列表
+}
+
+message C2GSToBeApprentice {                //登记成为徒弟
+    repeated mOption option_list = 1;       //选项列表
+}
+
+message C2GSDirectBuildReleationship {      //直接拜师
+    optional uint32 pid = 1;                //师傅id
+}
+
+message C2GSMentoringTaskReward {           //领取任务进度奖励
+    optional uint32 type = 1;               //1.表示师傅打开;2.表示徒弟打开
+    optional uint32 target = 2;             //师傅或者徒弟id
+    optional uint32 idx = 3;                //奖励索引
+}
+
+message C2GSMentoringStepResultReward {     //领取教学成果奖励
+    optional uint32 type = 1;               //1.表示师傅打开;2.表示徒弟打开
+    optional uint32 target = 2;             //师傅或者徒弟id
+    optional uint32 idx = 3;                //奖励索引
+}

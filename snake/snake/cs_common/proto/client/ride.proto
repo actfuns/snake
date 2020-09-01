@@ -1,0 +1,90 @@
+// 激活
+message C2GSActivateRide {
+    optional uint32 ride_id = 1;
+}
+
+message C2GSUseRide {
+    optional uint32 ride_id = 1;
+    optional uint32 flag = 2;    // 使用1，卸下0
+}
+
+// 升级
+message C2GSUpGradeRide {
+    optional uint32 flag = 1;    // 1快捷购买
+}
+
+// 续期
+message C2GSBuyRideUseTime {
+    optional uint32 sell_id = 1;
+} 
+
+// 领悟技能
+message C2GSRandomRideSkill {
+    optional uint32 flag = 1;       //随机技能快捷购买
+}
+
+// 随机一个技能展示
+message C2GSShowRandomSkill {
+}
+
+// 学习技能
+message C2GSLearnRideSkill {
+    optional uint32 skill_id = 1;
+}
+
+// 遗忘技能
+message C2GSForgetRideSkill {
+    optional uint32 skill_id = 1;
+    optional uint32 flag = 2;     // 原协议已经不使用，现在用来表示快捷购买
+} 
+
+// 设置飞行高度
+message C2GSSetRideFly {
+    optional uint32 ride_id = 1;
+    optional uint32 fly = 2;     // 飞行高度
+} 
+
+//请求坐骑信息 
+message C2GSGetRideInfo {
+} 
+
+// 重置技能信息
+message C2GSResetSkillInfo {
+} 
+
+// 重置技能
+message C2GSResetRideSkill {
+} 
+
+//坐骑突破
+message C2GSBreakRideGrade {
+    optional uint32 flag = 1;       //升级物品快捷购买
+}
+
+//纹饰佩戴
+message C2GSWieldWenShi {
+	optional uint32 rideid = 1;
+	optional uint32 itemid = 2;
+	optional uint32 pos = 3;
+}
+
+//纹饰卸载
+message C2GSUnWieldWenShi {
+	optional uint32 rideid = 1;
+	optional uint32 pos = 2;
+}
+
+//坐骑统御
+message C2GSControlSummon {
+	optional uint32 rideid = 1;
+	optional uint32 summonid = 2;
+	optional uint32 pos = 3;
+}
+
+//坐骑quxiao统御
+message C2GSUnControlSummon {
+	optional uint32 rideid = 1;
+	optional uint32 pos = 2;
+}
+
+

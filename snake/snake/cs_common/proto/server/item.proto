@@ -1,0 +1,143 @@
+import "base/common.proto";
+
+//登录发送背包道具信息
+message GS2CLoginItem{
+    repeated base.ItemInfo itemdata  = 1;                                //背包道具信息
+    optional uint32 extsize    = 2;                                              //扩展格子数目
+}
+
+message GS2CAddItem {
+    optional base.ItemInfo itemdata = 1;
+    optional uint32 from_wh         = 2; // 是否来自仓库
+    optional uint32 refresh         = 3; // 是否刷新而非落袋
+}
+
+//删除道具
+message GS2CDelItem {
+    optional uint32 id                  = 1;                                //服务的道具id
+}
+
+//刷新道具数目
+message GS2CItemAmount{
+    optional uint32 id = 1;
+    optional uint32 amount = 2;
+    optional uint32 from_wh = 3;
+    optional uint32 refresh         = 4; // 是否刷新而非落袋
+}
+
+//客户端快捷使用
+message GS2CItemQuickUse{
+    optional uint32 id                  = 1;
+}
+
+//背包扩展数目
+message GS2CItemExtendSize{
+    optional uint32 extsize        = 1;                                //扩展格子数目
+}
+
+message GS2CItemArrange{
+    repeated base.ItemPos pos_info = 1;                     //位置变动信息
+}
+
+//装备耐久
+message GS2CEquipLast {
+    optional uint32 itemid = 1;                           //装备ID
+    optional uint32 last = 2;                               //耐久度
+}
+
+message CostInfo {
+    optional uint32 sid = 1;                               //银币1002
+    optional uint32 amount = 2;
+}
+
+message GS2CEquipMake {
+    optional uint32 sid = 1;
+    repeated CostInfo make_info = 2;        //打造所需物品信息
+    optional uint32 goldcoin = 3;           //快捷打造消耗
+}
+
+message WashEquipInfo {
+    repeated base.ApplyInfo apply_info = 1;                              //附加属性应用信息
+    repeated uint32 se_list = 2;                                                    //特效
+}
+
+message GS2CWashEquipInfo{
+    optional WashEquipInfo now_info = 1;
+    optional WashEquipInfo wash_info = 2;
+}
+
+message GS2CStrengthInfo {
+    optional uint32 success_ratio_base = 1;
+    optional uint32 success_ratio_add = 2;
+}
+
+message GS2CLoadTreasureProgress{
+    optional uint32 sessionidx = 1;
+}
+
+message GS2CStartShowRewardByType{
+    optional string reward_type = 1;
+    repeated base.MoneyReward moneyreward_info = 2;
+    repeated base.ItemReward itemreward_info = 3;
+    optional uint32 sessionidx = 4;
+}
+
+message GS2CContinueFindTreasure{
+    optional uint32 sid = 1;
+}
+
+message GS2CEquipNeedFix {
+    optional uint32 silver = 1;
+}
+
+message GS2CEquipLogin {
+    optional uint32 fh_point = 1;    
+}
+
+//更新附魂积分
+message GS2CUpdateFuHunPoint {
+    optional uint32 fh_point = 1;    
+}
+
+message GS2CFuHunCost {
+    optional uint32 equip_id = 1;
+    repeated CostInfo cost_info = 2;        //打造所需物品信息
+}
+
+//更新物品信息
+message GS2CUpdateItemInfo {
+    optional base.ItemInfo itemdata  = 1;   //背包道具信息
+}
+
+// 宠物装备合成结果
+message GS2CSummonEquipCombine {
+    optional uint32 id  = 1;
+}
+
+// 获取物品价格
+message GS2CItemGoldCoinPrice{
+    optional uint32 sid = 1;
+    optional uint32 goldcoin = 2;
+}
+
+//给出物品的价格 来源 商城 npcstore 301 商会 guild 摆摊 stall 判断来源
+message GS2CFastBuyItemPrice {
+    optional uint32 sid = 1;
+    optional uint32 money_type = 2;
+    optional uint32 price = 3;
+}
+
+message GSItemPrice {
+    optional uint32 sid = 1;
+    optional uint32 money_type = 2;
+    optional uint32 price = 3;
+}
+
+message GS2CFastBuyItemListPrice {
+    repeated GSItemPrice item_list = 1;
+}
+
+//纹饰融合result 1:success
+message GS2CWenShiCombineResult {
+    optional uint32 flag = 1;    
+}

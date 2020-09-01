@@ -1,0 +1,88 @@
+-- ./excel/system/org/positionlimit.xlsx
+return {
+
+    [1] = {
+        baby = 1,
+        chefu = 8,
+        elder = 4,
+        formal = 100,
+        jingying = 30,
+        keqing = 1,
+        leader = 1,
+        level = 1,
+        viceleader = 1,
+        xuetu = 100,
+        zhijianshi = 1,
+    },
+
+    [2] = {
+        baby = 1,
+        chefu = 8,
+        elder = 4,
+        formal = 100,
+        jingying = 30,
+        keqing = 1,
+        leader = 1,
+        level = 2,
+        viceleader = 1,
+        xuetu = 100,
+        zhijianshi = 1,
+    },
+
+    [3] = {
+        baby = 1,
+        chefu = 8,
+        elder = 4,
+        formal = 100,
+        jingying = 30,
+        keqing = 1,
+        leader = 1,
+        level = 3,
+        viceleader = 1,
+        xuetu = 100,
+        zhijianshi = 1,
+    },
+
+    [4] = {
+        baby = 1,
+        chefu = 8,
+        elder = 4,
+        formal = 100,
+        jingying = 30,
+        keqing = 1,
+        leader = 1,
+        level = 4,
+        viceleader = 1,
+        xuetu = 100,
+        zhijianshi = 1,
+    },
+
+    [5] = {
+        baby = 1,
+        chefu = 8,
+        elder = 4,
+        formal = 100,
+        jingying = 30,
+        keqing = 1,
+        leader = 1,
+        level = 5,
+        viceleader = 1,
+        xuetu = 100,
+        zhijianshi = 1,
+    },
+
+    [6] = {
+        baby = 1,
+        chefu = 8,
+        elder = 4,
+        formal = 100,
+        jingying = 30,
+        keqing = 1,
+        leader = 1,
+        level = 6,
+        viceleader = 1,
+        xuetu = 100,
+        zhijianshi = 1,
+    },
+
+}

@@ -1,0 +1,24 @@
+import "base/common.proto";
+
+// 已通知过的系统开启
+message GS2CSysOpenNotified {
+    repeated string sys_ids = 1;
+}
+
+// 新手引导信息
+message GS2CNewbieGuideInfo {
+    repeated base.GuideLinkInfo guide_links = 1;
+    optional string exdata = 2;  // 可以存储玩家选择是否玩过回合制等信息
+    optional uint32 no_guide = 3; // 0:正常引导, 1:不要引导
+}
+
+// 新手指引产出宠物
+message GS2CNewibeSummonGot {
+    optional uint32 succ = 1;       // 0/1 是否成功
+    optional uint32 had_selection = 2; // 曾经选择过的选项（不为0表示曾经执行过该流程）
+}
+
+// 获取新手引导数据，暂时只有帮派引导
+message GS2CGetNewbieGuildInfo {
+    optional uint32 org_cnt = 1;       // 帮派数量
+}
